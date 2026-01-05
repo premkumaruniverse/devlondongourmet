@@ -7,6 +7,7 @@ import AdminDashboard from "./pages/admin-view/dashboard";
 import AdminProducts from "./pages/admin-view/products";
 import AdminOrders from "./pages/admin-view/orders";
 import AdminFeatures from "./pages/admin-view/features";
+import AdminRecipes from "./pages/admin-view/recipes";
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
@@ -26,6 +27,7 @@ import DinersAtlas from "./pages/shopping-view/diners-atlas";
 import GourmetClub from "./pages/shopping-view/gourmet-club";
 import AyuBite from "./pages/shopping-view/ayu-bite";
 import Recipes from "./pages/shopping-view/recipes";
+import RecipeDetail from "./pages/shopping-view/recipe-detail";
 import ContactUs from "./pages/shopping-view/contact-us";
 
 function App() {
@@ -77,6 +79,7 @@ function App() {
           <Route path="products" element={<AdminProducts />} />
           <Route path="orders" element={<AdminOrders />} />
           <Route path="features" element={<AdminFeatures />} />
+          <Route path="recipes" element={<AdminRecipes />} />
         </Route>
         <Route
           path="/shop"
@@ -97,6 +100,7 @@ function App() {
           <Route path="gourmet-club" element={<GourmetClub />} />
           <Route path="ayu-bite" element={<AyuBite />} />
           <Route path="recipes" element={<Recipes />} />
+          <Route path="recipes/:id" element={<RecipeDetail />} />
           <Route path="contact-us" element={<ContactUs />} />
         </Route>
         <Route path="/unauth-page" element={<UnauthPage />} />

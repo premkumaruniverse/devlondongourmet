@@ -15,6 +15,7 @@ function ProductImageUpload({
   setImageLoadingState,
   isEditMode,
   isCustomStyling = false,
+  currentImage,
 }) {
   const inputRef = useRef(null);
 
@@ -40,8 +41,15 @@ function ProductImageUpload({
 
   function handleRemoveImage() {
     setImageFile(null);
+    setUploadedImageUrl("");
     if (inputRef.current) {
       inputRef.current.value = "";
+    }
+  }
+
+  function triggerFileInput() {
+    if (inputRef.current) {
+      inputRef.current.click();
     }
   }
 
@@ -73,9 +81,7 @@ function ProductImageUpload({
       <div
         onDragOver={handleDragOver}
         onDrop={handleDrop}
-        className={`${
-          isEditMode ? "opacity-60" : ""
-        } border-2 border-dashed rounded-lg p-4`}
+        className={`border-2 border-dashed rounded-lg p-4`}
       >
         <Input
           id="image-upload"
@@ -83,17 +89,16 @@ function ProductImageUpload({
           className="hidden"
           ref={inputRef}
           onChange={handleImageFileChange}
-          disabled={isEditMode}
         />
         {!imageFile ? (
           <Label
             htmlFor="image-upload"
             className={`${
-              isEditMode ? "cursor-not-allowed" : ""
+              isEditMode ? "cursor-pointer" : ""
             } flex flex-col items-center justify-center h-32 cursor-pointer`}
           >
             <UploadCloudIcon className="w-10 h-10 text-muted-foreground mb-2" />
-            <span>Drag & drop or click to upload image</span>
+            <span>{isEditMode ? "Click to change image" : "Drag & drop or click to upload image"}</span>
           </Label>
         ) : imageLoadingState ? (
           <Skeleton className="h-10 bg-gray-100" />
@@ -102,7 +107,7 @@ function ProductImageUpload({
             <div className="flex items-center">
               <FileIcon className="w-8 text-primary mr-2 h-8" />
             </div>
-            <p className="text-sm font-medium">{imageFile.name}</p>
+            <p className="text-sm font-medium">{imageFile ? imageFile.name : (currentImage ? "Current image" : "")}</p>
             <Button
               variant="ghost"
               size="icon"
@@ -112,6 +117,36 @@ function ProductImageUpload({
               <XIcon className="w-4 h-4" />
               <span className="sr-only">Remove File</span>
             </Button>
+          </div>
+        )}
+
+        {/* Show current image in edit mode */}
+        {isEditMode && currentImage && !imageFile && (
+          <div className="mt-4">
+            <Label className="text-lg font-semibold mb-2 block">Current Image</Label>
+            <div className="relative">
+              <img
+                src={currentImage}
+                alt="Current recipe image"
+                className="w-full h-48 object-cover rounded-lg border"
+              />
+              <div className="absolute top-2 right-2 flex gap-2">
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  onClick={triggerFileInput}
+                >
+                  Change Image
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleRemoveImage}
+                >
+                  Remove Image
+                </Button>
+              </div>
+            </div>
           </div>
         )}
       </div>
