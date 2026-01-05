@@ -24,6 +24,7 @@ const initialFormData = {
   title: "",
   description: "",
   category: "",
+  subcategory: "",
   brand: "",
   price: "",
   salePrice: "",

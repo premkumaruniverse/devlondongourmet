@@ -259,3 +259,178 @@ export const addressFormControls = [
     placeholder: "Enter any additional notes",
   },
 ];
+
+export const addRecipeFormElements = [
+  {
+    label: "Title",
+    name: "title",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter recipe title",
+  },
+  {
+    label: "Description",
+    name: "description",
+    componentType: "textarea",
+    placeholder: "Enter brief description of the recipe",
+  },
+  {
+    label: "Type",
+    name: "type",
+    componentType: "select",
+    options: [
+      { id: "recipe", label: "Recipe" },
+      { id: "blog", label: "Blog" },
+    ],
+  },
+  {
+    label: "Category",
+    name: "category",
+    componentType: "select",
+    options: [
+      { id: "Veg", label: "Veg" },
+      { id: "Non-Veg", label: "Non-Veg" },
+      { id: "Dessert", label: "Dessert" },
+      { id: "Beverage", label: "Beverage" },
+      { id: "Appetizer", label: "Appetizer" },
+      { id: "Main Course", label: "Main Course" },
+      { id: "Other", label: "Other" },
+    ],
+  },
+  {
+    label: "Custom Category",
+    name: "customCategory",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter custom category name",
+    showIf: (formData) => formData.category === "Other",
+  },
+  {
+    label: "Total Time",
+    name: "totalTime",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., 45 mins",
+  },
+  {
+    label: "Servings",
+    name: "servings",
+    componentType: "input",
+    type: "number",
+    placeholder: "Number of servings",
+  },
+  {
+    label: "Difficulty",
+    name: "difficulty",
+    componentType: "select",
+    options: [
+      { id: "Easy", label: "Easy" },
+      { id: "Medium", label: "Medium" },
+      { id: "Hard", label: "Hard" },
+    ],
+  },
+  {
+    label: "Ingredients (comma separated)",
+    name: "ingredients",
+    componentType: "textarea",
+    placeholder: "Enter ingredients separated by commas",
+  },
+  {
+    label: "Instructions",
+    name: "instructions",
+    componentType: "rich-text",
+    placeholder: "Enter cooking instructions with rich formatting...",
+  },
+  {
+    label: "Author",
+    name: "author",
+    componentType: "input",
+    type: "text",
+    placeholder: "Author name",
+  },
+  {
+    label: "Published",
+    name: "isPublished",
+    componentType: "select",
+    options: [
+      { id: "true", label: "Published" },
+      { id: "false", label: "Draft" },
+    ],
+  },
+];
+
+export const addBlogFormElements = [
+  {
+    label: "Title",
+    name: "title",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter blog title",
+  },
+  {
+    label: "Description",
+    name: "description",
+    componentType: "textarea",
+    placeholder: "Enter brief description of blog",
+  },
+  {
+    label: "Type",
+    name: "type",
+    componentType: "select",
+    options: [
+      { id: "recipe", label: "Recipe" },
+      { id: "blog", label: "Blog" },
+    ],
+  },
+  {
+    label: "Category",
+    name: "category",
+    componentType: "select",
+    options: [
+      { id: "Cooking Tips", label: "Cooking Tips" },
+      { id: "Food Stories", label: "Food Stories" },
+      { id: "Restaurant Reviews", label: "Restaurant Reviews" },
+      { id: "Culinary Travel", label: "Culinary Travel" },
+      { id: "Chef Interviews", label: "Chef Interviews" },
+      { id: "Food Trends", label: "Food Trends" },
+      { id: "Other", label: "Other" },
+    ],
+  },
+  {
+    label: "Custom Category",
+    name: "customCategory",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter custom category name",
+    showIf: (formData) => formData.category === "Other",
+  },
+  {
+    label: "Content",
+    name: "content",
+    componentType: "rich-text",
+    placeholder: "Write your blog content here...",
+  },
+  {
+    label: "Tags (comma separated)",
+    name: "tags",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter tags separated by commas",
+  },
+  {
+    label: "Author",
+    name: "author",
+    componentType: "input",
+    type: "text",
+    placeholder: "Author name",
+  },
+  {
+    label: "Published",
+    name: "isPublished",
+    componentType: "select",
+    options: [
+      { id: "true", label: "Published" },
+      { id: "false", label: "Draft" },
+    ],
+  },
+];

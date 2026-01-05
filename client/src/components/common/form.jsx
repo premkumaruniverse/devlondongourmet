@@ -11,6 +11,8 @@ import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { useEffect, useState } from "react";
 import { subcategoryOptionsMap } from "@/config";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 function CommonForm({
   formControls,
@@ -25,6 +27,12 @@ function CommonForm({
   // Update dependent fields when form data changes
   useEffect(() => {
     const updatedControls = formControls.map(control => {
+      // Handle showIf conditional fields
+      if (control.showIf) {
+        const shouldShow = control.showIf(formData);
+        return { ...control, hidden: !shouldShow };
+      }
+      
       // If this control has a dependency, check if it should be shown
       if (control.dependentOn) {
         const parentValue = formData[control.dependentOn];
@@ -146,6 +154,40 @@ function CommonForm({
               })
             }
           />
+        );
+
+        break;
+      
+      case "rich-text":
+        element = (
+          <div className="min-h-[200px]">
+            <ReactQuill
+              theme="snow"
+              value={value || ''}
+              onChange={(content) =>
+                setFormData({
+                  ...formData,
+                  [getControlItem.name]: content,
+                })
+              }
+              placeholder={getControlItem.placeholder}
+              modules={{
+                toolbar: [
+                  [{ 'header': [1, 2, false] }],
+                  ['bold', 'italic', 'underline', 'strike'],
+                  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                  [{ 'color': [] }, { 'background': [] }],
+                  ['link', 'image'],
+                  ['clean']
+                ],
+              }}
+              formats={[
+                'header', 'bold', 'italic', 'underline', 'strike',
+                'list', 'bullet', 'color', 'background',
+                'link', 'image'
+              ]}
+            />
+          </div>
         );
 
         break;

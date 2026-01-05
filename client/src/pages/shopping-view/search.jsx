@@ -25,7 +25,7 @@ function SearchProducts() {
   const { cartItems } = useSelector((state) => state.shopCart);
   const { toast } = useToast();
   useEffect(() => {
-    if (keyword && keyword.trim() !== "" && keyword.trim().length > 3) {
+    if (keyword && keyword.trim() !== "" && keyword.trim().length >= 3) {
       setTimeout(() => {
         setSearchParams(new URLSearchParams(`?keyword=${keyword}`));
         dispatch(getSearchResults(keyword));
