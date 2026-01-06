@@ -134,6 +134,11 @@ export const shoppingViewHeaderMenuItems = [
     path: "/shop/recipes",
   },
   {
+    id: "meet_our_team",
+    label: "Meet Our Team",
+    path: "/shop/meet-our-team",
+  },
+  {
     id: "contact_us",
     label: "Contact Us",
     path: "/shop/contact-us",
@@ -334,6 +339,104 @@ export const addRecipeFormElements = [
       { id: "true", label: "Published" },
       { id: "false", label: "Draft" },
     ],
+  },
+];
+
+export const addChefFormElements = [
+  {
+    label: "Name",
+    name: "name",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter chef name",
+  },
+  {
+    label: "Title",
+    name: "title",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter chef title (e.g., Executive Chef)",
+  },
+  {
+    label: "Bio",
+    name: "bio",
+    componentType: "textarea",
+    placeholder: "Enter chef biography",
+  },
+  {
+    label: "Experience",
+    name: "experience",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., 15+ years in culinary industry",
+  },
+  {
+    label: "Best Advice",
+    name: "bestAdvice",
+    componentType: "textarea",
+    placeholder: "Enter best advice received by the chef",
+  },
+  {
+    label: "Memberships (comma separated)",
+    name: "memberships",
+    componentType: "textarea",
+    placeholder: "Enter professional memberships separated by commas",
+  },
+  {
+    label: "Recognition (comma separated)",
+    name: "recognition",
+    componentType: "textarea",
+    placeholder: "Enter awards and recognition separated by commas",
+  },
+  {
+    label: "Specializations (comma separated)",
+    name: "specializations",
+    componentType: "textarea",
+    placeholder: "Enter culinary specializations separated by commas",
+  },
+  {
+    label: "Email",
+    name: "email",
+    componentType: "input",
+    type: "email",
+    placeholder: "Enter chef email (optional)",
+  },
+  {
+    label: "LinkedIn URL",
+    name: "linkedin",
+    componentType: "input",
+    type: "url",
+    placeholder: "Enter LinkedIn profile URL (optional)",
+  },
+  {
+    label: "Twitter URL",
+    name: "twitter",
+    componentType: "input",
+    type: "url",
+    placeholder: "Enter Twitter profile URL (optional)",
+  },
+  {
+    label: "Instagram URL",
+    name: "instagram",
+    componentType: "input",
+    type: "url",
+    placeholder: "Enter Instagram profile URL (optional)",
+  },
+  {
+    label: "Active Status",
+    name: "isActive",
+    componentType: "select",
+    options: [
+      { id: "true", label: "Active" },
+      { id: "false", label: "Inactive" },
+    ],
+  },
+  {
+    label: "Display Order",
+    name: "order",
+    componentType: "input",
+    type: "number",
+    placeholder: "Enter display order (lower numbers appear first)",
   },
 ];
 

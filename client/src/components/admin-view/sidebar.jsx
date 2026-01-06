@@ -4,6 +4,7 @@ import {
   LayoutDashboard,
   ShoppingBasket,
   BookOpen,
+  Users,
 } from "lucide-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
@@ -27,6 +28,12 @@ const adminSidebarMenuItems = [
     label: "Recipes & Blogs",
     path: "/admin/recipes",
     icon: <BookOpen />,
+  },
+  {
+    id: "chefs",
+    label: "Chefs",
+    path: "/admin/chefs",
+    icon: <Users />,
   },
   {
     id: "orders",

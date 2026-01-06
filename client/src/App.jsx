@@ -8,6 +8,7 @@ import AdminProducts from "./pages/admin-view/products";
 import AdminOrders from "./pages/admin-view/orders";
 import AdminFeatures from "./pages/admin-view/features";
 import AdminRecipes from "./pages/admin-view/recipes";
+import AdminChefs from "./pages/admin-view/chefs";
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
@@ -29,6 +30,8 @@ import AyuBite from "./pages/shopping-view/ayu-bite";
 import Recipes from "./pages/shopping-view/recipes";
 import RecipeDetail from "./pages/shopping-view/recipe-detail";
 import ContactUs from "./pages/shopping-view/contact-us";
+import MeetOurTeam from "./pages/shopping-view/meet-our-team";
+import ChefDetail from "./pages/shopping-view/chef-detail";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
@@ -80,6 +83,7 @@ function App() {
           <Route path="orders" element={<AdminOrders />} />
           <Route path="features" element={<AdminFeatures />} />
           <Route path="recipes" element={<AdminRecipes />} />
+          <Route path="chefs" element={<AdminChefs />} />
         </Route>
         <Route
           path="/shop"
@@ -102,6 +106,8 @@ function App() {
           <Route path="recipes" element={<Recipes />} />
           <Route path="recipes/:id" element={<RecipeDetail />} />
           <Route path="contact-us" element={<ContactUs />} />
+          <Route path="meet-our-team" element={<MeetOurTeam />} />
+          <Route path="chefs/:id" element={<ChefDetail />} />
         </Route>
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
