@@ -74,19 +74,6 @@ export const addProductFormElements = [
     dependentOn: "category",
   },
   {
-    label: "Brand",
-    name: "brand",
-    componentType: "select",
-    options: [
-      { id: "nike", label: "Nike" },
-      { id: "adidas", label: "Adidas" },
-      { id: "puma", label: "Puma" },
-      { id: "levi", label: "Levi's" },
-      { id: "zara", label: "Zara" },
-      { id: "h&m", label: "H&M" },
-    ],
-  },
-  {
     label: "Price",
     name: "price",
     componentType: "input",
@@ -170,15 +157,6 @@ export const subcategoryOptionsMap = {
   'rubs-spice-mix': ['Spice Mix', 'Kebab Rubs'],
   'rassa': ['Gravies', 'Chutneys'],
   'cured-coated': ['Meats', 'Chicken', 'Sea Food']
-};
-
-export const brandOptionsMap = {
-  nike: "Nike",
-  adidas: "Adidas",
-  puma: "Puma",
-  levi: "Levi",
-  zara: "Zara",
-  "h&m": "H&M",
 };
 
 export const filterOptions = {
