@@ -5,6 +5,8 @@ import {
   ShoppingBasket,
   BookOpen,
   Users,
+  Utensils,
+  UserCheck,
 } from "lucide-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
@@ -34,6 +36,18 @@ const adminSidebarMenuItems = [
     label: "Chefs",
     path: "/admin/chefs",
     icon: <Users />,
+  },
+  {
+    id: "gourmet-clubs",
+    label: "Gourmet Clubs",
+    path: "/admin/gourmet-clubs",
+    icon: <Utensils />,
+  },
+  {
+    id: "hosts",
+    label: "Host Management",
+    path: "/admin/hosts",
+    icon: <UserCheck />,
   },
   {
     id: "orders",

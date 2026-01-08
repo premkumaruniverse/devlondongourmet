@@ -135,6 +135,7 @@ function AdminChefs() {
         {chefList && chefList.length > 0
           ? chefList.map((chefItem) => (
               <AdminChefTile
+                key={chefItem._id}
                 setFormData={setFormData}
                 setOpenCreateChefsDialog={setOpenCreateChefsDialog}
                 setCurrentEditedId={setCurrentEditedId}

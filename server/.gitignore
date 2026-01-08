@@ -1,3 +1,19 @@
-node_modules
-.env
+# Dependencies
+node_modules/
 dist/
+
+# Logs
+*.log
+logs/
+
+# Database
+*.db
+*.sqlite
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db

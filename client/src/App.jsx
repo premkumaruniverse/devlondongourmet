@@ -9,6 +9,8 @@ import AdminOrders from "./pages/admin-view/orders";
 import AdminFeatures from "./pages/admin-view/features";
 import AdminRecipes from "./pages/admin-view/recipes";
 import AdminChefs from "./pages/admin-view/chefs";
+import AdminGourmetClubs from "./pages/admin-view/gourmet-clubs";
+import HostManagement from "./pages/admin-view/host-management";
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
@@ -32,6 +34,8 @@ import RecipeDetail from "./pages/shopping-view/recipe-detail";
 import ContactUs from "./pages/shopping-view/contact-us";
 import MeetOurTeam from "./pages/shopping-view/meet-our-team";
 import ChefDetail from "./pages/shopping-view/chef-detail";
+import GourmetClubsListing from "./pages/gourmet-club/listing";
+import GourmetClubDetail from "./pages/gourmet-club/detail";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
@@ -84,6 +88,8 @@ function App() {
           <Route path="features" element={<AdminFeatures />} />
           <Route path="recipes" element={<AdminRecipes />} />
           <Route path="chefs" element={<AdminChefs />} />
+          <Route path="gourmet-clubs" element={<AdminGourmetClubs />} />
+          <Route path="hosts" element={<HostManagement />} />
         </Route>
         <Route
           path="/shop"
@@ -111,6 +117,10 @@ function App() {
         </Route>
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
+        
+        {/* Gourmet Club Routes */}
+        <Route path="/gourmet-clubs" element={<GourmetClubsListing />} />
+        <Route path="/gourmet-clubs/:id" element={<GourmetClubDetail />} />
       </Routes>
     </div>
   );

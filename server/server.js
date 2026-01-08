@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+require('dotenv').config(); // Load environment variables from .env file
 const authRouter = require("./routes/auth/auth-routes");
 const adminProductsRouter = require("./routes/admin/products-routes");
 const adminOrderRouter = require("./routes/admin/order-routes");
@@ -18,6 +19,13 @@ const shopRecipesRouter = require("./routes/shop/recipes-routes");
 const shopChefsRouter = require("./routes/shop/chefs-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
+
+const gourmetClubRouter = require("./routes/gourmet-club-routes");
+const gourmetEventRouter = require("./routes/gourmet-event-routes");
+const bookingRouter = require("./routes/booking-routes");
+const couponRouter = require("./routes/coupon-routes");
+const paymentRouter = require("./routes/payment-routes");
+const reviewRouter = require("./routes/review-routes");
 
 //create a database connection -> u can also
 //create a separate file for this and then import/use that file here
@@ -63,6 +71,13 @@ app.use("/api/shop/search", shopSearchRouter);
 app.use("/api/shop/review", shopReviewRouter);
 app.use("/api/shop/recipes", shopRecipesRouter);
 app.use("/api/shop/chefs", shopChefsRouter);
+
+app.use("/api/gourmet-clubs", gourmetClubRouter);
+app.use("/api/gourmet-events", gourmetEventRouter);
+app.use("/api/bookings", bookingRouter);
+app.use("/api/coupons", couponRouter);
+app.use("/api/payments", paymentRouter);
+app.use("/api/reviews", reviewRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
 
