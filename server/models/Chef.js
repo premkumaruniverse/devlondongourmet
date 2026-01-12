@@ -32,9 +32,16 @@ const ChefSchema = new mongoose.Schema(
     recognition: [{
       type: String,
     }],
+    awards: [{
+      type: String,
+    }],
     specializations: [{
       type: String,
     }],
+    languages: {
+      type: String,
+      required: false,
+    },
     email: {
       type: String,
       required: false,
@@ -49,6 +56,23 @@ const ChefSchema = new mongoose.Schema(
       default: true,
     },
     order: {
+      type: Number,
+      default: 0,
+    },
+    // Host statistics
+    events_hosted: {
+      type: Number,
+      default: 0,
+    },
+    total_guests: {
+      type: Number,
+      default: 0,
+    },
+    years_experience: {
+      type: Number,
+      default: 0,
+    },
+    average_host_rating: {
       type: Number,
       default: 0,
     },
