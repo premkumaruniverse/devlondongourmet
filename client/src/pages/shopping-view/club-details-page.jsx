@@ -281,7 +281,7 @@ function ClubDetailsPage() {
                       <ClockIcon className="h-4 w-4 text-muted-foreground" />
                       <div>
                         <p className="font-medium">Duration</p>
-                        <p className="text-sm text-muted-foreground">{selectedSchedule?.duration || "2-3 hours"}</p>
+                        <p className="text-sm text-muted-foreground">{selectedSchedule?.duration || club?.default_duration || "2-3 hours"}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
@@ -289,7 +289,7 @@ function ClubDetailsPage() {
                       <div>
                         <p className="font-medium">Group Size</p>
                         <p className="text-sm text-muted-foreground">
-                          {selectedSchedule?.seat_limit || "2-8"} guests
+                          {selectedSchedule?.seat_limit ? `${selectedSchedule.seat_limit} guests` : club?.default_group_size || "2-8 guests"}
                         </p>
                       </div>
                     </div>
@@ -298,7 +298,7 @@ function ClubDetailsPage() {
                       <div>
                         <p className="font-medium">Location</p>
                         <p className="text-sm text-muted-foreground">
-                          {club?.location?.address || "Private residence - details provided after booking"}
+                          {club?.location?.address || club?.default_location_description || "Private residence - details provided after booking"}
                         </p>
                         {club?.location?.neighborhood && (
                           <p className="text-xs text-muted-foreground">
@@ -458,7 +458,7 @@ function ClubDetailsPage() {
                               <ClockIcon className="h-4 w-4" />
                               <span>{schedule.start_time}</span>
                               <span>•</span>
-                              <span>{schedule.duration || "2-3 hours"}</span>
+                              <span>{schedule.duration || club?.default_duration || "2-3 hours"}</span>
                             </div>
                             <div className="flex items-center gap-2 text-sm">
                               <UsersIcon className="h-4 w-4" />

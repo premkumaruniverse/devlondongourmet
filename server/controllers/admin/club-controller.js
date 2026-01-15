@@ -38,6 +38,9 @@ const addClub = async (req, res) => {
       menu_details,
       dietary_notes,
       cancellation_policy,
+      default_duration,
+      default_group_size,
+      default_location_description,
     } = req.body;
 
     // Validate host_id is a valid ObjectId and exists in Chef collection
@@ -67,6 +70,9 @@ const addClub = async (req, res) => {
       menu_details,
       dietary_notes,
       cancellation_policy,
+      default_duration,
+      default_group_size,
+      default_location_description,
     });
 
     await newlyCreatedClub.save();
@@ -117,6 +123,9 @@ const editClub = async (req, res) => {
       dietary_notes,
       cancellation_policy,
       status,
+      default_duration,
+      default_group_size,
+      default_location_description,
     } = req.body;
 
     let findClub = await Club.findById(id);
@@ -137,6 +146,9 @@ const editClub = async (req, res) => {
     findClub.dietary_notes = dietary_notes || findClub.dietary_notes;
     findClub.cancellation_policy = cancellation_policy || findClub.cancellation_policy;
     findClub.status = status || findClub.status;
+    findClub.default_duration = default_duration || findClub.default_duration;
+    findClub.default_group_size = default_group_size || findClub.default_group_size;
+    findClub.default_location_description = default_location_description || findClub.default_location_description;
 
     await findClub.save();
     res.status(200).json({

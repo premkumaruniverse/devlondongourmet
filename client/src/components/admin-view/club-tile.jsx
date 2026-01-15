@@ -90,6 +90,9 @@ function AdminClubTile({
               dietary_notes: club?.dietary_notes,
               cancellation_policy: club?.cancellation_policy,
               status: club?.status,
+              default_duration: club?.default_duration || "",
+              default_group_size: club?.default_group_size || "",
+              default_location_description: club?.default_location_description || "",
             });
             setCurrentEditedId(club?._id);
             setOpenCreateProductsDialog(true);

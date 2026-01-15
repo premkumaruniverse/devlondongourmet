@@ -92,6 +92,18 @@ const ClubSchema = new mongoose.Schema(
       type: Number,
       default: 0,
     },
+    default_duration: {
+      type: String,
+      default: "2-3 hours",
+    },
+    default_group_size: {
+      type: String,
+      default: "2-8 guests",
+    },
+    default_location_description: {
+      type: String,
+      default: "Private residence - details provided after booking",
+    },
   },
   { timestamps: true }
 );

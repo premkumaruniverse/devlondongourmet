@@ -32,6 +32,9 @@ const initialFormData = {
   dietary_notes: "",
   cancellation_policy: "",
   status: "DRAFT",
+  default_duration: "",
+  default_group_size: "",
+  default_location_description: "",
 };
 
 function AdminClubs() {

@@ -292,6 +292,26 @@ export const addClubFormElements = [
       { id: "COMPLETED", label: "Completed" },
     ],
   },
+  {
+    label: "Default Duration",
+    name: "default_duration",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., 2-3 hours",
+  },
+  {
+    label: "Default Group Size",
+    name: "default_group_size",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., 2-8 guests",
+  },
+  {
+    label: "Default Location Description",
+    name: "default_location_description",
+    componentType: "textarea",
+    placeholder: "e.g., Private residence - details provided after booking",
+  },
 ];
 
 export const addressFormControls = [
