@@ -206,6 +206,114 @@ export const sortOptions = [
   { id: "title-ztoa", label: "Title: Z to A" },
 ];
 
+export const clubSortOptions = [
+  { id: "price-lowtohigh", label: "Price: Low to High" },
+  { id: "price-hightolow", label: "Price: High to Low" },
+  { id: "date-soonest", label: "Date: Sooner First" },
+  { id: "rating-highest", label: "Rating: Highest First" },
+];
+
+export const addClubFormElements = [
+  {
+    label: "Title",
+    name: "title",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter club title",
+  },
+  {
+    label: "Description",
+    name: "description",
+    componentType: "textarea",
+    placeholder: "Enter club description",
+  },
+  {
+    label: "Experience Type",
+    name: "experience_type",
+    componentType: "select",
+    options: [
+      { id: "SUPPER_CLUB", label: "Supper Club" },
+      { id: "CHEFS_TABLE", label: "Chef's Table" },
+      { id: "WINE_TASTING", label: "Wine Tasting" },
+      { id: "MASTERCLASS", label: "Masterclass" },
+      { id: "FARM_TO_TABLE", label: "Farm to Table" },
+    ],
+  },
+  {
+    label: "Theme",
+    name: "theme",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter club theme (optional)",
+  },
+  {
+    label: "Host",
+    name: "host_id",
+    componentType: "select",
+    options: [
+      // Will be populated dynamically from chefs
+    ],
+  },
+  {
+    label: "Menu Details",
+    name: "menu_details",
+    componentType: "textarea",
+    placeholder: "Describe the menu and culinary experience",
+  },
+  {
+    label: "Dietary Notes",
+    name: "dietary_notes",
+    componentType: "textarea",
+    placeholder: "Dietary accommodations and restrictions",
+  },
+  {
+    label: "Cancellation Policy",
+    name: "cancellation_policy",
+    componentType: "textarea",
+    placeholder: "Enter cancellation policy",
+  },
+  {
+    label: "Members Only",
+    name: "is_members_only",
+    componentType: "select",
+    options: [
+      { id: "true", label: "Yes" },
+      { id: "false", label: "No" },
+    ],
+  },
+  {
+    label: "Status",
+    name: "status",
+    componentType: "select",
+    options: [
+      { id: "DRAFT", label: "Draft" },
+      { id: "LIVE", label: "Live" },
+      { id: "FULLY_BOOKED", label: "Fully Booked" },
+      { id: "COMPLETED", label: "Completed" },
+    ],
+  },
+  {
+    label: "Default Duration",
+    name: "default_duration",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., 2-3 hours",
+  },
+  {
+    label: "Default Group Size",
+    name: "default_group_size",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., 2-8 guests",
+  },
+  {
+    label: "Default Location Description",
+    name: "default_location_description",
+    componentType: "textarea",
+    placeholder: "e.g., Private residence - details provided after booking",
+  },
+];
+
 export const addressFormControls = [
   {
     label: "Address",

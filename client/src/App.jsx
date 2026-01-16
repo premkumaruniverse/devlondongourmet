@@ -9,6 +9,7 @@ import AdminOrders from "./pages/admin-view/orders";
 import AdminFeatures from "./pages/admin-view/features";
 import AdminRecipes from "./pages/admin-view/recipes";
 import AdminChefs from "./pages/admin-view/chefs";
+import AdminClubs from "./pages/admin-view/clubs";
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
@@ -25,7 +26,8 @@ import PaypalReturnPage from "./pages/shopping-view/paypal-return";
 import PaymentSuccessPage from "./pages/shopping-view/payment-success";
 import SearchProducts from "./pages/shopping-view/search";
 import DinersAtlas from "./pages/shopping-view/diners-atlas";
-import GourmetClub from "./pages/shopping-view/gourmet-club";
+import ShoppingClubs from "./pages/shopping-view/clubs";
+import ClubDetailsPage from "./pages/shopping-view/club-details-page";
 import AyuBite from "./pages/shopping-view/ayu-bite";
 import Recipes from "./pages/shopping-view/recipes";
 import RecipeDetail from "./pages/shopping-view/recipe-detail";
@@ -84,6 +86,7 @@ function App() {
           <Route path="features" element={<AdminFeatures />} />
           <Route path="recipes" element={<AdminRecipes />} />
           <Route path="chefs" element={<AdminChefs />} />
+          <Route path="clubs" element={<AdminClubs />} />
         </Route>
         <Route
           path="/shop"
@@ -101,7 +104,8 @@ function App() {
           <Route path="payment-success" element={<PaymentSuccessPage />} />
           <Route path="search" element={<SearchProducts />} />
           <Route path="diners-atlas" element={<DinersAtlas />} />
-          <Route path="gourmet-club" element={<GourmetClub />} />
+          <Route path="gourmet-club" element={<ShoppingClubs />} />
+          <Route path="gourmet-club/:id" element={<ClubDetailsPage />} />
           <Route path="ayu-bite" element={<AyuBite />} />
           <Route path="recipes" element={<Recipes />} />
           <Route path="recipes/:id" element={<RecipeDetail />} />

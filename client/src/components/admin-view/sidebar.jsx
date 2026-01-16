@@ -5,6 +5,7 @@ import {
   ShoppingBasket,
   BookOpen,
   Users,
+  Calendar,
 } from "lucide-react";
 import { Fragment } from "react";
 import { useNavigate } from "react-router-dom";
@@ -34,6 +35,12 @@ const adminSidebarMenuItems = [
     label: "Chefs",
     path: "/admin/chefs",
     icon: <Users />,
+  },
+  {
+    id: "clubs",
+    label: "Gourmet Clubs",
+    path: "/admin/clubs",
+    icon: <Calendar />,
   },
   {
     id: "orders",
