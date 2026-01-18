@@ -70,4 +70,9 @@ app.use("/api/shop/clubs", shopClubsRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
 
+// Root route
+app.get("/", (req, res) => {
+  res.json({ message: "London Gourmet API is running!" });
+});
+
 app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));
