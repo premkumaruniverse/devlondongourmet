@@ -17,7 +17,7 @@ export const fetchAllLiveClubs = createAsyncThunk(
     });
 
     const result = await axios.get(
-      `http://localhost:5000/api/shop/clubs/get?${query}`
+      `http://https://devlondongourmet.vercel.app/api/shop/clubs/get?${query}`
     );
 
     return result?.data;
@@ -28,7 +28,7 @@ export const fetchClubDetails = createAsyncThunk(
   "/clubs/fetchClubDetails",
   async (id) => {
     const result = await axios.get(
-      `http://localhost:5000/api/shop/clubs/details/${id}`
+      `http://https://devlondongourmet.vercel.app/api/shop/clubs/details/${id}`
     );
 
     return result?.data;
@@ -39,7 +39,7 @@ export const addClubReview = createAsyncThunk(
   "/clubs/addClubReview",
   async ({ clubId, reviewData }) => {
     const result = await axios.post(
-      `http://localhost:5000/api/shop/clubs/review/${clubId}`,
+      `http://https://devlondongourmet.vercel.app/api/shop/clubs/review/${clubId}`,
       reviewData
     );
 
@@ -51,7 +51,7 @@ export const getClubReviews = createAsyncThunk(
   "/clubs/getClubReviews",
   async (clubId) => {
     const result = await axios.get(
-      `http://localhost:5000/api/shop/clubs/reviews/${clubId}`
+      `http://https://devlondongourmet.vercel.app/api/shop/clubs/reviews/${clubId}`
     );
 
     return result?.data;

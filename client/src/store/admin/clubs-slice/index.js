@@ -11,7 +11,7 @@ export const addNewClub = createAsyncThunk(
   "/clubs/addnewclub",
   async (formData) => {
     const result = await axios.post(
-      "http://localhost:5000/api/admin/clubs/add",
+      "http://https://devlondongourmet.vercel.app/api/admin/clubs/add",
       formData,
       {
         headers: {
@@ -28,7 +28,7 @@ export const fetchAllClubs = createAsyncThunk(
   "/clubs/fetchAllClubs",
   async () => {
     const result = await axios.get(
-      "http://localhost:5000/api/admin/clubs/get"
+      "http://https://devlondongourmet.vercel.app/api/admin/clubs/get"
     );
 
     return result?.data;
@@ -39,7 +39,7 @@ export const fetchAllChefs = createAsyncThunk(
   "/clubs/fetchAllChefs",
   async () => {
     const result = await axios.get(
-      "http://localhost:5000/api/admin/clubs/chefs"
+      "http://https://devlondongourmet.vercel.app/api/admin/clubs/chefs"
     );
 
     return result?.data;
@@ -50,7 +50,7 @@ export const editClub = createAsyncThunk(
   "/clubs/editClub",
   async ({ id, formData }) => {
     const result = await axios.put(
-      `http://localhost:5000/api/admin/clubs/edit/${id}`,
+      `http://https://devlondongourmet.vercel.app/api/admin/clubs/edit/${id}`,
       formData,
       {
         headers: {
@@ -67,7 +67,7 @@ export const deleteClub = createAsyncThunk(
   "/clubs/deleteClub",
   async (id) => {
     const result = await axios.delete(
-      `http://localhost:5000/api/admin/clubs/delete/${id}`
+      `http://https://devlondongourmet.vercel.app/api/admin/clubs/delete/${id}`
     );
 
     return result?.data;
@@ -78,7 +78,7 @@ export const addEventSchedule = createAsyncThunk(
   "/clubs/addEventSchedule",
   async (formData) => {
     const result = await axios.post(
-      "http://localhost:5000/api/admin/clubs/add-schedule",
+      "http://https://devlondongourmet.vercel.app/api/admin/clubs/add-schedule",
       formData,
       {
         headers: {
@@ -95,7 +95,7 @@ export const fetchEventSchedules = createAsyncThunk(
   "/clubs/fetchEventSchedules",
   async (clubId) => {
     const result = await axios.get(
-      `http://localhost:5000/api/admin/clubs/schedules/${clubId}`
+      `http://https://devlondongourmet.vercel.app/api/admin/clubs/schedules/${clubId}`
     );
 
     return result?.data;

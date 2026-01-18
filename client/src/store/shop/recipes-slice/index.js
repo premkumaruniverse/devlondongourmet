@@ -13,7 +13,7 @@ export const fetchAllRecipes = createAsyncThunk(
   async (queryParams = {}) => {
     const queryString = new URLSearchParams(queryParams).toString();
     const response = await axios.get(
-      `http://localhost:5000/api/shop/recipes${queryString ? `?${queryString}` : ''}`
+      `http://https://devlondongourmet.vercel.app/api/shop/recipes${queryString ? `?${queryString}` : ''}`
     );
 
     return response.data;
@@ -24,7 +24,7 @@ export const fetchRecipeDetails = createAsyncThunk(
   "/recipes/fetchRecipeDetails",
   async (id) => {
     const response = await axios.get(
-      `http://localhost:5000/api/shop/recipes/${id}`
+      `http://https://devlondongourmet.vercel.app/api/shop/recipes/${id}`
     );
 
     return response.data;

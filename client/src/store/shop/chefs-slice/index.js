@@ -11,7 +11,7 @@ export const fetchAllChefs = createAsyncThunk(
   "/chefs/fetchAllChefs",
   async () => {
     const result = await axios.get(
-      "http://localhost:5000/api/shop/chefs/get"
+      "http://https://devlondongourmet.vercel.app/api/shop/chefs/get"
     );
 
     return result?.data;
@@ -22,7 +22,7 @@ export const fetchChefDetails = createAsyncThunk(
   "/chefs/fetchChefDetails",
   async (id) => {
     const result = await axios.get(
-      `http://localhost:5000/api/shop/chefs/get/${id}`
+      `http://https://devlondongourmet.vercel.app/api/shop/chefs/get/${id}`
     );
 
     return result?.data;
