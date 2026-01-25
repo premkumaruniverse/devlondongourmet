@@ -34,6 +34,7 @@ import RecipeDetail from "./pages/shopping-view/recipe-detail";
 import ContactUs from "./pages/shopping-view/contact-us";
 import MeetOurTeam from "./pages/shopping-view/meet-our-team";
 import ChefDetail from "./pages/shopping-view/chef-detail";
+import { ThemeProvider } from "./contexts/theme-context";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
@@ -50,73 +51,75 @@ function App() {
   console.log(isLoading, user);
 
   return (
-    <div className="flex flex-col overflow-hidden bg-white">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <CheckAuth
-              isAuthenticated={isAuthenticated}
-              user={user}
-            ></CheckAuth>
-          }
-        />
-        <Route
-          path="/auth"
-          element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-              <AuthLayout />
-            </CheckAuth>
-          }
-        >
-          <Route path="login" element={<AuthLogin />} />
-          <Route path="register" element={<AuthRegister />} />
-        </Route>
-        <Route
-          path="/admin"
-          element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-              <AdminLayout />
-            </CheckAuth>
-          }
-        >
-          <Route path="dashboard" element={<AdminDashboard />} />
-          <Route path="products" element={<AdminProducts />} />
-          <Route path="orders" element={<AdminOrders />} />
-          <Route path="features" element={<AdminFeatures />} />
-          <Route path="recipes" element={<AdminRecipes />} />
-          <Route path="chefs" element={<AdminChefs />} />
-          <Route path="clubs" element={<AdminClubs />} />
-        </Route>
-        <Route
-          path="/shop"
-          element={
-            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
-              <ShoppingLayout />
-            </CheckAuth>
-          }
-        >
-          <Route path="home" element={<ShoppingHome />} />
-          <Route path="listing" element={<ShoppingListing />} />
-          <Route path="checkout" element={<ShoppingCheckout />} />
-          <Route path="account" element={<ShoppingAccount />} />
-          <Route path="paypal-return" element={<PaypalReturnPage />} />
-          <Route path="payment-success" element={<PaymentSuccessPage />} />
-          <Route path="search" element={<SearchProducts />} />
-          <Route path="diners-atlas" element={<DinersAtlas />} />
-          <Route path="gourmet-club" element={<ShoppingClubs />} />
-          <Route path="gourmet-club/:id" element={<ClubDetailsPage />} />
-          <Route path="ayu-bite" element={<AyuBite />} />
-          <Route path="recipes" element={<Recipes />} />
-          <Route path="recipes/:id" element={<RecipeDetail />} />
-          <Route path="contact-us" element={<ContactUs />} />
-          <Route path="meet-our-team" element={<MeetOurTeam />} />
-          <Route path="chefs/:id" element={<ChefDetail />} />
-        </Route>
-        <Route path="/unauth-page" element={<UnauthPage />} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </div>
+    <ThemeProvider>
+      <div className="flex flex-col overflow-hidden bg-white dark:bg-gray-900 transition-colors duration-300">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <CheckAuth
+                isAuthenticated={isAuthenticated}
+                user={user}
+              ></CheckAuth>
+            }
+          />
+          <Route
+            path="/auth"
+            element={
+              <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+                <AuthLayout />
+              </CheckAuth>
+            }
+          >
+            <Route path="login" element={<AuthLogin />} />
+            <Route path="register" element={<AuthRegister />} />
+          </Route>
+          <Route
+            path="/admin"
+            element={
+              <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+                <AdminLayout />
+              </CheckAuth>
+            }
+          >
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="products" element={<AdminProducts />} />
+            <Route path="orders" element={<AdminOrders />} />
+            <Route path="features" element={<AdminFeatures />} />
+            <Route path="recipes" element={<AdminRecipes />} />
+            <Route path="chefs" element={<AdminChefs />} />
+            <Route path="clubs" element={<AdminClubs />} />
+          </Route>
+          <Route
+            path="/shop"
+            element={
+              <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+                <ShoppingLayout />
+              </CheckAuth>
+            }
+          >
+            <Route path="home" element={<ShoppingHome />} />
+            <Route path="listing" element={<ShoppingListing />} />
+            <Route path="checkout" element={<ShoppingCheckout />} />
+            <Route path="account" element={<ShoppingAccount />} />
+            <Route path="paypal-return" element={<PaypalReturnPage />} />
+            <Route path="payment-success" element={<PaymentSuccessPage />} />
+            <Route path="search" element={<SearchProducts />} />
+            <Route path="diners-atlas" element={<DinersAtlas />} />
+            <Route path="gourmet-club" element={<ShoppingClubs />} />
+            <Route path="gourmet-club/:id" element={<ClubDetailsPage />} />
+            <Route path="ayu-bite" element={<AyuBite />} />
+            <Route path="recipes" element={<Recipes />} />
+            <Route path="recipes/:id" element={<RecipeDetail />} />
+            <Route path="contact-us" element={<ContactUs />} />
+            <Route path="meet-our-team" element={<MeetOurTeam />} />
+            <Route path="chefs/:id" element={<ChefDetail />} />
+          </Route>
+          <Route path="/unauth-page" element={<UnauthPage />} />
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </div>
+    </ThemeProvider>
   );
 }
 
