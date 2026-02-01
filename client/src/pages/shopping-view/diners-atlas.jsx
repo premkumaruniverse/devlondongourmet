@@ -4,11 +4,14 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { fetchShopServices } from '@/store/shop/services-slice';
+import { useToast } from '@/components/ui/use-toast';
+import axios from 'axios';
 
 const DinersAtlas = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { serviceList } = useSelector((state) => state.shopServices);
+  const { toast } = useToast();
 
   // Form state
   const [formData, setFormData] = useState({
@@ -40,8 +43,37 @@ const DinersAtlas = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Quote Request:', formData);
-    // Add quote submission logic here
+    const hasServices = serviceList && serviceList.length > 0;
+    const isComplete =
+      formData.name.trim() !== '' &&
+      formData.email.trim() !== '' &&
+      formData.serviceType.trim() !== '' &&
+      String(formData.guests).trim() !== '';
+
+    if (!hasServices) {
+      toast({ title: 'No services available', description: 'Please try again later.' });
+      return;
+    }
+    if (!isComplete) {
+      toast({ title: 'Incomplete details', description: 'Fill all fields to send the request.' });
+      return;
+    }
+    axios.post(`${API_URL}/api/shop/quotes/add`, {
+      name: formData.name,
+      email: formData.email,
+      serviceType: formData.serviceType,
+      guests: Number(formData.guests),
+      message: formData.message
+    }).then((res) => {
+      if (res?.data?.success) {
+        toast({ title: 'Request submitted', description: 'We will contact you shortly.' });
+        setFormData({ name:'', email:'', serviceType:'', guests:'', message:'' });
+      } else {
+        toast({ title: 'Error', description: 'Failed to submit request.' });
+      }
+    }).catch(() => {
+      toast({ title: 'Error', description: 'Failed to submit request.' });
+    });
   };
 
   const decodeHtml = (html) => {
@@ -64,31 +96,32 @@ const DinersAtlas = () => {
           <h2 className="text-3xl font-playfair font-bold text-[#8fa888] uppercase tracking-widest">Our Services</h2>
         </div>
         
-        <div className="w-full">
+        <div className="container mx-auto px-4 max-w-6xl space-y-12 md:space-y-20">
           {serviceList && serviceList.length > 0 ? (
             serviceList.map((service, index) => (
-              <div key={service._id} className="grid grid-cols-1 md:grid-cols-2 w-full">
+              <div key={service._id} className="overflow-hidden rounded-xl shadow-sm">
+                <div className="grid grid-cols-1 md:grid-cols-2 w-full items-stretch">
                 {/* Image Section - Always first on mobile */}
-                <div className={`${index % 2 === 0 ? 'md:order-1' : 'md:order-2'} order-1 relative w-full h-[300px] md:h-full`}>
+                <div className={`${index % 2 === 0 ? 'md:order-1' : 'md:order-2'} order-1 w-full h-[260px] md:h-[520px] overflow-hidden`}>
                   {service.image ? (
                     <img 
                       src={service.image} 
                       alt={service.title} 
-                      className="absolute inset-0 w-full h-full object-cover"
+                      className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="w-full h-full bg-gray-200 flex items-center justify-center absolute inset-0">
+                    <div className="w-full h-full bg-gray-200 flex items-center justify-center">
                       <span className="text-gray-400">No Image Available</span>
                     </div>
                   )}
                 </div>
 
                 {/* Content Section - Always second on mobile */}
-                <div className={`${index % 2 === 0 ? 'md:order-2' : 'md:order-1'} order-2 bg-[#A7B98E] text-[#2A4E46] p-8 md:p-20 flex flex-col justify-center items-center text-center min-h-[300px] md:min-h-[500px]`}>
+                <div className={`${index % 2 === 0 ? 'md:order-2' : 'md:order-1'} order-2 bg-[#A7B98E] text-[#2A4E46] p-8 md:p-16 flex flex-col justify-center items-center text-center h-auto md:h-[520px]`}>
                   <h3 className="text-2xl md:text-3xl font-playfair font-bold mb-6 tracking-wider uppercase">
                     {service.title}
                   </h3>
-                  <div className="mb-8 leading-relaxed max-w-lg font-serif italic text-base md:text-lg line-clamp-3 md:line-clamp-4 px-4">
+                  <div className="mb-8 leading-relaxed max-w-xl font-serif italic text-base md:text-lg line-clamp-3 md:line-clamp-4 px-4">
                     {service.description ? decodeHtml(service.description.replace(/<[^>]*>/g, '')) : ''}
                   </div>
                   <Button 
@@ -98,6 +131,7 @@ const DinersAtlas = () => {
                   >
                     Read More
                   </Button>
+                </div>
                 </div>
               </div>
             ))
@@ -146,7 +180,8 @@ const DinersAtlas = () => {
                   name="serviceType"
                   value={formData.serviceType}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all bg-white"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all bg-white disabled:bg-gray-100 disabled:text-gray-500"
+                  disabled={!serviceList || serviceList.length === 0}
                 >
                   <option value="">Select a Service</option>
                   {serviceList && serviceList.map(service => (
@@ -154,7 +189,6 @@ const DinersAtlas = () => {
                       {service.title}
                     </option>
                   ))}
-                  <option value="Other">Other</option>
                 </select>
               </div>
               <div>
@@ -166,6 +200,7 @@ const DinersAtlas = () => {
                   onChange={handleInputChange}
                   className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all" 
                   placeholder="e.g. 50"
+                  required
                 />
               </div>
             </div>

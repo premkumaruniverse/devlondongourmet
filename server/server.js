@@ -10,6 +10,7 @@ const adminRecipesRouter = require("./routes/admin/recipes-routes");
 const adminChefsRouter = require("./routes/admin/chefs-routes");
 const adminClubsRouter = require("./routes/admin/clubs-routes");
 const adminServicesRouter = require("./routes/admin/service-routes");
+const adminQuotesRouter = require("./routes/admin/quote-routes");
 
 const shopProductsRouter = require("./routes/shop/products-routes");
 const shopCartRouter = require("./routes/shop/cart-routes");
@@ -21,6 +22,7 @@ const shopRecipesRouter = require("./routes/shop/recipes-routes");
 const shopChefsRouter = require("./routes/shop/chefs-routes");
 const shopClubsRouter = require("./routes/shop/clubs-routes");
 const shopServicesRouter = require("./routes/shop/service-routes");
+const shopQuotesRouter = require("./routes/shop/quote-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
@@ -64,6 +66,7 @@ app.use("/api/admin/recipes", adminRecipesRouter);
 app.use("/api/admin/chefs", adminChefsRouter);
 app.use("/api/admin/clubs", adminClubsRouter);
 app.use("/api/admin/services", adminServicesRouter);
+app.use("/api/admin/quotes", adminQuotesRouter);
 app.use("/api/common/feature", commonFeatureRouter);
 
 app.use("/api/shop/products", shopProductsRouter);
@@ -76,6 +79,7 @@ app.use("/api/shop/recipes", shopRecipesRouter);
 app.use("/api/shop/chefs", shopChefsRouter);
 app.use("/api/shop/clubs", shopClubsRouter);
 app.use("/api/shop/services", shopServicesRouter);
+app.use("/api/shop/quotes", shopQuotesRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
 

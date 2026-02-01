@@ -11,6 +11,7 @@ import AdminRecipes from "./pages/admin-view/recipes";
 import AdminChefs from "./pages/admin-view/chefs";
 import AdminClubs from "./pages/admin-view/clubs";
 import AdminServices from "./pages/admin-view/services";
+import AdminQuotes from "./pages/admin-view/quotes";
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
@@ -90,6 +91,7 @@ function App() {
           <Route path="chefs" element={<AdminChefs />} />
           <Route path="clubs" element={<AdminClubs />} />
           <Route path="services" element={<AdminServices />} />
+          <Route path="quotes" element={<AdminQuotes />} />
         </Route>
         <Route
           path="/shop"
