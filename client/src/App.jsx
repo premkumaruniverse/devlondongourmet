@@ -10,6 +10,8 @@ import AdminFeatures from "./pages/admin-view/features";
 import AdminRecipes from "./pages/admin-view/recipes";
 import AdminChefs from "./pages/admin-view/chefs";
 import AdminClubs from "./pages/admin-view/clubs";
+import AdminServices from "./pages/admin-view/services";
+import AdminQuotes from "./pages/admin-view/quotes";
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
@@ -34,6 +36,7 @@ import RecipeDetail from "./pages/shopping-view/recipe-detail";
 import ContactUs from "./pages/shopping-view/contact-us";
 import MeetOurTeam from "./pages/shopping-view/meet-our-team";
 import ChefDetail from "./pages/shopping-view/chef-detail";
+import ServiceDetail from "./pages/shopping-view/service-detail";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
@@ -87,6 +90,8 @@ function App() {
           <Route path="recipes" element={<AdminRecipes />} />
           <Route path="chefs" element={<AdminChefs />} />
           <Route path="clubs" element={<AdminClubs />} />
+          <Route path="services" element={<AdminServices />} />
+          <Route path="quotes" element={<AdminQuotes />} />
         </Route>
         <Route
           path="/shop"
@@ -104,6 +109,7 @@ function App() {
           <Route path="payment-success" element={<PaymentSuccessPage />} />
           <Route path="search" element={<SearchProducts />} />
           <Route path="diners-atlas" element={<DinersAtlas />} />
+          <Route path="services/:id" element={<ServiceDetail />} />
           <Route path="gourmet-club" element={<ShoppingClubs />} />
           <Route path="gourmet-club/:id" element={<ClubDetailsPage />} />
           <Route path="ayu-bite" element={<AyuBite />} />

@@ -43,6 +43,18 @@ const adminSidebarMenuItems = [
     icon: <Calendar />,
   },
   {
+    id: "services",
+    label: "Services",
+    path: "/admin/services",
+    icon: <ShoppingBasket />,
+  },
+  {
+    id: "quotes",
+    label: "Quote Requests",
+    path: "/admin/quotes",
+    icon: <Calendar />,
+  },
+  {
     id: "orders",
     label: "Orders",
     path: "/admin/orders",
