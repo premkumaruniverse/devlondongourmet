@@ -9,6 +9,7 @@ const adminOrderRouter = require("./routes/admin/order-routes");
 const adminRecipesRouter = require("./routes/admin/recipes-routes");
 const adminChefsRouter = require("./routes/admin/chefs-routes");
 const adminClubsRouter = require("./routes/admin/clubs-routes");
+const adminServicesRouter = require("./routes/admin/service-routes");
 
 const shopProductsRouter = require("./routes/shop/products-routes");
 const shopCartRouter = require("./routes/shop/cart-routes");
@@ -19,6 +20,7 @@ const shopReviewRouter = require("./routes/shop/review-routes");
 const shopRecipesRouter = require("./routes/shop/recipes-routes");
 const shopChefsRouter = require("./routes/shop/chefs-routes");
 const shopClubsRouter = require("./routes/shop/clubs-routes");
+const shopServicesRouter = require("./routes/shop/service-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
@@ -35,7 +37,12 @@ const PORT = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:5173",
+    origin: [
+      "http://localhost:5173",
+      "http://localhost:5174",
+      "http://localhost:5175",
+      process.env.CLIENT_URL
+    ].filter(Boolean),
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: [
       "Content-Type",
@@ -56,6 +63,7 @@ app.use("/api/admin/orders", adminOrderRouter);
 app.use("/api/admin/recipes", adminRecipesRouter);
 app.use("/api/admin/chefs", adminChefsRouter);
 app.use("/api/admin/clubs", adminClubsRouter);
+app.use("/api/admin/services", adminServicesRouter);
 app.use("/api/common/feature", commonFeatureRouter);
 
 app.use("/api/shop/products", shopProductsRouter);
@@ -67,6 +75,7 @@ app.use("/api/shop/review", shopReviewRouter);
 app.use("/api/shop/recipes", shopRecipesRouter);
 app.use("/api/shop/chefs", shopChefsRouter);
 app.use("/api/shop/clubs", shopClubsRouter);
+app.use("/api/shop/services", shopServicesRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
 

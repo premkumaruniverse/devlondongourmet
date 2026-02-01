@@ -5,6 +5,7 @@ import adminOrderSlice from "./admin/order-slice";
 import adminRecipesSlice from "./admin/recipes-slice";
 import adminChefsSlice from "./admin/chefs-slice";
 import adminClubsSlice from "./admin/clubs-slice";
+import adminServicesSlice from "./admin/services-slice";
 
 import shopProductsSlice from "./shop/products-slice";
 import shopCartSlice from "./shop/cart-slice";
@@ -15,6 +16,7 @@ import shopReviewSlice from "./shop/review-slice";
 import shoppingRecipesSlice from "./shop/recipes-slice";
 import shoppingChefsSlice from "./shop/chefs-slice";
 import shoppingClubsSlice from "./shop/clubs-slice";
+import shopServicesSlice from "./shop/services-slice";
 import commonFeatureSlice from "./common-slice";
 
 const store = configureStore({
@@ -26,6 +28,7 @@ const store = configureStore({
     adminRecipes: adminRecipesSlice,
     adminChefs: adminChefsSlice,
     adminClubs: adminClubsSlice,
+    adminServices: adminServicesSlice,
 
     shopProducts: shopProductsSlice,
     shopCart: shopCartSlice,
@@ -36,6 +39,7 @@ const store = configureStore({
     shopRecipes: shoppingRecipesSlice,
     shopChefs: shoppingChefsSlice,
     shopClubs: shoppingClubsSlice,
+    shopServices: shopServicesSlice,
 
     commonFeature: commonFeatureSlice,
   },
