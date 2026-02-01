@@ -15,6 +15,7 @@ function PdfUpload({
   setUploadedPdfUrl,
   setPdfLoadingState,
   isEditMode,
+  currentPdf,
 }) {
   const inputRef = useRef(null);
 
@@ -106,6 +107,33 @@ function PdfUpload({
           </div>
         )}
       </div>
+      {isEditMode && currentPdf && !pdfFile && (
+        <div className="mt-4">
+          <Label className="text-lg font-semibold mb-2 block">Current PDF</Label>
+          <div className="flex items-center justify-between">
+            <a
+              href={currentPdf}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm underline"
+            >
+              Open current PDF
+            </a>
+            <div className="flex gap-2">
+              <Button variant="destructive" size="sm" onClick={handleRemovePdf}>
+                Remove PDF
+              </Button>
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => inputRef.current && inputRef.current.click()}
+              >
+                Change PDF
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

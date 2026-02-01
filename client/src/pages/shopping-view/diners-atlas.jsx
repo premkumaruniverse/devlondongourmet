@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { API_URL } from '@/config/api';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
@@ -24,7 +25,8 @@ const DinersAtlas = () => {
 
   const handleServiceClick = (service) => {
     if (service?.pdfUrl) {
-      window.open(service.pdfUrl, '_blank');
+      const proxyUrl = `${API_URL}/api/common/feature/serve-pdf?url=${encodeURIComponent(service.pdfUrl)}`;
+      window.open(proxyUrl, '_blank', 'noopener,noreferrer');
     }
   };
 
