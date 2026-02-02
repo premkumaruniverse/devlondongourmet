@@ -1,5 +1,6 @@
 const Feature = require("../../models/Feature");
 const { deleteImageFromCloudinary } = require("../../helpers/cloudinary");
+const { URL } = require("url");
 
 // Delete a feature/banner image
 const deleteFeatureImage = async (req, res) => {
@@ -40,6 +41,34 @@ const deleteFeatureImage = async (req, res) => {
       message: 'Failed to delete banner',
       error: error.message
     });
+  }
+};
+
+const servePdfInline = async (req, res) => {
+  try {
+    const { url } = req.query;
+    if (!url) {
+      return res.status(400).send("Missing url parameter");
+    }
+    let parsed;
+    try {
+      parsed = new URL(url);
+    } catch {
+      return res.status(400).send("Invalid url");
+    }
+    if (!parsed.hostname.endsWith("cloudinary.com")) {
+      return res.status(400).send("Unsupported host");
+    }
+    const resp = await fetch(url);
+    if (!resp.ok) {
+      return res.status(502).send("Failed to fetch PDF");
+    }
+    const buffer = Buffer.from(await resp.arrayBuffer());
+    res.set("Content-Type", "application/pdf");
+    res.set("Content-Disposition", "inline; filename=\"service.pdf\"");
+    res.send(buffer);
+  } catch (error) {
+    res.status(500).send("Internal Server Error");
   }
 };
 
@@ -121,5 +150,6 @@ const getFeatureImages = async (req, res) => {
 module.exports = { 
   addFeatureImage, 
   getFeatureImages, 
-  deleteFeatureImage 
+  deleteFeatureImage,
+  servePdfInline
 };

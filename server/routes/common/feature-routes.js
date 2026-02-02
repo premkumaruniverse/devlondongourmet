@@ -3,7 +3,8 @@ const express = require("express");
 const {
   addFeatureImage,
   getFeatureImages,
-  deleteFeatureImage
+  deleteFeatureImage,
+  servePdfInline
 } = require("../../controllers/common/feature-controller");
 
 const router = express.Router();
@@ -16,5 +17,8 @@ router.get("/get", getFeatureImages);
 
 // Delete a feature/banner
 router.delete("/delete/:id", deleteFeatureImage);
+
+// Serve a PDF inline (proxy)
+router.get("/serve-pdf", servePdfInline);
 
 module.exports = router;

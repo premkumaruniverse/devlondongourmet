@@ -96,6 +96,22 @@ export const addProductFormElements = [
   },
 ];
 
+export const addServiceFormElements = [
+  {
+    label: "Title",
+    name: "title",
+    componentType: "input",
+    type: "text",
+    placeholder: "Enter service title",
+  },
+  {
+    label: "Short Description",
+    name: "description",
+    componentType: "textarea",
+    placeholder: "Enter short description for list view",
+  },
+];
+
 export const shoppingViewHeaderMenuItems = [
   {
     id: "home",
