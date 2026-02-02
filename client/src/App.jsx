@@ -93,8 +93,8 @@ function App() {
             <Route path="chefs" element={<AdminChefs />} />
             <Route path="clubs" element={<AdminClubs />} />
             <Route path="services" element={<AdminServices />} />
-            <Route path="quotes" element={<AdminQuotes />} />
-          </Route>
+          <Route path="quotes" element={<AdminQuotes />} />
+        </Route>
           <Route
             path="/shop"
             element={
@@ -111,8 +111,8 @@ function App() {
             <Route path="payment-success" element={<PaymentSuccessPage />} />
             <Route path="search" element={<SearchProducts />} />
             <Route path="diners-atlas" element={<DinersAtlas />} />
-            <Route path="service-details/:id" element={<ServiceDetail />} />
-            <Route path="gourmet-club" element={<ShoppingClubs />} />
+            <Route path="services/:id" element={<ServiceDetail />} />
+          <Route path="gourmet-club" element={<ShoppingClubs />} />
             <Route path="gourmet-club/:id" element={<ClubDetailsPage />} />
             <Route path="ayu-bite" element={<AyuBite />} />
             <Route path="recipes" element={<Recipes />} />

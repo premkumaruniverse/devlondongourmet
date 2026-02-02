@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_URL } from "../../../config/api";
 
 const initialState = {
   isLoading: false,
@@ -11,7 +12,7 @@ export const fetchAllChefs = createAsyncThunk(
   "/chefs/fetchAllChefs",
   async () => {
     const result = await axios.get(
-      "http://https://devlondongourmet.vercel.app/api/shop/chefs/get"
+      `${API_URL}/api/shop/chefs/get`
     );
 
     return result?.data;
@@ -22,7 +23,7 @@ export const fetchChefDetails = createAsyncThunk(
   "/chefs/fetchChefDetails",
   async (id) => {
     const result = await axios.get(
-      `http://https://devlondongourmet.vercel.app/api/shop/chefs/get/${id}`
+      `${API_URL}/api/shop/chefs/get/${id}`
     );
 
     return result?.data;

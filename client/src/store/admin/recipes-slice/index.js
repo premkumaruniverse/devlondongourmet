@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_URL } from "../../../config/api";
 
 const initialState = {
   isLoading: false,
@@ -11,7 +12,7 @@ export const addNewRecipe = createAsyncThunk(
   "/admin/recipes/addNewRecipe",
   async (formData) => {
     const response = await axios.post(
-      "http://https://devlondongourmet.vercel.app/api/admin/recipes",
+      `${API_URL}/api/admin/recipes`,
       formData,
       {
         headers: {
@@ -28,7 +29,7 @@ export const fetchAllRecipes = createAsyncThunk(
   "/admin/recipes/fetchAllRecipes",
   async () => {
     const response = await axios.get(
-      "http://https://devlondongourmet.vercel.app/api/admin/recipes"
+      `${API_URL}/api/admin/recipes`
     );
 
     return response.data;
@@ -39,7 +40,7 @@ export const editRecipe = createAsyncThunk(
   "/admin/recipes/editRecipe",
   async ({ id, formData }) => {
     const response = await axios.put(
-      `http://https://devlondongourmet.vercel.app/api/admin/recipes/${id}`,
+      `${API_URL}/api/admin/recipes/${id}`,
       formData,
       {
         headers: {
@@ -56,7 +57,7 @@ export const deleteRecipe = createAsyncThunk(
   "/admin/recipes/deleteRecipe",
   async (id) => {
     const response = await axios.delete(
-      `http://https://devlondongourmet.vercel.app/api/admin/recipes/${id}`
+      `${API_URL}/api/admin/recipes/${id}`
     );
 
     return response.data;

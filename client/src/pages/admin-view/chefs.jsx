@@ -7,6 +7,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { useToast } from "@/components/ui/use-toast";
 import { addChefFormElements } from "@/config";
@@ -135,6 +136,7 @@ function AdminChefs() {
         {chefList && chefList.length > 0
           ? chefList.map((chefItem) => (
               <AdminChefTile
+                key={chefItem._id}
                 setFormData={setFormData}
                 setOpenCreateChefsDialog={setOpenCreateChefsDialog}
                 setCurrentEditedId={setCurrentEditedId}
@@ -157,6 +159,9 @@ function AdminChefs() {
             <SheetTitle>
               {currentEditedId !== null ? "Edit Chef" : "Add New Chef"}
             </SheetTitle>
+            <SheetDescription className="sr-only">
+              {currentEditedId !== null ? "Edit the existing chef" : "Create a new chef"}
+            </SheetDescription>
           </SheetHeader>
           <ProductImageUpload
             imageFile={imageFile}

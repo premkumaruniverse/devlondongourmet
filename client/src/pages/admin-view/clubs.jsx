@@ -7,6 +7,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { useToast } from "@/components/ui/use-toast";
 import { addClubFormElements } from "@/config";
@@ -172,6 +173,9 @@ function AdminClubs() {
             <SheetTitle>
               {currentEditedId !== null ? "Edit Club" : "Add New Club"}
             </SheetTitle>
+            <SheetDescription className="sr-only">
+              {currentEditedId !== null ? "Edit the existing club" : "Create a new club"}
+            </SheetDescription>
           </SheetHeader>
           <ClubImageUpload
             imageFile={imageFile}

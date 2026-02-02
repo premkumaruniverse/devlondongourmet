@@ -139,7 +139,7 @@ const Recipes = () => {
               {recipeList.map((recipe) => (
                 <div key={recipe._id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
                   <img
-                    src={recipe.image || 'https://via.placeholder.com/300x200?text=Recipe'}
+                    src={recipe.image || 'https://placehold.co/300x200?text=Recipe'}
                     alt={recipe.title}
                     className="w-full h-48 object-cover"
                   />

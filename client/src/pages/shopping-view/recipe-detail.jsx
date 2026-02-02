@@ -73,7 +73,7 @@ const RecipeDetail = () => {
         {/* Header */}
         <div className="bg-white rounded-lg shadow-lg overflow-hidden mb-8">
           <img
-            src={recipeDetails.image || 'https://via.placeholder.com/800x400?text=Recipe'}
+            src={recipeDetails.image || 'https://placehold.co/800x400?text=Recipe'}
             alt={recipeDetails.title}
             className="w-full h-64 md:h-96 object-cover"
           />

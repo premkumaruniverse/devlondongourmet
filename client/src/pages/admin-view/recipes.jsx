@@ -7,6 +7,7 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
+  SheetDescription,
 } from "@/components/ui/sheet";
 import { useToast } from "@/components/ui/use-toast";
 import { addRecipeFormElements, addBlogFormElements } from "@/config";
@@ -57,7 +58,7 @@ function AdminRecipes() {
     // Process form data based on type
     const processedFormData = {
       ...formData,
-      image: uploadedImageUrl || "https://via.placeholder.com/300x200?text=Recipe",
+      image: uploadedImageUrl || "https://placehold.co/300x200?text=Recipe",
       isPublished: formData.isPublished === "true",
     };
 
@@ -168,6 +169,7 @@ function AdminRecipes() {
         {recipeList && recipeList.length > 0
           ? recipeList.map((recipeItem) => (
               <AdminRecipeTile
+                key={recipeItem._id}
                 setFormData={setFormData}
                 setOpenCreateRecipesDialog={setOpenCreateRecipesDialog}
                 setCurrentEditedId={setCurrentEditedId}
@@ -193,6 +195,9 @@ function AdminRecipes() {
             <SheetTitle>
               {currentEditedId !== null ? "Edit Recipe/Blog" : "Add New Recipe/Blog"}
             </SheetTitle>
+            <SheetDescription className="sr-only">
+              {currentEditedId !== null ? "Edit the existing recipe or blog" : "Create a new recipe or blog"}
+            </SheetDescription>
           </SheetHeader>
           <ProductImageUpload
             imageFile={imageFile}

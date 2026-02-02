@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_URL } from "../../../config/api";
 
 const initialState = {
   isLoading: false,
@@ -13,7 +14,7 @@ export const fetchAllRecipes = createAsyncThunk(
   async (queryParams = {}) => {
     const queryString = new URLSearchParams(queryParams).toString();
     const response = await axios.get(
-      `http://https://devlondongourmet.vercel.app/api/shop/recipes${queryString ? `?${queryString}` : ''}`
+      `${API_URL}/api/shop/recipes${queryString ? `?${queryString}` : ''}`
     );
 
     return response.data;
@@ -24,7 +25,7 @@ export const fetchRecipeDetails = createAsyncThunk(
   "/recipes/fetchRecipeDetails",
   async (id) => {
     const response = await axios.get(
-      `http://https://devlondongourmet.vercel.app/api/shop/recipes/${id}`
+      `${API_URL}/api/shop/recipes/${id}`
     );
 
     return response.data;
