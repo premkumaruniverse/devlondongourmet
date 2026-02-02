@@ -239,7 +239,7 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-900 transition-colors duration-300">
       {/* Hero Section */}
       <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden perspective-1000">
         {/* Background Video/Image */}
@@ -281,13 +281,13 @@ function HomePage() {
       </section>
 
       {/* Product Categories Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-4">
               Our Gourmet Collections
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Discover our carefully curated selection of premium culinary offerings
             </p>
           </div>
@@ -335,13 +335,13 @@ function HomePage() {
       </section>
 
       {/* Experience Brands Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-4">
               More Than Food – It&rsquo;s an Experience
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Discover our exclusive culinary experiences and services
             </p>
           </div>
@@ -350,7 +350,7 @@ function HomePage() {
             {experienceBrands.map((brand, index) => (
               <Card 
                 key={brand.id} 
-                className="p-8 text-center hover:shadow-2xl transition-shadow transform-gpu hover-tilt-strong hover-glow-3d"
+                className="p-8 text-center hover:shadow-2xl transition-shadow transform-gpu hover-tilt-strong hover-glow-3d dark:bg-gray-800 dark:border-gray-700"
                 style={brandTransforms[index]?.container}
                 onMouseMove={(e) => handleBrandMove(index, e)}
                 onMouseLeave={() => handleBrandLeave(index)}
@@ -359,11 +359,11 @@ function HomePage() {
                 <div className="text-amber-600 flex justify-center" style={brandTransforms[index]?.content}>
                   {brand.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3" style={brandTransforms[index]?.content}>{brand.name}</h3>
-                <p className="text-gray-600 mb-6" style={brandTransforms[index]?.content}>{brand.description}</p>
+                <h3 className="text-xl font-semibold mb-3 dark:text-gray-100" style={brandTransforms[index]?.content}>{brand.name}</h3>
+                <p className="text-gray-600 dark:text-gray-300" style={brandTransforms[index]?.content}>{brand.description}</p>
                 <Button 
                   variant="outline" 
-                  className="border-amber-600 text-amber-600 hover:bg-amber-50 transform hover:scale-105"
+                  className="border-amber-600 text-amber-600 hover:bg-amber-50 dark:hover:bg-gray-700 transform hover:scale-105"
                   onClick={() => navigateTo(brand.link)}
                 >
                   {brand.cta}
@@ -375,14 +375,14 @@ function HomePage() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-gray-800 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-6">
                 About London Gourmet
               </h2>
-              <p className="text-gray-700 mb-8 text-lg">
+              <p className="text-gray-700 dark:text-gray-300 mb-8 text-lg">
                 London Gourmet is a premium culinary brand dedicated to creating unforgettable food experiences. 
                 From handcrafted gourmet products to bespoke dining events, we blend traditional techniques 
                 with modern gastronomy.
@@ -393,14 +393,14 @@ function HomePage() {
                   <ChefHat className="w-6 h-6 text-amber-600 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Chef-Driven Creativity</h4>
-                    <p className="text-sm text-gray-600">Expertly crafted by our master chefs</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Expertly crafted by our master chefs</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Leaf className="w-6 h-6 text-amber-600 mr-3 mt-1 flex-shrink-0" />
                   <div>
                     <h4 className="font-semibold">Farm-to-Fork</h4>
-                    <p className="text-sm text-gray-600">Premium, locally-sourced ingredients</p>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Premium, locally-sourced ingredients</p>
                   </div>
                 </div>
               </div>
@@ -426,13 +426,13 @@ function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-amber-50">
+      <section className="py-20 bg-amber-50 dark:bg-gray-900 transition-colors duration-300">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 dark:text-gray-100 mb-4">
               What Our Clients Say
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
               Don&rsquo;t just take our word for it - hear from our satisfied customers
             </p>
           </div>
@@ -441,7 +441,7 @@ function HomePage() {
             {testimonials.map((testimonial, index) => (
               <Card 
                 key={testimonial.id} 
-                className="p-8 text-center hover:shadow-2xl transition-shadow h-full flex flex-col transform-gpu hover-tilt-strong hover-glow-3d"
+                className="p-8 text-center hover:shadow-2xl transition-shadow h-full flex flex-col transform-gpu hover-tilt-strong hover-glow-3d dark:bg-gray-800 dark:border-gray-700"
                 style={testimonialTransforms[index]?.container}
                 onMouseMove={(e) => handleTestimonialMove(index, e)}
                 onMouseLeave={() => handleTestimonialLeave(index)}
@@ -452,12 +452,12 @@ function HomePage() {
                     <Star key={i} className="w-5 h-5 fill-current" />
                   ))}
                 </div>
-                <blockquote className="text-gray-700 italic mb-6 flex-grow" style={testimonialTransforms[index]?.content}>
+                <blockquote className="text-gray-700 dark:text-gray-300 italic mb-6 flex-grow" style={testimonialTransforms[index]?.content}>
                   {testimonial.quote}
                 </blockquote>
                 <div>
-                  <p className="font-semibold" style={testimonialTransforms[index]?.content}>{testimonial.author}</p>
-                  <p className="text-sm text-gray-500" style={testimonialTransforms[index]?.content}>{testimonial.role}</p>
+                  <p className="font-semibold dark:text-gray-100" style={testimonialTransforms[index]?.content}>{testimonial.author}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400" style={testimonialTransforms[index]?.content}>{testimonial.role}</p>
                 </div>
               </Card>
             ))}

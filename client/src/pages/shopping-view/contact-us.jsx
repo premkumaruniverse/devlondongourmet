@@ -38,49 +38,49 @@ const ContactUs = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-        <p className="text-xl text-gray-600">We'd love to hear from you</p>
+        <h1 className="text-4xl font-bold mb-4 dark:text-gray-100">Contact Us</h1>
+        <p className="text-xl text-gray-600 dark:text-gray-300">We'd love to hear from you</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 mb-12">
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-6">Send us a Message</h2>
+        <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-colors duration-300">
+          <h2 className="text-2xl font-semibold mb-6 dark:text-gray-100">Send us a Message</h2>
           <form className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1" htmlFor="name">Name</label>
+                <label className="block text-sm font-medium mb-1 dark:text-gray-300" htmlFor="name">Name</label>
                 <input 
                   type="text" 
                   id="name" 
-                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1" htmlFor="email">Email</label>
+                <label className="block text-sm font-medium mb-1 dark:text-gray-300" htmlFor="email">Email</label>
                 <input 
                   type="email" 
                   id="email" 
-                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
                   placeholder="Your email"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1" htmlFor="subject">Subject</label>
+              <label className="block text-sm font-medium mb-1 dark:text-gray-300" htmlFor="subject">Subject</label>
               <input 
                 type="text" 
                 id="subject" 
-                className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
                 placeholder="Subject"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1" htmlFor="message">Message</label>
+              <label className="block text-sm font-medium mb-1 dark:text-gray-300" htmlFor="message">Message</label>
               <textarea 
                 id="message" 
                 rows="4" 
-                className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100"
                 placeholder="Your message"
               ></textarea>
             </div>
@@ -89,8 +89,8 @@ const ContactUs = () => {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold mb-6">Visit Us</h2>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-colors duration-300">
+            <h2 className="text-2xl font-semibold mb-6 dark:text-gray-100">Visit Us</h2>
             <div className="aspect-w-16 aspect-h-9 mb-6 rounded-lg overflow-hidden">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.5404230564476!2d-0.12775868423035726!3d51.50735097933272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b3b9b9e1e7b%3A0x3b4fa4f7cbc4b7d1!2sLondon!5e0!3m2!1sen!2suk!4v1620000000000!5m2!1sen!2suk" 
@@ -159,8 +159,8 @@ const ContactUs = () => {
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
+      <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition-colors duration-300">
+        <h2 className="text-2xl font-semibold mb-6 dark:text-gray-100">Frequently Asked Questions</h2>
         <div className="space-y-4">
           {[
             {
@@ -180,9 +180,9 @@ const ContactUs = () => {
               answer: "You can cancel your order up to 30 minutes before the scheduled delivery time for a full refund."
             }
           ].map((faq, index) => (
-            <div key={index} className="border-b pb-4">
-              <h3 className="font-medium text-gray-900">{faq.question}</h3>
-              <p className="text-gray-600 mt-1">{faq.answer}</p>
+            <div key={index} className="border-b dark:border-gray-700 pb-4">
+              <h3 className="font-medium text-gray-900 dark:text-gray-100">{faq.question}</h3>
+              <p className="text-gray-600 dark:text-gray-300 mt-1">{faq.answer}</p>
             </div>
           ))}
         </div>

@@ -50,8 +50,8 @@ const Recipes = () => {
   return (
     <div className="container mx-auto px-4 py-12">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Recipes & Blog</h1>
-        <p className="text-xl text-gray-600">Discover Delicious Recipes & Culinary Inspiration</p>
+        <h1 className="text-4xl font-bold mb-4 dark:text-gray-100">Recipes & Blog</h1>
+        <p className="text-xl text-gray-600 dark:text-gray-300">Discover Delicious Recipes & Culinary Inspiration</p>
       </div>
 
       <div className="mb-8">
