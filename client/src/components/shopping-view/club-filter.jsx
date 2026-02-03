@@ -12,7 +12,7 @@ function ClubFilter({ filters, handleFilter }) {
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="font-semibold mb-3">Experience Type</h3>
+        <h3 className="font-semibold mb-3 dark:text-white">Experience Type</h3>
         <div className="space-y-2">
           {experienceTypeOptions.map((option) => (
             <div
@@ -20,7 +20,7 @@ function ClubFilter({ filters, handleFilter }) {
               className={`flex items-center space-x-2 cursor-pointer p-2 rounded-md transition-colors ${
                 filters?.experience_type?.includes(option.id)
                   ? "bg-primary text-primary-foreground"
-                  : "hover:bg-gray-100"
+                  : "hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-300"
               }`}
               onClick={() => handleFilter("experience_type", option.id)}
             >
@@ -28,7 +28,7 @@ function ClubFilter({ filters, handleFilter }) {
                 type="checkbox"
                 checked={filters?.experience_type?.includes(option.id) || false}
                 onChange={() => handleFilter("experience_type", option.id)}
-                className="rounded"
+                className="rounded dark:bg-gray-800 dark:border-gray-600"
               />
               <label className="text-sm font-medium cursor-pointer">
                 {option.label}
@@ -39,11 +39,11 @@ function ClubFilter({ filters, handleFilter }) {
       </div>
 
       <div>
-        <h3 className="font-semibold mb-3">Special Filters</h3>
+        <h3 className="font-semibold mb-3 dark:text-white">Special Filters</h3>
         <div className="space-y-2">
           <Badge
             variant="outline"
-            className="cursor-pointer hover:bg-yellow-100"
+            className="cursor-pointer hover:bg-yellow-100 dark:text-gray-300 dark:hover:bg-gray-800"
           >
             Members Only
           </Badge>

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_URL } from "../../../config/api";
 
 const initialState = {
   isLoading: false,
@@ -11,7 +12,7 @@ export const addNewClub = createAsyncThunk(
   "/clubs/addnewclub",
   async (formData) => {
     const result = await axios.post(
-      "http://https://devlondongourmet.vercel.app/api/admin/clubs/add",
+      `${API_URL}/api/admin/clubs/add`,
       formData,
       {
         headers: {
@@ -28,7 +29,7 @@ export const fetchAllClubs = createAsyncThunk(
   "/clubs/fetchAllClubs",
   async () => {
     const result = await axios.get(
-      "http://https://devlondongourmet.vercel.app/api/admin/clubs/get"
+      `${API_URL}/api/admin/clubs/get`
     );
 
     return result?.data;
@@ -39,7 +40,7 @@ export const fetchAllChefs = createAsyncThunk(
   "/clubs/fetchAllChefs",
   async () => {
     const result = await axios.get(
-      "http://https://devlondongourmet.vercel.app/api/admin/clubs/chefs"
+      `${API_URL}/api/admin/clubs/chefs`
     );
 
     return result?.data;
@@ -50,7 +51,7 @@ export const editClub = createAsyncThunk(
   "/clubs/editClub",
   async ({ id, formData }) => {
     const result = await axios.put(
-      `http://https://devlondongourmet.vercel.app/api/admin/clubs/edit/${id}`,
+      `${API_URL}/api/admin/clubs/edit/${id}`,
       formData,
       {
         headers: {
@@ -67,7 +68,7 @@ export const deleteClub = createAsyncThunk(
   "/clubs/deleteClub",
   async (id) => {
     const result = await axios.delete(
-      `http://https://devlondongourmet.vercel.app/api/admin/clubs/delete/${id}`
+      `${API_URL}/api/admin/clubs/delete/${id}`
     );
 
     return result?.data;
@@ -78,7 +79,7 @@ export const addEventSchedule = createAsyncThunk(
   "/clubs/addEventSchedule",
   async (formData) => {
     const result = await axios.post(
-      "http://https://devlondongourmet.vercel.app/api/admin/clubs/add-schedule",
+      `${API_URL}/api/admin/clubs/add-schedule`,
       formData,
       {
         headers: {
@@ -95,7 +96,7 @@ export const fetchEventSchedules = createAsyncThunk(
   "/clubs/fetchEventSchedules",
   async (clubId) => {
     const result = await axios.get(
-      `http://https://devlondongourmet.vercel.app/api/admin/clubs/schedules/${clubId}`
+      `${API_URL}/api/admin/clubs/schedules/${clubId}`
     );
 
     return result?.data;

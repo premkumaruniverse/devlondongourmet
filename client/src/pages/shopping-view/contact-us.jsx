@@ -5,28 +5,28 @@ import { MapPin, Mail, Phone, Clock } from 'lucide-react';
 const ContactUs = () => {
   const contactInfo = [
     {
-      icon: <MapPin className="w-6 h-6 text-amber-600" />,
+      icon: <MapPin className="w-6 h-6 text-amber-600 dark:text-primary" />,
       title: 'Our Location',
       description: '123 Gourmet Street, London, UK',
       link: 'https://maps.google.com',
       linkText: 'View on Map'
     },
     {
-      icon: <Mail className="w-6 h-6 text-amber-600" />,
+      icon: <Mail className="w-6 h-6 text-amber-600 dark:text-primary" />,
       title: 'Email Us',
       description: 'hello@londongourmet.com',
       link: 'mailto:hello@londongourmet.com',
       linkText: 'Send Email'
     },
     {
-      icon: <Phone className="w-6 h-6 text-amber-600" />,
+      icon: <Phone className="w-6 h-6 text-amber-600 dark:text-primary" />,
       title: 'Call Us',
       description: '+44 20 1234 5678',
       link: 'tel:+442012345678',
       linkText: 'Call Now'
     },
     {
-      icon: <Clock className="w-6 h-6 text-amber-600" />,
+      icon: <Clock className="w-6 h-6 text-amber-600 dark:text-primary" />,
       title: 'Opening Hours',
       description: 'Mon - Fri: 9:00 - 18:00',
       details: 'Sat: 10:00 - 16:00',
@@ -36,61 +36,61 @@ const ContactUs = () => {
   ];
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 dark:bg-background">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Contact Us</h1>
-        <p className="text-xl text-gray-600">We'd love to hear from you</p>
+        <h1 className="text-4xl font-bold mb-4 dark:text-primary">Contact Us</h1>
+        <p className="text-xl text-gray-600 dark:text-muted-foreground">We'd love to hear from you</p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-8 mb-12">
-        <div className="bg-white p-6 rounded-lg shadow-md">
-          <h2 className="text-2xl font-semibold mb-6">Send us a Message</h2>
+        <div className="bg-white p-6 rounded-lg shadow-md dark:bg-card dark:border dark:border-border">
+          <h2 className="text-2xl font-semibold mb-6 dark:text-primary">Send us a Message</h2>
           <form className="space-y-4">
             <div className="grid md:grid-cols-2 gap-4">
               <div>
-                <label className="block text-sm font-medium mb-1" htmlFor="name">Name</label>
+                <label className="block text-sm font-medium mb-1 dark:text-muted-foreground" htmlFor="name">Name</label>
                 <input 
                   type="text" 
                   id="name" 
-                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 dark:focus:ring-primary focus:border-transparent dark:bg-muted dark:border-border dark:text-foreground dark:placeholder-muted-foreground"
                   placeholder="Your name"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-1" htmlFor="email">Email</label>
+                <label className="block text-sm font-medium mb-1 dark:text-muted-foreground" htmlFor="email">Email</label>
                 <input 
                   type="email" 
                   id="email" 
-                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                  className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 dark:focus:ring-primary focus:border-transparent dark:bg-muted dark:border-border dark:text-foreground dark:placeholder-muted-foreground"
                   placeholder="Your email"
                 />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1" htmlFor="subject">Subject</label>
+              <label className="block text-sm font-medium mb-1 dark:text-muted-foreground" htmlFor="subject">Subject</label>
               <input 
                 type="text" 
                 id="subject" 
-                className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 dark:focus:ring-primary focus:border-transparent dark:bg-muted dark:border-border dark:text-foreground dark:placeholder-muted-foreground"
                 placeholder="Subject"
               />
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1" htmlFor="message">Message</label>
+              <label className="block text-sm font-medium mb-1 dark:text-muted-foreground" htmlFor="message">Message</label>
               <textarea 
                 id="message" 
                 rows="4" 
-                className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 focus:border-transparent"
+                className="w-full p-2 border rounded-md focus:ring-2 focus:ring-amber-500 dark:focus:ring-primary focus:border-transparent dark:bg-muted dark:border-border dark:text-foreground dark:placeholder-muted-foreground"
                 placeholder="Your message"
               ></textarea>
             </div>
-            <Button type="submit" className="w-full">Send Message</Button>
+            <Button type="submit" className="w-full dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90">Send Message</Button>
           </form>
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold mb-6">Visit Us</h2>
+          <div className="bg-white p-6 rounded-lg shadow-md dark:bg-card dark:border dark:border-border">
+            <h2 className="text-2xl font-semibold mb-6 dark:text-primary">Visit Us</h2>
             <div className="aspect-w-16 aspect-h-9 mb-6 rounded-lg overflow-hidden">
               <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2483.5404230564476!2d-0.12775868423035726!3d51.50735097933272!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48761b3b9b9e1e7b%3A0x3b4fa4f7cbc4b7d1!2sLondon!5e0!3m2!1sen!2suk!4v1620000000000!5m2!1sen!2suk" 
@@ -111,13 +111,13 @@ const ContactUs = () => {
                     {item.icon}
                   </div>
                   <div className="ml-4">
-                    <h3 className="font-medium text-gray-900">{item.title}</h3>
-                    <p className="text-gray-600">{item.description}</p>
-                    {item.details && <p className="text-gray-600">{item.details}</p>}
+                    <h3 className="font-medium text-gray-900 dark:text-primary">{item.title}</h3>
+                    <p className="text-gray-600 dark:text-muted-foreground">{item.description}</p>
+                    {item.details && <p className="text-gray-600 dark:text-muted-foreground">{item.details}</p>}
                     {item.link && (
                       <a 
                         href={item.link} 
-                        className="text-amber-600 hover:text-amber-700 text-sm font-medium mt-1 inline-block"
+                        className="text-amber-600 hover:text-amber-700 dark:text-primary dark:hover:text-primary/90 text-sm font-medium mt-1 inline-block"
                         target="_blank" 
                         rel="noopener noreferrer"
                       >
@@ -130,9 +130,9 @@ const ContactUs = () => {
             </div>
           </div>
 
-          <div className="bg-amber-50 p-6 rounded-lg">
-            <h3 className="text-lg font-semibold mb-3">Customer Support</h3>
-            <p className="text-gray-600 mb-4">
+          <div className="bg-amber-50 p-6 rounded-lg dark:bg-muted">
+            <h3 className="text-lg font-semibold mb-3 dark:text-primary">Customer Support</h3>
+            <p className="text-gray-600 mb-4 dark:text-muted-foreground">
               Our customer service team is available to assist you with any questions or concerns you may have.
             </p>
             <div className="flex flex-wrap gap-3">
@@ -149,7 +149,7 @@ const ContactUs = () => {
               </a>
               <a 
                 href="tel:+442012345678" 
-                className="inline-flex items-center px-4 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition-colors"
+                className="inline-flex items-center px-4 py-2 bg-amber-600 text-white rounded-md hover:bg-amber-700 transition-colors dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
               >
                 <Phone className="w-5 h-5 mr-2" />
                 Call Support
@@ -159,8 +159,8 @@ const ContactUs = () => {
         </div>
       </div>
 
-      <div className="bg-white p-6 rounded-lg shadow-md">
-        <h2 className="text-2xl font-semibold mb-6">Frequently Asked Questions</h2>
+      <div className="bg-white p-6 rounded-lg shadow-md dark:bg-card dark:border dark:border-border">
+        <h2 className="text-2xl font-semibold mb-6 dark:text-primary">Frequently Asked Questions</h2>
         <div className="space-y-4">
           {[
             {
@@ -180,9 +180,9 @@ const ContactUs = () => {
               answer: "You can cancel your order up to 30 minutes before the scheduled delivery time for a full refund."
             }
           ].map((faq, index) => (
-            <div key={index} className="border-b pb-4">
-              <h3 className="font-medium text-gray-900">{faq.question}</h3>
-              <p className="text-gray-600 mt-1">{faq.answer}</p>
+            <div key={index} className="border-b pb-4 dark:border-border">
+              <h3 className="font-medium text-gray-900 dark:text-primary">{faq.question}</h3>
+              <p className="text-gray-600 mt-1 dark:text-muted-foreground">{faq.answer}</p>
             </div>
           ))}
         </div>

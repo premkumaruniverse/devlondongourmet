@@ -48,10 +48,10 @@ const Recipes = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 dark:bg-background dark:text-foreground">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Recipes & Blog</h1>
-        <p className="text-xl text-gray-600">Discover Delicious Recipes & Culinary Inspiration</p>
+        <h1 className="text-4xl font-bold mb-4 dark:text-primary">Recipes & Blog</h1>
+        <p className="text-xl text-gray-600 dark:text-muted-foreground">Discover Delicious Recipes & Culinary Inspiration</p>
       </div>
 
       <div className="mb-8">
@@ -62,6 +62,7 @@ const Recipes = () => {
               key={type} 
               variant={selectedType === type ? "default" : "outline"}
               onClick={() => setSelectedType(type)}
+              className={selectedType === type ? "dark:bg-primary dark:text-primary-foreground" : "dark:text-foreground dark:border-border dark:hover:bg-muted"}
             >
               {type}
             </Button>
@@ -75,6 +76,7 @@ const Recipes = () => {
               key={category} 
               variant={selectedCategory === category ? "default" : "outline"}
               onClick={() => setSelectedCategory(category)}
+              className={selectedCategory === category ? "dark:bg-primary dark:text-primary-foreground" : "dark:text-foreground dark:border-border dark:hover:bg-muted"}
             >
               {category}
             </Button>
@@ -88,6 +90,7 @@ const Recipes = () => {
               key={difficulty} 
               variant={selectedDifficulty === difficulty ? "default" : "ghost"}
               onClick={() => setSelectedDifficulty(difficulty)}
+              className={selectedDifficulty === difficulty ? "dark:bg-primary dark:text-primary-foreground" : "dark:text-foreground dark:hover:bg-muted"}
             >
               {difficulty}
             </Button>
@@ -101,10 +104,10 @@ const Recipes = () => {
             placeholder="Search recipes and blogs..."
             value={searchTerm}
             onChange={handleSearch}
-            className="w-full p-3 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+            className="w-full p-3 pl-10 border rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-500 dark:focus:ring-primary dark:bg-muted dark:border-border dark:text-foreground"
           />
           <svg
-            className="absolute left-3 top-3.5 h-5 w-5 text-gray-400"
+            className="absolute left-3 top-3.5 h-5 w-5 text-gray-400 dark:text-muted-foreground"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -123,21 +126,22 @@ const Recipes = () => {
       {/* Loading State */}
       {isLoading ? (
         <div className="text-center py-12">
-          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-amber-500"></div>
-          <p className="mt-4 text-gray-600">Loading delicious recipes...</p>
+          <div className="inline-block animate-spin rounded-full h-8 w-8 border-b-2 border-amber-500 dark:border-primary"></div>
+
+          <p className="mt-4 text-gray-600 dark:text-muted-foreground">Loading delicious recipes...</p>
         </div>
       ) : (
         <>
           {/* Results */}
           {!recipeList.length ? (
             <div className="text-center py-12">
-              <h2 className="text-2xl font-semibold text-gray-600 mb-4">No recipes found</h2>
-              <p className="text-gray-500">Try adjusting your filters or search terms</p>
+              <h2 className="text-2xl font-semibold text-gray-600 mb-4 dark:text-muted-foreground">No recipes found</h2>
+              <p className="text-gray-500 dark:text-muted-foreground">Try adjusting your filters or search terms</p>
             </div>
           ) : (
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
               {recipeList.map((recipe) => (
-                <div key={recipe._id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div key={recipe._id} className="bg-white dark:bg-card rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
                   <img
                     src={recipe.image || 'https://via.placeholder.com/300x200?text=Recipe'}
                     alt={recipe.title}
@@ -145,20 +149,17 @@ const Recipes = () => {
                   />
                   <div className="p-6">
                     <div className="flex justify-between items-start mb-2">
-                      <h2 className="text-xl font-semibold">{recipe.title}</h2>
+                      <h2 className="text-xl font-semibold dark:text-primary">{recipe.title}</h2>
                       <div className="flex gap-2">
-                        <span className="bg-amber-100 text-amber-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
+                        <span className="bg-amber-100 text-amber-800 dark:bg-primary/20 dark:text-primary text-xs font-medium px-2.5 py-0.5 rounded-full">
                           {recipe.category}
-                        </span>
-                        <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">
-                          {getTypeLabel(recipe.type)}
                         </span>
                       </div>
                     </div>
-                    <p className="text-gray-600 text-sm mb-4 line-clamp-2">
+                    <p className="text-gray-600 dark:text-muted-foreground text-sm mb-4 line-clamp-2">
                       {recipe.description}
                     </p>
-                    <div className="flex items-center text-sm text-gray-500 mb-4">
+                    <div className="flex items-center text-sm text-gray-500 dark:text-muted-foreground mb-4">
                       <span className="flex items-center mr-4">
                         <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -172,7 +173,7 @@ const Recipes = () => {
                         {recipe.difficulty}
                       </span>
                     </div>
-                    <Button className="w-full" onClick={() => handleViewRecipe(recipe._id)}>
+                    <Button className="w-full dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90" onClick={() => handleViewRecipe(recipe._id)}>
                       View {getTypeLabel(recipe.type)}
                     </Button>
                   </div>
@@ -184,22 +185,22 @@ const Recipes = () => {
       )}
 
       <div className="mt-12 text-center">
-        <Button variant="outline" className="px-8">
+        <Button variant="outline" className="px-8 dark:border-border dark:text-foreground dark:hover:bg-muted">
           Load More Recipes
         </Button>
       </div>
 
-      <div className="mt-16 bg-amber-50 p-8 rounded-lg">
+      <div className="mt-16 bg-amber-50 dark:bg-muted p-8 rounded-lg">
         <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl font-semibold mb-4">Subscribe to Our Newsletter</h2>
-          <p className="text-gray-600 mb-6">Get the latest recipes, cooking tips, and special offers delivered to your inbox.</p>
+          <h2 className="text-2xl font-semibold mb-4 dark:text-primary">Subscribe to Our Newsletter</h2>
+          <p className="text-gray-600 dark:text-muted-foreground mb-6">Get the latest recipes, cooking tips, and special offers delivered to your inbox.</p>
           <div className="flex max-w-md mx-auto">
             <Input
               type="email"
               placeholder="Your email address"
-              className="flex-1 p-3 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-amber-500"
+              className="flex-1 p-3 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-amber-500 dark:bg-background dark:border-border dark:text-foreground dark:focus:ring-primary"
             />
-            <Button className="rounded-l-none">Subscribe</Button>
+            <Button className="rounded-l-none dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90">Subscribe</Button>
           </div>
         </div>
       </div>

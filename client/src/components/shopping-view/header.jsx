@@ -25,6 +25,8 @@ import { useEffect, useState } from "react";
 import { fetchCartItems } from "@/store/shop/cart-slice";
 import { Label } from "../ui/label";
 import account from "../../assets/account.jpg";
+import londonGourmetLogo from "../../assets/lg_logo.svg";
+import ThemeToggle from "../common/theme-toggle";
 
 function MenuItems() {
   const navigate = useNavigate();
@@ -57,12 +59,12 @@ function MenuItems() {
         <div key={menuItem.id} className="whitespace-nowrap group relative">
           <button
             onClick={() => handleNavigate(menuItem)}
-            className="relative text-sm font-medium text-gray-700 hover:text-gray-900 transition-all duration-300 tracking-wide text-left z-10"
+            className="relative text-sm font-medium text-gray-700 dark:text-primary hover:text-gray-900 dark:hover:text-primary/80 transition-all duration-300 tracking-wide text-left z-10"
           >
             <span className="relative z-10">{menuItem.label}</span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 dark:from-primary dark:to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </button>
-          <span className="absolute inset-0 bg-gradient-to-r from-amber-50 to-white rounded-lg shadow-sm group-hover:shadow-md transition-all duration-300 transform group-hover:scale-105 -z-10 opacity-0 group-hover:opacity-100"></span>
+          <span className="absolute inset-0 bg-gradient-to-r from-amber-50 to-white dark:from-primary/10 dark:to-primary/5 rounded-lg shadow-sm group-hover:shadow-md transition-all duration-300 transform group-hover:scale-105 -z-10 opacity-0 group-hover:opacity-100"></span>
         </div>
       ))}
     </div>
@@ -105,6 +107,7 @@ function HeaderRightContent() {
         >
           Sign Up
         </Button>
+        <ThemeToggle />
       </div>
     );
   }
@@ -136,6 +139,8 @@ function HeaderRightContent() {
         />
       </Sheet>
 
+      <ThemeToggle />
+
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Avatar className="bg-primary hover:bg-primary/90 transition-colors duration-200 cursor-pointer">
@@ -165,9 +170,9 @@ function ShoppingHeader() {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-gray-100">
+    <header className="sticky top-0 z-50 w-full bg-white/90 dark:bg-background/95 backdrop-blur-md border-b border-gray-100 dark:border-border transition-colors duration-300">
       <div className="container mx-auto px-4">
-        <div className="flex h-20 items-center justify-between">
+        <div className="flex h-16 items-center justify-between">
           {/* Mobile menu */}
           <Sheet>
             <SheetTrigger asChild>
@@ -182,15 +187,17 @@ function ShoppingHeader() {
             </SheetTrigger>
             <SheetContent side="left" className="w-80">
               <div className="flex flex-col space-y-6 p-6">
-                <Link to="/shop/home" className="flex items-center space-x-2">
+                <Link to="/shop/home" className="flex items-center">
                   <img 
-                    src={account} 
+                    src={londonGourmetLogo} 
                     alt="London Gourmet" 
-                    className="h-8 w-8 rounded-full"
+                    className="h-28 w-auto object-contain"
                   />
-                  <span className="font-playfair text-xl font-bold">
-                    London Gourmet
-                  </span>
+                  <div className="flex flex-col justify-center -ml-4">
+                    <span className="font-playfair text-lg font-bold text-amber-600 dark:text-amber-500 leading-none">
+                      London Gourmet
+                    </span>
+                  </div>
                 </Link>
                 <nav className="flex flex-col space-y-4">
                   <MenuItems />
@@ -203,16 +210,18 @@ function ShoppingHeader() {
           </Sheet>
 
           {/* Desktop Logo - Centered */}
-          <div className="flex-1 flex justify-center md:justify-start">
-            <Link to="/shop/home" className="flex items-center space-x-3">
+          <div className="flex justify-start mr-12">
+            <Link to="/shop/home" className="flex items-center">
               <img 
-                src={account} 
+                src={londonGourmetLogo} 
                 alt="London Gourmet" 
-                className="h-10 w-10 rounded-full"
+                className="h-36 w-auto object-contain"
               />
-              <span className="font-playfair text-2xl font-bold text-gray-900">
-                London Gourmet
-              </span>
+              <div className="flex flex-col justify-center -ml-4">
+                <span className="font-playfair text-xl font-bold text-amber-600 dark:text-amber-500 leading-none">
+                  London Gourmet
+                </span>
+              </div>
             </Link>
           </div>
 
@@ -222,7 +231,7 @@ function ShoppingHeader() {
           </nav>
 
           {/* Right side actions */}
-          <div className="flex items-center space-x-4 flex-1 justify-end">
+          <div className="flex items-center space-x-4 flex-1 justify-end pl-8">
             <HeaderRightContent />
           </div>
         </div>

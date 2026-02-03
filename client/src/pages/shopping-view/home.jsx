@@ -239,7 +239,7 @@ function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-background">
       {/* Hero Section */}
       <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden perspective-1000">
         {/* Background Video/Image */}
@@ -281,13 +281,13 @@ function HomePage() {
       </section>
 
       {/* Product Categories Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-card">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4 dark:text-primary">
               Our Gourmet Collections
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto dark:text-foreground">
               Discover our carefully curated selection of premium culinary offerings
             </p>
           </div>
@@ -335,13 +335,13 @@ function HomePage() {
       </section>
 
       {/* Experience Brands Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4 dark:text-primary">
               More Than Food – It&rsquo;s an Experience
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto dark:text-foreground">
               Discover our exclusive culinary experiences and services
             </p>
           </div>
@@ -350,7 +350,7 @@ function HomePage() {
             {experienceBrands.map((brand, index) => (
               <Card 
                 key={brand.id} 
-                className="p-8 text-center hover:shadow-2xl transition-shadow transform-gpu hover-tilt-strong hover-glow-3d"
+                className="p-8 text-center hover:shadow-2xl transition-shadow transform-gpu hover-tilt-strong hover-glow-3d dark:bg-card dark:border-border"
                 style={brandTransforms[index]?.container}
                 onMouseMove={(e) => handleBrandMove(index, e)}
                 onMouseLeave={() => handleBrandLeave(index)}
@@ -359,11 +359,11 @@ function HomePage() {
                 <div className="text-amber-600 flex justify-center" style={brandTransforms[index]?.content}>
                   {brand.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3" style={brandTransforms[index]?.content}>{brand.name}</h3>
-                <p className="text-gray-600 mb-6" style={brandTransforms[index]?.content}>{brand.description}</p>
+                <h3 className="text-xl font-semibold mb-3 dark:text-primary" style={brandTransforms[index]?.content}>{brand.name}</h3>
+                <p className="text-gray-600 mb-6 dark:text-muted-foreground" style={brandTransforms[index]?.content}>{brand.description}</p>
                 <Button 
                   variant="outline" 
-                  className="border-amber-600 text-amber-600 hover:bg-amber-50 transform hover:scale-105"
+                  className="border-amber-600 text-amber-600 hover:bg-amber-50 transform hover:scale-105 dark:hover:bg-amber-950/30"
                   onClick={() => navigateTo(brand.link)}
                 >
                   {brand.cta}
@@ -375,14 +375,14 @@ function HomePage() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-gray-50 dark:bg-card">
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row items-center gap-12">
             <div className="md:w-1/2">
-              <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-6 dark:text-primary">
                 About London Gourmet
               </h2>
-              <p className="text-gray-700 mb-8 text-lg">
+              <p className="text-gray-700 mb-8 text-lg dark:text-foreground">
                 London Gourmet is a premium culinary brand dedicated to creating unforgettable food experiences. 
                 From handcrafted gourmet products to bespoke dining events, we blend traditional techniques 
                 with modern gastronomy.
@@ -392,22 +392,22 @@ function HomePage() {
                 <div className="flex items-start">
                   <ChefHat className="w-6 h-6 text-amber-600 mr-3 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold">Chef-Driven Creativity</h4>
-                    <p className="text-sm text-gray-600">Expertly crafted by our master chefs</p>
+                    <h4 className="font-semibold dark:text-primary">Chef-Driven Creativity</h4>
+                    <p className="text-sm text-gray-600 dark:text-muted-foreground">Expertly crafted by our master chefs</p>
                   </div>
                 </div>
                 <div className="flex items-start">
                   <Leaf className="w-6 h-6 text-amber-600 mr-3 mt-1 flex-shrink-0" />
                   <div>
-                    <h4 className="font-semibold">Farm-to-Fork</h4>
-                    <p className="text-sm text-gray-600">Premium, locally-sourced ingredients</p>
+                    <h4 className="font-semibold dark:text-primary">Farm-to-Fork</h4>
+                    <p className="text-sm text-gray-600 dark:text-muted-foreground">Premium, locally-sourced ingredients</p>
                   </div>
                 </div>
               </div>
               
               <Button 
                 variant="outline" 
-                className="border-amber-600 text-amber-600 hover:bg-amber-50"
+                className="border-amber-600 text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950/30"
                 onClick={() => navigateTo('/about')}
               >
                 Read Our Story
@@ -426,13 +426,13 @@ function HomePage() {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-amber-50">
+      <section className="py-20 bg-amber-50 dark:bg-background">
         <div className="container mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4 dark:text-primary">
               What Our Clients Say
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto dark:text-foreground">
               Don&rsquo;t just take our word for it - hear from our satisfied customers
             </p>
           </div>
@@ -441,7 +441,7 @@ function HomePage() {
             {testimonials.map((testimonial, index) => (
               <Card 
                 key={testimonial.id} 
-                className="p-8 text-center hover:shadow-2xl transition-shadow h-full flex flex-col transform-gpu hover-tilt-strong hover-glow-3d"
+                className="p-8 text-center hover:shadow-2xl transition-shadow h-full flex flex-col transform-gpu hover-tilt-strong hover-glow-3d dark:bg-card dark:border-border"
                 style={testimonialTransforms[index]?.container}
                 onMouseMove={(e) => handleTestimonialMove(index, e)}
                 onMouseLeave={() => handleTestimonialLeave(index)}
@@ -452,12 +452,12 @@ function HomePage() {
                     <Star key={i} className="w-5 h-5 fill-current" />
                   ))}
                 </div>
-                <blockquote className="text-gray-700 italic mb-6 flex-grow" style={testimonialTransforms[index]?.content}>
+                <blockquote className="text-gray-700 italic mb-6 flex-grow dark:text-foreground" style={testimonialTransforms[index]?.content}>
                   {testimonial.quote}
                 </blockquote>
                 <div>
-                  <p className="font-semibold" style={testimonialTransforms[index]?.content}>{testimonial.author}</p>
-                  <p className="text-sm text-gray-500" style={testimonialTransforms[index]?.content}>{testimonial.role}</p>
+                  <p className="font-semibold dark:text-primary" style={testimonialTransforms[index]?.content}>{testimonial.author}</p>
+                  <p className="text-sm text-gray-500 dark:text-muted-foreground" style={testimonialTransforms[index]?.content}>{testimonial.role}</p>
                 </div>
               </Card>
             ))}
@@ -466,19 +466,19 @@ function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-900 text-white">
+      <section className="py-20 bg-gray-900 dark:bg-background text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">
+          <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 dark:text-primary">
             Let&rsquo;s Create Something Delicious Together
           </h2>
-          <p className="text-gray-300 max-w-2xl mx-auto mb-8">
+          <p className="text-gray-300 max-w-2xl mx-auto mb-8 dark:text-muted-foreground">
             Whether you&rsquo;re looking for premium ingredients, catering for your next event, 
             or an exclusive dining experience, we've got you covered.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button 
               size="lg" 
-              className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-6 text-lg"
+              className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-6 text-lg dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
               onClick={() => navigateTo('/contact')}
             >
               Contact Us
@@ -486,7 +486,7 @@ function HomePage() {
             <Button 
               variant="outline" 
               size="lg" 
-              className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg"
+              className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg dark:border-primary dark:text-primary dark:hover:bg-primary/10"
               onClick={() => navigateTo('/shop/diners-atlas#book')}
             >
               Book an Event

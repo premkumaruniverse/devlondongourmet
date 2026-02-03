@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_URL } from "../../../config/api";
 
 const initialState = {
   isLoading: false,
@@ -17,7 +18,7 @@ export const fetchAllLiveClubs = createAsyncThunk(
     });
 
     const result = await axios.get(
-      `http://https://devlondongourmet.vercel.app/api/shop/clubs/get?${query}`
+      `${API_URL}/api/shop/clubs/get?${query}`
     );
 
     return result?.data;
@@ -28,7 +29,7 @@ export const fetchClubDetails = createAsyncThunk(
   "/clubs/fetchClubDetails",
   async (id) => {
     const result = await axios.get(
-      `http://https://devlondongourmet.vercel.app/api/shop/clubs/details/${id}`
+      `${API_URL}/api/shop/clubs/details/${id}`
     );
 
     return result?.data;
@@ -39,7 +40,7 @@ export const addClubReview = createAsyncThunk(
   "/clubs/addClubReview",
   async ({ clubId, reviewData }) => {
     const result = await axios.post(
-      `http://https://devlondongourmet.vercel.app/api/shop/clubs/review/${clubId}`,
+      `${API_URL}/api/shop/clubs/review/${clubId}`,
       reviewData
     );
 
@@ -51,7 +52,7 @@ export const getClubReviews = createAsyncThunk(
   "/clubs/getClubReviews",
   async (clubId) => {
     const result = await axios.get(
-      `http://https://devlondongourmet.vercel.app/api/shop/clubs/reviews/${clubId}`
+      `${API_URL}/api/shop/clubs/reviews/${clubId}`
     );
 
     return result?.data;

@@ -108,13 +108,13 @@ function ShoppingClubs() {
   }, [dispatch, sort, filters]);
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
+    <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6 dark:bg-background min-h-screen">
       <ClubFilter filters={filters} handleFilter={handleFilter} />
-      <div className="bg-background w-full rounded-lg shadow-sm">
-        <div className="p-4 border-b flex items-center justify-between">
-          <h2 className="text-lg font-extrabold">Gourmet Clubs</h2>
+      <div className="bg-background w-full rounded-lg shadow-sm dark:bg-background dark:border dark:border-border">
+        <div className="p-4 border-b flex items-center justify-between dark:border-border">
+          <h2 className="text-lg font-extrabold dark:text-primary">Gourmet Clubs</h2>
           <div className="flex items-center gap-3">
-            <span className="text-muted-foreground">
+            <span className="text-muted-foreground dark:text-muted-foreground">
               {clubList?.length} Clubs
             </span>
             <DropdownMenu>
@@ -122,18 +122,19 @@ function ShoppingClubs() {
                 <Button
                   variant="outline"
                   size="sm"
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-1 dark:text-primary dark:border-border dark:hover:bg-primary/10"
                 >
                   <ArrowUpDownIcon className="h-4 w-4" />
                   <span>Sort by</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[200px]">
+              <DropdownMenuContent align="end" className="w-[200px] dark:bg-card dark:border-border">
                 <DropdownMenuRadioGroup value={sort} onValueChange={handleSort}>
                   {clubSortOptions.map((sortItem) => (
                     <DropdownMenuRadioItem
                       value={sortItem.id}
                       key={sortItem.id}
+                      className="dark:text-foreground dark:focus:bg-primary/10"
                     >
                       {sortItem.label}
                     </DropdownMenuRadioItem>

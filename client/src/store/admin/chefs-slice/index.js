@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { API_URL } from "../../../config/api";
 
 const initialState = {
   isLoading: false,
@@ -10,7 +11,7 @@ export const addNewChef = createAsyncThunk(
   "/chefs/addnewchef",
   async (formData) => {
     const result = await axios.post(
-      "http://https://devlondongourmet.vercel.app/api/admin/chefs/add",
+      `${API_URL}/api/admin/chefs/add`,
       formData,
       {
         headers: {
@@ -27,7 +28,7 @@ export const fetchAllChefs = createAsyncThunk(
   "/chefs/fetchAllChefs",
   async () => {
     const result = await axios.get(
-      "http://https://devlondongourmet.vercel.app/api/admin/chefs/get"
+      `${API_URL}/api/admin/chefs/get`
     );
 
     return result?.data;
@@ -38,7 +39,7 @@ export const fetchChefById = createAsyncThunk(
   "/chefs/fetchChefById",
   async (id) => {
     const result = await axios.get(
-      `http://https://devlondongourmet.vercel.app/api/admin/chefs/get/${id}`
+      `${API_URL}/api/admin/chefs/get/${id}`
     );
 
     return result?.data;
@@ -49,7 +50,7 @@ export const editChef = createAsyncThunk(
   "/chefs/editChef",
   async ({ id, formData }) => {
     const result = await axios.put(
-      `http://https://devlondongourmet.vercel.app/api/admin/chefs/edit/${id}`,
+      `${API_URL}/api/admin/chefs/edit/${id}`,
       formData,
       {
         headers: {
@@ -66,7 +67,7 @@ export const deleteChef = createAsyncThunk(
   "/chefs/deleteChef",
   async (id) => {
     const result = await axios.delete(
-      `http://https://devlondongourmet.vercel.app/api/admin/chefs/delete/${id}`
+      `${API_URL}/api/admin/chefs/delete/${id}`
     );
 
     return result?.data;
