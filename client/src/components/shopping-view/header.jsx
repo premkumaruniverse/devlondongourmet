@@ -59,12 +59,12 @@ function MenuItems() {
         <div key={menuItem.id} className="whitespace-nowrap group relative">
           <button
             onClick={() => handleNavigate(menuItem)}
-            className="relative text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-all duration-300 tracking-wide text-left z-10"
+            className="relative text-sm font-medium text-gray-700 dark:text-primary hover:text-gray-900 dark:hover:text-primary/80 transition-all duration-300 tracking-wide text-left z-10"
           >
             <span className="relative z-10">{menuItem.label}</span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 dark:from-primary dark:to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </button>
-          <span className="absolute inset-0 bg-gradient-to-r from-amber-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-sm group-hover:shadow-md transition-all duration-300 transform group-hover:scale-105 -z-10 opacity-0 group-hover:opacity-100"></span>
+          <span className="absolute inset-0 bg-gradient-to-r from-amber-50 to-white dark:from-primary/10 dark:to-primary/5 rounded-lg shadow-sm group-hover:shadow-md transition-all duration-300 transform group-hover:scale-105 -z-10 opacity-0 group-hover:opacity-100"></span>
         </div>
       ))}
     </div>
@@ -170,7 +170,7 @@ function ShoppingHeader() {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border-b border-gray-100 dark:border-gray-800 transition-colors duration-300">
+    <header className="sticky top-0 z-50 w-full bg-white/90 dark:bg-background/95 backdrop-blur-md border-b border-gray-100 dark:border-border transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Mobile menu */}

@@ -55,6 +55,16 @@ module.exports = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        "maroon-queen": {
+          DEFAULT: "#2b0505",
+          light: "#450a0a",
+          lighter: "#6b1010",
+        },
+        "gold": {
+          DEFAULT: "#ffd700",
+          dim: "#d4af37",
+          light: "#fde047",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
