@@ -3,14 +3,14 @@ import { Button } from '@/components/ui/button';
 
 const GourmetClub = () => {
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 dark:text-white">
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Gourmet Club</h1>
-        <p className="text-xl text-gray-600">Exclusive Culinary Experiences for Discerning Palates</p>
+        <p className="text-xl text-gray-600 dark:text-gray-300">Exclusive Culinary Experiences for Discerning Palates</p>
       </div>
 
       <div className="max-w-4xl mx-auto text-center mb-12">
-        <p className="text-lg mb-8">
+        <p className="text-lg mb-8 dark:text-gray-300">
           Join our exclusive Gourmet Club for monthly culinary adventures, chef's table experiences, 
           and members-only events that celebrate the art of fine dining.
         </p>
@@ -50,31 +50,31 @@ const GourmetClub = () => {
             icon: "💎"
           }
         ].map((benefit, index) => (
-          <div key={index} className="bg-white p-6 rounded-lg shadow-md text-center">
+          <div key={index} className="bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-800 dark:text-white">
             <div className="text-4xl mb-4">{benefit.icon}</div>
             <h3 className="text-xl font-semibold mb-2">{benefit.title}</h3>
-            <p className="text-gray-600">{benefit.description}</p>
+            <p className="text-gray-600 dark:text-gray-300">{benefit.description}</p>
           </div>
         ))}
       </div>
 
-      <div className="bg-gray-50 p-8 rounded-lg max-w-3xl mx-auto">
+      <div className="bg-gray-50 p-8 rounded-lg max-w-3xl mx-auto dark:bg-gray-900">
         <h2 className="text-2xl font-semibold mb-6 text-center">Join the Club</h2>
-        <p className="text-center mb-6">
+        <p className="text-center mb-6 dark:text-gray-300">
           Membership starts at £99/month. Cancel anytime.
         </p>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium mb-1">Full Name</label>
-            <input type="text" className="w-full p-2 border rounded" />
+            <input type="text" className="w-full p-2 border rounded dark:bg-gray-800 dark:border-gray-700" />
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">Email</label>
-            <input type="email" className="w-full p-2 border rounded" />
+            <input type="email" className="w-full p-2 border rounded dark:bg-gray-800 dark:border-gray-700" />
           </div>
           <div>
             <label className="block text-sm font-medium mb-1">Phone</label>
-            <input type="tel" className="w-full p-2 border rounded" />
+            <input type="tel" className="w-full p-2 border rounded dark:bg-gray-800 dark:border-gray-700" />
           </div>
           <div className="flex items-end">
             <Button className="w-full">Join Now</Button>

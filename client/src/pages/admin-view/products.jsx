@@ -7,7 +7,6 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetDescription,
 } from "@/components/ui/sheet";
 import { useToast } from "@/components/ui/use-toast";
 import { addProductFormElements } from "@/config";
@@ -122,7 +121,6 @@ function AdminProducts() {
         {productList && productList.length > 0
           ? productList.map((productItem) => (
               <AdminProductTile
-                key={productItem._id}
                 setFormData={setFormData}
                 setOpenCreateProductsDialog={setOpenCreateProductsDialog}
                 setCurrentEditedId={setCurrentEditedId}
@@ -145,9 +143,6 @@ function AdminProducts() {
             <SheetTitle>
               {currentEditedId !== null ? "Edit Product" : "Add New Product"}
             </SheetTitle>
-            <SheetDescription className="sr-only">
-              {currentEditedId !== null ? "Edit the existing product" : "Create a new product"}
-            </SheetDescription>
           </SheetHeader>
           <ProductImageUpload
             imageFile={imageFile}

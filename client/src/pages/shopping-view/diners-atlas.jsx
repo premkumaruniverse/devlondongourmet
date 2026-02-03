@@ -83,11 +83,11 @@ const DinersAtlas = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-950">
       {/* Hero / Header Section */}
       <div className="container mx-auto px-4 py-16 text-center">
-        <h1 className="text-5xl font-playfair font-bold mb-4">Diner's Atlas</h1>
-        <p className="text-xl text-gray-600 font-inter">Luxury Catering & Fine Dining Experiences</p>
+        <h1 className="text-5xl font-playfair font-bold mb-4 dark:text-white">Diner's Atlas</h1>
+        <p className="text-xl text-gray-600 dark:text-gray-400 font-inter">Luxury Catering & Fine Dining Experiences</p>
       </div>
 
       {/* Our Services Section - Zig Zag Layout */}
@@ -137,7 +137,7 @@ const DinersAtlas = () => {
             ))
           ) : (
             <div className="text-center py-12">
-              <p className="text-gray-500 dark:text-gray-400">No services available at the moment.</p>
+              <p className="text-gray-500">No services available at the moment.</p>
             </div>
           )}
         </div>
@@ -145,29 +145,29 @@ const DinersAtlas = () => {
 
       {/* Request a Quote Section */}
       <section className="container mx-auto px-4 py-16 mb-12">
-        <div className="max-w-4xl mx-auto bg-gray-50 dark:bg-gray-800 p-8 md:p-12 rounded-xl shadow-lg transition-colors duration-300">
-          <h2 className="text-3xl font-playfair font-semibold mb-8 text-center dark:text-gray-100">Request a Quote</h2>
+        <div className="max-w-4xl mx-auto bg-gray-50 p-8 md:p-12 rounded-xl shadow-lg">
+          <h2 className="text-3xl font-playfair font-semibold mb-8 text-center">Request a Quote</h2>
           <form className="space-y-6" onSubmit={handleSubmit}>
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Name</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700">Name</label>
                 <input 
                   type="text" 
                   name="name"
                   value={formData.name}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all dark:bg-gray-700 dark:text-gray-100" 
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all" 
                   required
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Email</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700">Email</label>
                 <input 
                   type="email" 
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all dark:bg-gray-700 dark:text-gray-100" 
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all" 
                   required
                 />
               </div>
@@ -175,12 +175,12 @@ const DinersAtlas = () => {
             
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Service Type</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700">Service Type</label>
                 <select 
                   name="serviceType"
                   value={formData.serviceType}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all bg-white dark:bg-gray-700 dark:text-gray-100 disabled:bg-gray-100 disabled:text-gray-500 dark:disabled:bg-gray-800 dark:disabled:text-gray-600"
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all bg-white disabled:bg-gray-100 disabled:text-gray-500"
                   disabled={!serviceList || serviceList.length === 0}
                 >
                   <option value="">Select a Service</option>
@@ -192,13 +192,13 @@ const DinersAtlas = () => {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Number of Guests</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700">Number of Guests</label>
                 <input 
                   type="number" 
                   name="guests"
                   value={formData.guests}
                   onChange={handleInputChange}
-                  className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all dark:bg-gray-700 dark:text-gray-100" 
+                  className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all" 
                   placeholder="e.g. 50"
                   required
                 />
@@ -206,13 +206,13 @@ const DinersAtlas = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-300">Message</label>
+              <label className="block text-sm font-medium mb-2 text-gray-700">Message</label>
               <textarea 
                 name="message"
                 value={formData.message}
                 onChange={handleInputChange}
                 rows="4" 
-                className="w-full p-3 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all dark:bg-gray-700 dark:text-gray-100"
+                className="w-full p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#8fa888] focus:border-transparent transition-all"
               ></textarea>
             </div>
             <Button type="submit" className="w-full bg-[#8fa888] hover:bg-[#7a9174] text-white text-lg py-6 mt-4">Send Request</Button>

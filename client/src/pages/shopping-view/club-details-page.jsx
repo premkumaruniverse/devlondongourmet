@@ -112,21 +112,21 @@ function ClubDetailsPage() {
   const { club, schedules } = clubDetails;
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white dark:bg-gray-950">
       {/* Header */}
-      <div className="sticky top-0 z-50 bg-white border-b">
+      <div className="sticky top-0 z-50 bg-white border-b dark:bg-gray-950 dark:border-gray-800">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4">
             <Button
               variant="ghost"
               size="sm"
               onClick={handleGoBack}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 dark:text-gray-200 dark:hover:bg-gray-800"
             >
               <ArrowLeftIcon className="h-4 w-4" />
               Back to Clubs
             </Button>
-            <h1 className="text-2xl font-bold">{club?.title}</h1>
+            <h1 className="text-2xl font-bold dark:text-white">{club?.title}</h1>
           </div>
         </div>
       </div>
@@ -161,8 +161,8 @@ function ClubDetailsPage() {
             {/* Club Information */}
             <div className="space-y-6">
               <div>
-                <h2 className="text-3xl font-extrabold mb-4">{club?.title}</h2>
-                <p className="text-lg text-muted-foreground mb-6">
+                <h2 className="text-3xl font-extrabold mb-4 dark:text-white">{club?.title}</h2>
+                <p className="text-lg text-muted-foreground mb-6 dark:text-gray-400">
                   {club?.description}
                 </p>
                 
@@ -183,8 +183,8 @@ function ClubDetailsPage() {
               </div>
 
               {/* Host Information */}
-              <div className="bg-gray-50 rounded-xl p-6">
-                <h3 className="text-xl font-semibold mb-4">Your Host</h3>
+              <div className="bg-gray-50 rounded-xl p-6 dark:bg-gray-900">
+                <h3 className="text-xl font-semibold mb-4 dark:text-white">Your Host</h3>
                 <div className="flex items-start gap-4">
                   <Avatar className="w-20 h-20">
                     {club?.host_id?.image ? (
@@ -204,21 +204,21 @@ function ClubDetailsPage() {
                   </Avatar>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <h4 className="font-semibold text-lg">{club?.host_id?.name}</h4>
+                      <h4 className="font-semibold text-lg dark:text-white">{club?.host_id?.name}</h4>
                       <div className="flex items-center gap-1">
                         <ShieldIcon className="h-4 w-4 text-blue-600" />
                         <Badge className="bg-blue-100 text-blue-800 text-xs">Verified Host</Badge>
                       </div>
                     </div>
-                    <p className="text-muted-foreground mb-2">{club?.host_id?.title}</p>
-                    <p className="text-sm mb-2">{club?.host_id?.bio}</p>
+                    <p className="text-muted-foreground mb-2 dark:text-gray-400">{club?.host_id?.title}</p>
+                    <p className="text-sm mb-2 dark:text-gray-300">{club?.host_id?.bio}</p>
                     {club?.host_id?.experience && (
-                      <p className="text-sm text-muted-foreground">
+                      <p className="text-sm text-muted-foreground dark:text-gray-400">
                         <strong>Background:</strong> {club?.host_id?.experience}
                       </p>
                     )}
                     {club?.host_id?.languages && (
-                      <p className="text-sm text-muted-foreground mt-1">
+                      <p className="text-sm text-muted-foreground mt-1 dark:text-gray-400">
                         <strong>Languages:</strong> {club?.host_id?.languages}
                       </p>
                     )}
@@ -228,20 +228,20 @@ function ClubDetailsPage() {
                       <div className="flex items-center gap-4 mt-3 pt-3 border-t">
                         {club?.host_id?.events_hosted > 0 && (
                           <div className="text-center">
-                            <div className="font-semibold text-lg">{club?.host_id?.events_hosted}</div>
-                            <div className="text-xs text-muted-foreground">Events Hosted</div>
+                            <div className="font-semibold text-lg dark:text-white">{club?.host_id?.events_hosted}</div>
+                            <div className="text-xs text-muted-foreground dark:text-gray-400">Events Hosted</div>
                           </div>
                         )}
                         {club?.host_id?.total_guests > 0 && (
                           <div className="text-center">
-                            <div className="font-semibold text-lg">{club?.host_id?.total_guests}</div>
-                            <div className="text-xs text-muted-foreground">Total Guests</div>
+                            <div className="font-semibold text-lg dark:text-white">{club?.host_id?.total_guests}</div>
+                            <div className="text-xs text-muted-foreground dark:text-gray-400">Total Guests</div>
                           </div>
                         )}
                         {club?.host_id?.years_experience > 0 && (
                           <div className="text-center">
-                            <div className="font-semibold text-lg">{club?.host_id?.years_experience}</div>
-                            <div className="text-xs text-muted-foreground">Years Experience</div>
+                            <div className="font-semibold text-lg dark:text-white">{club?.host_id?.years_experience}</div>
+                            <div className="text-xs text-muted-foreground dark:text-gray-400">Years Experience</div>
                           </div>
                         )}
                       </div>
@@ -253,14 +253,14 @@ function ClubDetailsPage() {
               {/* Host Awards */}
               {club?.host_id?.awards && club?.host_id?.awards.length > 0 && (
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">Awards & Recognition</h3>
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+                  <h3 className="text-xl font-semibold mb-4 dark:text-white">Awards & Recognition</h3>
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-xl p-6 dark:bg-yellow-950/30 dark:border-yellow-900/50">
                     <div className="flex items-start gap-3">
-                      <AwardIcon className="h-5 w-5 text-yellow-600 mt-1" />
+                      <AwardIcon className="h-5 w-5 text-yellow-600 mt-1 dark:text-yellow-500" />
                       <div>
                         <ul className="space-y-1">
                           {club?.host_id?.awards.map((award, index) => (
-                            <li key={index} className="text-sm font-medium">{award}</li>
+                            <li key={index} className="text-sm font-medium dark:text-yellow-200">{award}</li>
                           ))}
                         </ul>
                       </div>
@@ -271,8 +271,8 @@ function ClubDetailsPage() {
 
               {/* Event Details */}
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                <div className="bg-gray-50 rounded-xl p-6 dark:bg-gray-900">
+                  <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 dark:text-white">
                     <CalendarIcon className="h-5 w-5" />
                     Event Details
                   </h3>
@@ -280,15 +280,15 @@ function ClubDetailsPage() {
                     <div className="flex items-center gap-3">
                       <ClockIcon className="h-4 w-4 text-muted-foreground" />
                       <div>
-                        <p className="font-medium">Duration</p>
-                        <p className="text-sm text-muted-foreground">{selectedSchedule?.duration || club?.default_duration || "2-3 hours"}</p>
+                        <p className="font-medium dark:text-gray-200">Duration</p>
+                        <p className="text-sm text-muted-foreground dark:text-gray-400">{selectedSchedule?.duration || club?.default_duration || "2-3 hours"}</p>
                       </div>
                     </div>
                     <div className="flex items-center gap-3">
                       <UsersIcon className="h-4 w-4 text-muted-foreground" />
                       <div>
-                        <p className="font-medium">Group Size</p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="font-medium dark:text-gray-200">Group Size</p>
+                        <p className="text-sm text-muted-foreground dark:text-gray-400">
                           {selectedSchedule?.seat_limit ? `${selectedSchedule.seat_limit} guests` : club?.default_group_size || "2-8 guests"}
                         </p>
                       </div>
@@ -296,12 +296,12 @@ function ClubDetailsPage() {
                     <div className="flex items-center gap-3">
                       <MapPinIcon className="h-4 w-4 text-muted-foreground" />
                       <div>
-                        <p className="font-medium">Location</p>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="font-medium dark:text-gray-200">Location</p>
+                        <p className="text-sm text-muted-foreground dark:text-gray-400">
                           {club?.location?.address || club?.default_location_description || "Private residence - details provided after booking"}
                         </p>
                         {club?.location?.neighborhood && (
-                          <p className="text-xs text-muted-foreground">
+                          <p className="text-xs text-muted-foreground dark:text-gray-500">
                             {club?.location?.neighborhood}
                           </p>
                         )}
@@ -310,8 +310,8 @@ function ClubDetailsPage() {
                   </div>
                 </div>
 
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <h3 className="text-xl font-semibold mb-4 flex items-center gap-2">
+                <div className="bg-gray-50 rounded-xl p-6 dark:bg-gray-900">
+                  <h3 className="text-xl font-semibold mb-4 flex items-center gap-2 dark:text-white">
                     <UtensilsIcon className="h-5 w-5" />
                     Experience Type
                   </h3>
@@ -347,13 +347,13 @@ function ClubDetailsPage() {
               {/* What's Included */}
               {club?.whats_included && club?.whats_included.length > 0 && (
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">What's Included</h3>
-                  <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+                  <h3 className="text-xl font-semibold mb-4 dark:text-white">What's Included</h3>
+                  <div className="bg-green-50 border border-green-200 rounded-xl p-6 dark:bg-green-950/30 dark:border-green-900/50">
                     <ul className="space-y-2">
                       {club?.whats_included.map((item, index) => (
                         <li key={index} className="flex items-start gap-2">
-                          <CheckIcon className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm">{item}</span>
+                          <CheckIcon className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0 dark:text-green-500" />
+                          <span className="text-sm dark:text-green-200">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -364,13 +364,13 @@ function ClubDetailsPage() {
               {/* What's Not Included */}
               {club?.whats_not_included && club?.whats_not_included.length > 0 && (
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">What's Not Included</h3>
-                  <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+                  <h3 className="text-xl font-semibold mb-4 dark:text-white">What's Not Included</h3>
+                  <div className="bg-red-50 border border-red-200 rounded-xl p-6 dark:bg-red-950/30 dark:border-red-900/50">
                     <ul className="space-y-2">
                       {club?.whats_not_included.map((item, index) => (
                         <li key={index} className="flex items-start gap-2">
-                          <XIcon className="h-4 w-4 text-red-600 mt-0.5 flex-shrink-0" />
-                          <span className="text-sm">{item}</span>
+                          <XIcon className="h-4 w-4 text-red-600 mt-0.5 flex-shrink-0 dark:text-red-500" />
+                          <span className="text-sm dark:text-red-200">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -381,9 +381,9 @@ function ClubDetailsPage() {
               {/* Guest Requirements */}
               {club?.guest_requirements && (
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">Guest Requirements</h3>
-                  <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-                    <p className="text-sm text-blue-800">{club?.guest_requirements}</p>
+                  <h3 className="text-xl font-semibold mb-4 dark:text-white">Guest Requirements</h3>
+                  <div className="bg-blue-50 border border-blue-200 rounded-xl p-6 dark:bg-blue-950/30 dark:border-blue-900/50">
+                    <p className="text-sm text-blue-800 dark:text-blue-200">{club?.guest_requirements}</p>
                   </div>
                 </div>
               )}
@@ -391,9 +391,9 @@ function ClubDetailsPage() {
               {/* Menu Details */}
               {club?.menu_details && (
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">Menu Details</h3>
-                  <div className="bg-gray-50 rounded-xl p-6">
-                    <p className="text-muted-foreground">{club?.menu_details}</p>
+                  <h3 className="text-xl font-semibold mb-4 dark:text-white">Menu Details</h3>
+                  <div className="bg-gray-50 rounded-xl p-6 dark:bg-gray-900">
+                    <p className="text-muted-foreground dark:text-gray-400">{club?.menu_details}</p>
                   </div>
                 </div>
               )}
@@ -401,9 +401,9 @@ function ClubDetailsPage() {
               {/* Dietary Notes */}
               {club?.dietary_notes && (
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">Dietary Accommodations</h3>
-                  <div className="bg-gray-50 rounded-xl p-6">
-                    <p className="text-muted-foreground">{club?.dietary_notes}</p>
+                  <h3 className="text-xl font-semibold mb-4 dark:text-white">Dietary Accommodations</h3>
+                  <div className="bg-gray-50 rounded-xl p-6 dark:bg-gray-900">
+                    <p className="text-muted-foreground dark:text-gray-400">{club?.dietary_notes}</p>
                   </div>
                 </div>
               )}
@@ -411,9 +411,9 @@ function ClubDetailsPage() {
               {/* Cancellation Policy */}
               {club?.cancellation_policy && (
                 <div>
-                  <h3 className="text-xl font-semibold mb-4">Cancellation Policy</h3>
-                  <div className="bg-gray-50 rounded-xl p-6">
-                    <p className="text-muted-foreground">{club?.cancellation_policy}</p>
+                  <h3 className="text-xl font-semibold mb-4 dark:text-white">Cancellation Policy</h3>
+                  <div className="bg-gray-50 rounded-xl p-6 dark:bg-gray-900">
+                    <p className="text-muted-foreground dark:text-gray-400">{club?.cancellation_policy}</p>
                   </div>
                 </div>
               )}
@@ -423,12 +423,12 @@ function ClubDetailsPage() {
           {/* Right Column - Booking */}
           <div className="space-y-6">
             {/* Booking Card */}
-            <div className="bg-white border rounded-xl p-6 sticky top-24">
-              <h3 className="text-xl font-semibold mb-4">Book This Experience</h3>
+            <div className="bg-white border rounded-xl p-6 sticky top-24 dark:bg-gray-900 dark:border-gray-800">
+              <h3 className="text-xl font-semibold mb-4 dark:text-white">Book This Experience</h3>
 
               {/* Event Schedules */}
               <div className="mb-6">
-                <h4 className="font-medium mb-3">Select Date</h4>
+                <h4 className="font-medium mb-3 dark:text-gray-200">Select Date</h4>
                 {schedules && schedules.length > 0 ? (
                   <div className="space-y-3 max-h-64 overflow-y-auto">
                     {schedules.map((schedule) => (
@@ -436,8 +436,8 @@ function ClubDetailsPage() {
                         key={schedule._id}
                         className={`border rounded-lg p-4 cursor-pointer transition-all ${
                           selectedSchedule?._id === schedule._id
-                            ? "border-primary bg-primary/5 ring-2 ring-primary/20"
-                            : "hover:bg-gray-50 hover:border-gray-300"
+                            ? "border-primary bg-primary/5 ring-2 ring-primary/20 dark:bg-primary/10"
+                            : "hover:bg-gray-50 hover:border-gray-300 dark:hover:bg-gray-800 dark:border-gray-700"
                         }`}
                         onClick={() => setSelectedSchedule(schedule)}
                       >
@@ -445,7 +445,7 @@ function ClubDetailsPage() {
                           <div className="space-y-2">
                             <div className="flex items-center gap-2">
                               <CalendarIcon className="h-4 w-4" />
-                              <span className="font-medium">
+                              <span className="font-medium dark:text-white">
                                 {new Date(schedule.date).toLocaleDateString('en-US', {
                                   weekday: 'short',
                                   month: 'short',
@@ -505,12 +505,12 @@ function ClubDetailsPage() {
 
               {/* Price Summary */}
               {selectedSchedule && (
-                <div className="border-t pt-4 mb-6">
-                  <div className="flex justify-between items-center mb-2">
+                <div className="border-t pt-4 mb-6 dark:border-gray-700">
+                  <div className="flex justify-between items-center mb-2 dark:text-gray-300">
                     <span className="text-sm">Price per guest</span>
                     <span className="font-medium">${selectedSchedule.price_per_guest}</span>
                   </div>
-                  <div className="flex justify-between items-center font-semibold text-lg">
+                  <div className="flex justify-between items-center font-semibold text-lg dark:text-white">
                     <span>Total</span>
                     <span>${selectedSchedule.price_per_guest}</span>
                   </div>
@@ -531,27 +531,27 @@ function ClubDetailsPage() {
                   </Button>
                   
                   {/* Booking Confirmation Info */}
-                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-blue-900 mb-2">Your booking will be instantly confirmed</h4>
-                    <ul className="space-y-1 text-sm text-blue-800">
+                  <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 dark:bg-blue-950/30 dark:border-blue-900/50">
+                    <h4 className="font-semibold text-blue-900 mb-2 dark:text-blue-100">Your booking will be instantly confirmed</h4>
+                    <ul className="space-y-1 text-sm text-blue-800 dark:text-blue-200">
                       <li className="flex items-start gap-2">
-                        <span className="text-green-600 mt-1">✓</span>
+                        <span className="text-green-600 mt-1 dark:text-green-400">✓</span>
                         <span>We'll send you a confirmation email with a recap of your upcoming experience. Check your inbox!</span>
                       </li>
                       <li className="flex items-start gap-2">
-                        <span className="text-green-600 mt-1">✓</span>
+                        <span className="text-green-600 mt-1 dark:text-green-400">✓</span>
                         <span>If you have any dietary requirements or comments, you can send the host a message on the next page.</span>
                       </li>
                     </ul>
                   </div>
                   
                   {/* Trust & Safety */}
-                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
-                    <h4 className="font-semibold text-yellow-900 mb-2">Trust & Safety</h4>
-                    <p className="text-sm text-yellow-800">
+                  <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4 dark:bg-yellow-950/30 dark:border-yellow-900/50">
+                    <h4 className="font-semibold text-yellow-900 mb-2 dark:text-yellow-100">Trust & Safety</h4>
+                    <p className="text-sm text-yellow-800 dark:text-yellow-200">
                       We are committed to the health and well-being of our community. Learn more about our enhanced safety measures and flexible booking policies.
                     </p>
-                    <button className="text-blue-600 text-sm underline mt-2 hover:text-blue-800">
+                    <button className="text-blue-600 text-sm underline mt-2 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">
                       Learn more
                     </button>
                   </div>
@@ -572,7 +572,7 @@ function ClubDetailsPage() {
         {/* Reviews Section */}
         <Separator className="my-12" />
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-2xl font-bold mb-8">Reviews</h2>
+          <h2 className="text-2xl font-bold mb-8 dark:text-white">Reviews</h2>
           <div className="grid gap-6">
             {reviews && reviews.length > 0 ? (
               reviews.map((reviewItem) => (
@@ -582,10 +582,10 @@ function ClubDetailsPage() {
                   </Avatar>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="font-medium">{reviewItem.userName}</span>
+                      <span className="font-medium dark:text-white">{reviewItem.userName}</span>
                       <StarRatingComponent rating={reviewItem.reviewValue} />
                     </div>
-                    <p className="text-muted-foreground">{reviewItem.reviewMessage}</p>
+                    <p className="text-muted-foreground dark:text-gray-400">{reviewItem.reviewMessage}</p>
                   </div>
                 </div>
               ))
@@ -597,23 +597,24 @@ function ClubDetailsPage() {
           {/* Add Review Section */}
           {user ? (
             <div className="mt-8 border-t pt-8">
-              <h3 className="text-xl font-semibold mb-4">Add Your Review</h3>
+              <h3 className="text-xl font-semibold mb-4 dark:text-white">Add Your Review</h3>
               <div className="space-y-4">
                 <div>
-                  <Label>Rating</Label>
+                  <Label className="dark:text-white">Rating</Label>
                   <StarRatingComponent 
                     rating={rating} 
                     handleRatingChange={handleRatingChange}
                   />
                 </div>
                 <div>
-                  <Label htmlFor="reviewMessage">Your Review</Label>
+                  <Label htmlFor="reviewMessage" className="dark:text-white">Your Review</Label>
                   <Input
                     id="reviewMessage"
                     value={reviewMsg}
                     name="reviewMsg"
                     placeholder="Share your experience..."
                     onChange={(event) => setReviewMsg(event.target.value)}
+                    className="dark:bg-gray-800 dark:text-white dark:border-gray-700"
                   />
                 </div>
                 <Button 
@@ -633,11 +634,11 @@ function ClubDetailsPage() {
           {/* Similar Experiences */}
           <Separator className="my-12" />
           <div className="max-w-6xl mx-auto">
-            <h2 className="text-2xl font-bold mb-8">Similar Experiences</h2>
+            <h2 className="text-2xl font-bold mb-8 dark:text-white">Similar Experiences</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {/* This would be populated with similar clubs - for now showing placeholder */}
-              <div className="border rounded-lg p-4 text-center text-muted-foreground">
-                <div className="h-32 bg-gray-100 rounded mb-4"></div>
+              <div className="border rounded-lg p-4 text-center text-muted-foreground dark:border-gray-800 dark:text-gray-400">
+                <div className="h-32 bg-gray-100 rounded mb-4 dark:bg-gray-800"></div>
                 <p>Similar experiences will appear here</p>
               </div>
             </div>

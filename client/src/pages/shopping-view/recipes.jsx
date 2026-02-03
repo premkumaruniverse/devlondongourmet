@@ -48,9 +48,9 @@ const Recipes = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-12">
+    <div className="container mx-auto px-4 py-12 dark:bg-gray-950 dark:text-white">
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4 dark:text-gray-100">Recipes & Blog</h1>
+        <h1 className="text-4xl font-bold mb-4 dark:text-white">Recipes & Blog</h1>
         <p className="text-xl text-gray-600 dark:text-gray-300">Discover Delicious Recipes & Culinary Inspiration</p>
       </div>
 
@@ -139,7 +139,7 @@ const Recipes = () => {
               {recipeList.map((recipe) => (
                 <div key={recipe._id} className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
                   <img
-                    src={recipe.image || 'https://placehold.co/300x200?text=Recipe'}
+                    src={recipe.image || 'https://via.placeholder.com/300x200?text=Recipe'}
                     alt={recipe.title}
                     className="w-full h-48 object-cover"
                   />

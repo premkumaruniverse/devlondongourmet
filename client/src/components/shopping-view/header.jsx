@@ -46,9 +46,7 @@ function MenuItems() {
 
     sessionStorage.setItem("filters", JSON.stringify(currentFilter));
 
-    location.pathname.includes("listing") &&
-    currentFilter !== null &&
-    getCurrentMenuItem.path.indexOf("listing") > -1
+    location.pathname.includes("listing") && currentFilter !== null
       ? setSearchParams(
           new URLSearchParams(`?category=${getCurrentMenuItem.id}`)
         )
@@ -66,7 +64,7 @@ function MenuItems() {
             <span className="relative z-10">{menuItem.label}</span>
             <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
           </button>
-          <span className="absolute inset-0 bg-gradient-to-r from-amber-50 to-white rounded-lg shadow-sm group-hover:shadow-md transition-all duration-300 transform group-hover:scale-105 -z-10 opacity-0 group-hover:opacity-100"></span>
+          <span className="absolute inset-0 bg-gradient-to-r from-amber-50 to-white dark:from-gray-800 dark:to-gray-900 rounded-lg shadow-sm group-hover:shadow-md transition-all duration-300 transform group-hover:scale-105 -z-10 opacity-0 group-hover:opacity-100"></span>
         </div>
       ))}
     </div>

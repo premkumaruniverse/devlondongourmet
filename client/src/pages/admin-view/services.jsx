@@ -8,7 +8,6 @@ import {
   SheetContent,
   SheetHeader,
   SheetTitle,
-  SheetDescription,
 } from "@/components/ui/sheet";
 import { useToast } from "@/components/ui/use-toast";
 import { addServiceFormElements } from "@/config";
@@ -136,7 +135,6 @@ function AdminServices() {
         {serviceList && serviceList.length > 0
           ? serviceList.map((serviceItem) => (
               <AdminServiceTile
-                key={serviceItem._id}
                 setFormData={setFormData}
                 setOpenCreateServicesDialog={setOpenCreateServicesDialog}
                 setCurrentEditedId={setCurrentEditedId}
@@ -163,9 +161,6 @@ function AdminServices() {
             <SheetTitle>
               {currentEditedId !== null ? "Edit Service" : "Add New Service"}
             </SheetTitle>
-            <SheetDescription className="sr-only">
-              {currentEditedId !== null ? "Edit the existing service" : "Create a new service"}
-            </SheetDescription>
           </SheetHeader>
           <ProductImageUpload
             imageFile={imageFile}

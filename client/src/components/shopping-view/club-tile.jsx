@@ -31,7 +31,7 @@ function ShoppingClubTile({
   const availableSeats = nextSchedule ? nextSchedule.seat_limit - nextSchedule.seats_booked : 0;
 
   return (
-    <Card className="w-full max-w-sm mx-auto">
+    <Card className="w-full max-w-sm mx-auto dark:bg-gray-800 dark:border-gray-700">
       <div onClick={() => navigate(`/shop/gourmet-club/${club?._id}`)}>
         <div className="relative">
           <img
@@ -62,25 +62,25 @@ function ShoppingClubTile({
         </div>
       </div>
       <CardContent className="p-4">
-        <h2 className="text-lg font-bold mb-2 line-clamp-1">{club?.title}</h2>
-        <p className="text-sm text-muted-foreground mb-3 line-clamp-2">
+        <h2 className="text-lg font-bold mb-2 line-clamp-1 dark:text-white">{club?.title}</h2>
+        <p className="text-sm text-muted-foreground mb-3 line-clamp-2 dark:text-gray-400">
           {club?.description}
         </p>
         
         <div className="flex items-center gap-2 mb-2">
           <div className="flex items-center gap-0.5">
             <StarIcon className="h-4 w-4 text-yellow-500 fill-current" />
-            <span className="text-sm font-medium">
+            <span className="text-sm font-medium dark:text-gray-300">
               {club?.averageRating?.toFixed(1) || "0.0"}
             </span>
           </div>
-          <span className="text-muted-foreground text-sm">
+          <span className="text-muted-foreground text-sm dark:text-gray-400">
             ({club?.totalReviews || 0} reviews)
           </span>
         </div>
 
         <div className="flex items-center gap-2 mb-2">
-          <div className="flex items-center gap-1 text-muted-foreground">
+          <div className="flex items-center gap-1 text-muted-foreground dark:text-gray-400">
             <UsersIcon className="h-4 w-4" />
             <span className="text-sm">Host: {club?.host_id?.name}</span>
           </div>
@@ -88,7 +88,7 @@ function ShoppingClubTile({
 
         {nextSchedule && (
           <div className="flex items-center gap-2 mb-2">
-            <div className="flex items-center gap-1 text-muted-foreground">
+            <div className="flex items-center gap-1 text-muted-foreground dark:text-gray-400">
               <CalendarIcon className="h-4 w-4" />
               <span className="text-sm">
                 {new Date(nextSchedule.date).toLocaleDateString()}
@@ -98,16 +98,16 @@ function ShoppingClubTile({
         )}
 
         <div className="flex justify-between items-center">
-          <span className="text-lg font-semibold text-primary">
+          <span className="text-lg font-semibold text-primary dark:text-white">
             ${nextSchedule?.price_per_guest || "0"}
           </span>
-          <span className="text-sm text-muted-foreground">per guest</span>
+          <span className="text-sm text-muted-foreground dark:text-gray-400">per guest</span>
         </div>
       </CardContent>
       <CardFooter>
         <Button
           onClick={() => navigate(`/shop/gourmet-club/${club?._id}`)}
-          className="w-full"
+          className="w-full dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
         >
           View Details
         </Button>
