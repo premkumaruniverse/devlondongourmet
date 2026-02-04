@@ -193,8 +193,14 @@ function ShoppingListing() {
 
   useEffect(() => {
     setSort("price-lowtohigh");
-    setFilters(JSON.parse(sessionStorage.getItem("filters")) || {});
-  }, [categorySearchParam]);
+    const hasUrlFilters = Boolean(categorySearchParam) || Boolean(subcategorySearchParam);
+    if (hasUrlFilters) {
+      const stored = JSON.parse(sessionStorage.getItem("filters")) || {};
+      setFilters(stored);
+    } else {
+      setFilters({});
+    }
+  }, [categorySearchParam, subcategorySearchParam]);
 
   useEffect(() => {
     if (filters && Object.keys(filters).length > 0) {
