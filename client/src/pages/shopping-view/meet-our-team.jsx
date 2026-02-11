@@ -47,7 +47,7 @@ function MeetOurTeam() {
         {/* Header Section */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-gray-900 dark:text-primary mb-6">
-            Meet Our Chefs
+            Our Chefs
           </h1>
           <div className="max-w-4xl mx-auto">
             <h2 className="text-2xl font-semibold text-orange-600 dark:text-primary mb-4">
@@ -64,7 +64,7 @@ function MeetOurTeam() {
         {/* Team Introduction */}
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold text-gray-900 dark:text-primary mb-6">
-            MEET OUR CULINARY TEAM
+            OUR CULINARY TEAM
           </h2>
           <div className="max-w-4xl mx-auto">
             <p className="text-lg text-gray-700 dark:text-muted-foreground leading-relaxed mb-6">

@@ -76,21 +76,16 @@ function HeaderRightContent() {
   console.log(cartItems, "sangam");
 
   if (!isAuthenticated) {
-    // Show login/register buttons for unauthenticated users
+    // Show sign in button for unauthenticated users
     return (
       <div className="flex lg:items-center lg:flex-row flex-col gap-4">
         <Button
           onClick={() => navigate("/auth/login")}
-          variant="outline"
+          className="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center gap-2"
           size="sm"
         >
-          Sign In
-        </Button>
-        <Button
-          onClick={() => navigate("/auth/register")}
-          size="sm"
-        >
-          Sign Up
+          {/* <User className="w-4 h-4" /> */}
+          Sign In / Sign Out
         </Button>
         <ThemeToggle />
       </div>
@@ -144,7 +139,7 @@ function HeaderRightContent() {
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
-            Logout
+            Sign Out
           </DropdownMenuItem>
         </DropdownMenuContent>
       </DropdownMenu>
@@ -200,10 +195,10 @@ function ShoppingHeader() {
               <img 
                 src={londonGourmetLogo} 
                 alt="London Gourmet" 
-                className="h-36 w-auto object-contain"
+                className="h-28 w-auto object-contain"
               />
               <div className="flex flex-col justify-center -ml-4">
-                <span className="font-playfair text-xl font-bold text-amber-600 dark:text-amber-500 leading-none">
+                <span className="font-playfair text-lg font-bold text-amber-600 dark:text-amber-500 leading-none">
                   London Gourmet
                 </span>
               </div>

@@ -63,7 +63,7 @@ function ChefDetail() {
           </p>
           <Link to="/shop/meet-our-team">
             <Button className="bg-orange-600 hover:bg-orange-700 dark:bg-primary dark:hover:bg-primary/90 dark:text-primary-foreground">
-              Back to Meet Our Team
+              Back to Our Team
             </Button>
           </Link>
         </div>
@@ -79,7 +79,7 @@ function ChefDetail() {
           <Link to="/shop/meet-our-team">
             <Button variant="outline" className="flex items-center gap-2 dark:text-primary dark:border-primary dark:hover:bg-primary/10">
               <ArrowLeft className="h-4 w-4" />
-              Back to Meet Our Team
+              Back to Our Team
             </Button>
           </Link>
         </div>

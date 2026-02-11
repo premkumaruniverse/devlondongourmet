@@ -151,7 +151,7 @@ export const shoppingViewHeaderMenuItems = [
   },
   {
     id: "meet_our_team",
-    label: "Meet Our Team",
+    label: "Our Team",
     path: "/shop/meet-our-team",
   },
   {
