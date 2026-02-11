@@ -84,8 +84,8 @@ function HeaderRightContent() {
           className="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200 flex items-center gap-2"
           size="sm"
         >
-          {/* <User className="w-4 h-4" /> */}
-          Sign In / Sign Out
+          <User className="w-4 h-4" />
+          Sign In
         </Button>
         <ThemeToggle />
       </div>

@@ -76,6 +76,7 @@ function AuthRegister() {
           formData={formData}
           setFormData={setFormData}
           onSubmit={onSubmit}
+          buttonClassName="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 rounded-lg transition-colors duration-200"
         />
         <div className="mt-6">
           <div className="flex items-center gap-2 text-xs text-muted-foreground mb-4">

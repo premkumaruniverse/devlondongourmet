@@ -53,6 +53,7 @@ function AuthLogin() {
           formData={formData}
           setFormData={setFormData}
           onSubmit={onSubmit}
+          buttonClassName="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 rounded-lg transition-colors duration-200"
         />
         <div className="mt-3 text-right">
           <Link to="/auth/forgot-password" className="text-sm text-amber-700 dark:text-primary hover:underline">

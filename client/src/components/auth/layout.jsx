@@ -1,10 +1,23 @@
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import londonGourmetLogo from "../../assets/lg_logo.svg";
-import { ChefHat, Utensils, Wine } from "lucide-react";
+import { ChefHat, Utensils, Wine, ArrowLeft } from "lucide-react";
+import { Button } from "../ui/button";
 
 function AuthLayout() {
+  const navigate = useNavigate();
+
   return (
-    <div className="flex min-h-screen w-full">
+    <div className="flex min-h-screen w-full relative">
+      <div className="absolute top-4 left-4 sm:top-8 sm:left-8 z-50">
+        <Button
+          onClick={() => navigate(-1)}
+          className="bg-amber-500 hover:bg-amber-600 text-white font-semibold py-2 px-4 sm:px-6 rounded-lg transition-colors duration-200 flex items-center gap-2 shadow-lg"
+          size="sm"
+        >
+          <ArrowLeft className="w-4 h-4" />
+          <span className="hidden sm:inline">Back</span>
+        </Button>
+      </div>
       <div className="hidden lg:flex relative items-center justify-center w-1/2 px-12 bg-amber-50 dark:bg-background overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-amber-100/40 to-transparent dark:from-primary/10 dark:to-transparent" />
         <div className="absolute -top-24 -left-24 w-72 h-72 rounded-full bg-amber-200/40 dark:bg-primary/10 blur-3xl" />

@@ -1,5 +1,6 @@
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
+import { cn } from "@/lib/utils";
 import {
   Select,
   SelectContent,
@@ -21,6 +22,7 @@ function CommonForm({
   onSubmit,
   buttonText,
   isBtnDisabled,
+  buttonClassName,
 }) {
   const [filteredFormControls, setFilteredFormControls] = useState([...formControls]);
 
@@ -225,7 +227,7 @@ function CommonForm({
           {renderInputsByComponentType(controlItem)}
         </div>
       ))}
-      <Button type="submit" className="w-full mt-6" disabled={isBtnDisabled}>
+      <Button type="submit" className={cn("w-full mt-6", buttonClassName)} disabled={isBtnDisabled}>
         {buttonText}
       </Button>
     </form>
