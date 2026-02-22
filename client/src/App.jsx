@@ -38,6 +38,7 @@ import MeetOurTeam from "./pages/shopping-view/meet-our-team";
 import ChefDetail from "./pages/shopping-view/chef-detail";
 import { ThemeProvider } from "./contexts/theme-context";
 import ServiceDetail from "./pages/shopping-view/service-detail";
+import CategoryLanding from "./pages/shopping-view/category-landing";
 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
@@ -93,8 +94,8 @@ function App() {
             <Route path="chefs" element={<AdminChefs />} />
             <Route path="clubs" element={<AdminClubs />} />
             <Route path="services" element={<AdminServices />} />
-          <Route path="quotes" element={<AdminQuotes />} />
-        </Route>
+            <Route path="quotes" element={<AdminQuotes />} />
+          </Route>
           <Route
             path="/shop"
             element={
@@ -112,7 +113,8 @@ function App() {
             <Route path="search" element={<SearchProducts />} />
             <Route path="diners-atlas" element={<DinersAtlas />} />
             <Route path="services/:id" element={<ServiceDetail />} />
-          <Route path="gourmet-club" element={<ShoppingClubs />} />
+            <Route path="category/:categoryId" element={<CategoryLanding />} />
+            <Route path="gourmet-club" element={<ShoppingClubs />} />
             <Route path="gourmet-club/:id" element={<ClubDetailsPage />} />
             <Route path="ayu-bite" element={<AyuBite />} />
             <Route path="recipes" element={<Recipes />} />

@@ -123,10 +123,10 @@ export const shoppingViewHeaderMenuItems = [
     label: "Products",
     path: "/shop/listing",
     submenu: [
-      { id: "rubs_spices", label: "Rubs & Spice Mix", path: "/shop/listing?category=rubs_spices" },
-      { id: "achar", label: "Achar", path: "/shop/listing?category=achar" },
-      { id: "cured_coated", label: "Cured & Coated", path: "/shop/listing?category=cured_coated" },
-      { id: "rassa", label: "Rassa", path: "/shop/listing?category=rassa" }
+      { id: "rubs-spice-mix", label: "Rubs & Spice Mix", path: "/shop/category/rubs-spice-mix" },
+      { id: "achar", label: "Achar", path: "/shop/category/achar" },
+      { id: "cured-coated", label: "Cured & Coated", path: "/shop/category/cured-coated" },
+      { id: "rassa", label: "Rassa", path: "/shop/category/rassa" }
     ]
   },
   {
@@ -151,7 +151,7 @@ export const shoppingViewHeaderMenuItems = [
   },
   {
     id: "meet_our_team",
-    label: "Meet Our Team",
+    label: "Our Team",
     path: "/shop/meet-our-team",
   },
   {
@@ -182,29 +182,29 @@ export const subcategoryOptionsMap = {
 
 export const filterOptions = {
   category: [
-    { 
-      id: "rubs-spice-mix", 
+    {
+      id: "rubs-spice-mix",
       label: "Rubs & Spice Mix",
       subcategories: [
         { id: "spice-mix", label: "Spice Mix" },
         { id: "kebab-rubs", label: "Kebab Rubs" }
       ]
     },
-    { 
-      id: "achar", 
+    {
+      id: "achar",
       label: "Achar",
       subcategories: []
     },
-    { 
-      id: "rassa", 
+    {
+      id: "rassa",
       label: "Rassa",
       subcategories: [
         { id: "gravies", label: "Gravies" },
         { id: "chutneys", label: "Chutneys" }
       ]
     },
-    { 
-      id: "cured-coated", 
+    {
+      id: "cured-coated",
       label: "Cured & Coated",
       subcategories: [
         { id: "meats", label: "Meats" },

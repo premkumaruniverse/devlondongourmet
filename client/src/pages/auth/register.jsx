@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import londonGourmetLogo from "@/assets/lg_logo.svg";
 
 const initialState = {
   userName: "",
@@ -63,6 +64,11 @@ function AuthRegister() {
         <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-amber-300/20 dark:bg-primary/20 blur-2xl" />
         <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-amber-400/20 dark:bg-primary/20 blur-2xl" />
         <div className="mb-6 text-center">
+          <img
+            src={londonGourmetLogo}
+            alt="London Gourmet"
+            className="h-14 w-auto mx-auto mb-4"
+          />
           <h1 className="text-3xl font-playfair font-bold tracking-tight text-amber-700 dark:text-primary">
             Create an Account
           </h1>
