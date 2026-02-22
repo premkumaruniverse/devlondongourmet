@@ -9,7 +9,7 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { useToast } from "@/components/ui/use-toast";
-import { addProductFormElements } from "@/config";
+import { addProductFormElements, subcategoryOptionsMap } from "@/config";
 import {
   addNewProduct,
   deleteProduct,
@@ -49,36 +49,36 @@ function AdminProducts() {
 
     currentEditedId !== null
       ? dispatch(
-          editProduct({
-            id: currentEditedId,
-            formData,
-          })
-        ).then((data) => {
-          console.log(data, "edit");
-
-          if (data?.payload?.success) {
-            dispatch(fetchAllProducts());
-            setFormData(initialFormData);
-            setOpenCreateProductsDialog(false);
-            setCurrentEditedId(null);
-          }
+        editProduct({
+          id: currentEditedId,
+          formData,
         })
+      ).then((data) => {
+        console.log(data, "edit");
+
+        if (data?.payload?.success) {
+          dispatch(fetchAllProducts());
+          setFormData(initialFormData);
+          setOpenCreateProductsDialog(false);
+          setCurrentEditedId(null);
+        }
+      })
       : dispatch(
-          addNewProduct({
-            ...formData,
-            image: uploadedImageUrl,
-          })
-        ).then((data) => {
-          if (data?.payload?.success) {
-            dispatch(fetchAllProducts());
-            setOpenCreateProductsDialog(false);
-            setImageFile(null);
-            setFormData(initialFormData);
-            toast({
-              title: "Product add successfully",
-            });
-          }
-        });
+        addNewProduct({
+          ...formData,
+          image: uploadedImageUrl,
+        })
+      ).then((data) => {
+        if (data?.payload?.success) {
+          dispatch(fetchAllProducts());
+          setOpenCreateProductsDialog(false);
+          setImageFile(null);
+          setFormData(initialFormData);
+          toast({
+            title: "Product add successfully",
+          });
+        }
+      });
   }
   useEffect(() => {
     if (uploadedImageUrl) {
@@ -98,8 +98,21 @@ function AdminProducts() {
   }
 
   function isFormValid() {
+    // Categories that have no subcategories (subcategory field should be optional for them)
+    const categoryHasSubcategories = formData.category
+      ? (subcategoryOptionsMap[formData.category] || []).length > 0
+      : true;
+
     return Object.keys(formData)
-      .filter((currentKey) => currentKey !== "averageReview")
+      .filter((currentKey) => {
+        // Always skip averageReview
+        if (currentKey === "averageReview") return false;
+        // Skip salePrice (it's optional)
+        if (currentKey === "salePrice") return false;
+        // Skip subcategory if this category has no subcategories
+        if (currentKey === "subcategory" && !categoryHasSubcategories) return false;
+        return true;
+      })
       .map((key) => formData[key] !== "")
       .every((item) => item);
   }
@@ -120,14 +133,14 @@ function AdminProducts() {
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
         {productList && productList.length > 0
           ? productList.map((productItem) => (
-              <AdminProductTile
-                setFormData={setFormData}
-                setOpenCreateProductsDialog={setOpenCreateProductsDialog}
-                setCurrentEditedId={setCurrentEditedId}
-                product={productItem}
-                handleDelete={handleDelete}
-              />
-            ))
+            <AdminProductTile
+              setFormData={setFormData}
+              setOpenCreateProductsDialog={setOpenCreateProductsDialog}
+              setCurrentEditedId={setCurrentEditedId}
+              product={productItem}
+              handleDelete={handleDelete}
+            />
+          ))
           : null}
       </div>
       <Sheet

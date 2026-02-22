@@ -10,7 +10,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useToast } from "@/components/ui/use-toast";
-import { sortOptions } from "@/config";
+import { filterOptions, sortOptions } from "@/config";
 import { addToCart, fetchCartItems } from "@/store/shop/cart-slice";
 import {
   fetchAllFilteredProducts,
@@ -21,22 +21,6 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useSearchParams } from "react-router-dom";
 
-function createSearchParamsHelper(filterParams) {
-  const queryParams = [];
-
-  for (const [key, value] of Object.entries(filterParams)) {
-    if (Array.isArray(value) && value.length > 0) {
-      const paramValue = value.join(",");
-
-      queryParams.push(`${key}=${encodeURIComponent(paramValue)}`);
-    }
-  }
-
-  console.log(queryParams, "queryParams");
-
-  return queryParams.join("&");
-}
-
 function ShoppingListing() {
   const dispatch = useDispatch();
   const { productList, productDetails } = useSelector(
@@ -45,117 +29,107 @@ function ShoppingListing() {
   const { cartItems } = useSelector((state) => state.shopCart);
   const { user } = useSelector((state) => state.auth);
   const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState(null);
+  const [sort, setSort] = useState("price-lowtohigh");
   const [searchParams, setSearchParams] = useSearchParams();
   const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
   const { toast } = useToast();
 
-  // Get category and subcategory from URL params
   const categorySearchParam = searchParams.get("category");
   const subcategorySearchParam = searchParams.get("subcategory");
-  
-  // Initialize filters from URL params
+
+  // ── Initialise filters from URL params (e.g. clicking category card on home page) ──
   useEffect(() => {
-    const initialFilters = {};
-    
-    if (categorySearchParam) {
-      initialFilters.category = [categorySearchParam];
-    }
-    
-    if (subcategorySearchParam) {
-      initialFilters.subcategory = [subcategorySearchParam];
-    }
-    
-    if (Object.keys(initialFilters).length > 0) {
-      setFilters(initialFilters);
-    }
+    const initial = {};
+    if (categorySearchParam) initial.category = [categorySearchParam];
+    if (subcategorySearchParam) initial.subcategory = [subcategorySearchParam];
+    setFilters(initial);
   }, [categorySearchParam, subcategorySearchParam]);
+
+  // ── Sync URL whenever filters change ──
+  useEffect(() => {
+    const params = new URLSearchParams();
+    if (filters?.category?.[0]) params.set("category", filters.category[0]);
+    if (filters?.subcategory?.[0]) params.set("subcategory", filters.subcategory[0]);
+    setSearchParams(params, { replace: true });
+  }, [filters]);
+
+  // ── Fetch products whenever filters or sort change ──
+  useEffect(() => {
+    dispatch(
+      fetchAllFilteredProducts({ filterParams: filters, sortParams: sort })
+    );
+  }, [dispatch, filters, sort]);
 
   function handleSort(value) {
     setSort(value);
   }
 
   function handleFilter(getSectionId, getCurrentOption) {
-    setFilters(prevFilters => {
-      const newFilters = { ...prevFilters };
-      
-      // If selecting a category, clear subcategory filters
-      if (getSectionId === 'category') {
-        // If clicking the same category, deselect it
-        if (prevFilters.category?.includes(getCurrentOption)) {
-          delete newFilters.category;
-          // Also clear subcategory if it exists
-          if (newFilters.subcategory) {
-            delete newFilters.subcategory;
+    setFilters((prevFilters) => {
+      const next = { ...prevFilters };
+
+      if (getSectionId === "category") {
+        const alreadyChecked = prevFilters.category?.includes(getCurrentOption);
+        if (alreadyChecked) {
+          // Deselect category → also clear its subcategories
+          delete next.category;
+          // Only clear subcategory if it belongs to the deselected category
+          const deselected = filterOptions.category.find(
+            (c) => c.id === getCurrentOption
+          );
+          const deselectedSubIds = deselected?.subcategories?.map((s) => s.id) ?? [];
+          if (
+            next.subcategory &&
+            deselectedSubIds.includes(next.subcategory[0])
+          ) {
+            delete next.subcategory;
           }
         } else {
-          // Select new category and clear any existing subcategory
-          newFilters.category = [getCurrentOption];
-          delete newFilters.subcategory;
+          // Select new category, clear stale subcategory from old category
+          next.category = [getCurrentOption];
+          // Keep subcategory only if it belongs to the newly selected category
+          const newCat = filterOptions.category.find(
+            (c) => c.id === getCurrentOption
+          );
+          const validSubIds = newCat?.subcategories?.map((s) => s.id) ?? [];
+          if (
+            next.subcategory &&
+            !validSubIds.includes(next.subcategory[0])
+          ) {
+            delete next.subcategory;
+          }
         }
-      } 
-      // Handle subcategory selection
-      else if (getSectionId === 'subcategory') {
-        if (!newFilters.category) return prevFilters; // Shouldn't happen, but just in case
-        
-        const subcategoryIndex = newFilters.subcategory?.indexOf(getCurrentOption) ?? -1;
-        
-        if (subcategoryIndex === -1) {
-          // Add subcategory
-          newFilters.subcategory = [getCurrentOption];
+      } else if (getSectionId === "subcategory") {
+        const alreadyChecked = prevFilters.subcategory?.includes(getCurrentOption);
+
+        if (alreadyChecked) {
+          // Deselect subcategory — keep category intact
+          delete next.subcategory;
         } else {
-          // Remove subcategory if clicked again
-          if (newFilters.subcategory.length === 1) {
-            delete newFilters.subcategory;
-          } else {
-            newFilters.subcategory.splice(subcategoryIndex, 1);
+          // Select subcategory → auto-check the parent category if not already checked
+          const parentCat = filterOptions.category.find((cat) =>
+            cat.subcategories?.some((s) => s.id === getCurrentOption)
+          );
+          if (parentCat && !next.category?.includes(parentCat.id)) {
+            next.category = [parentCat.id];
           }
+          next.subcategory = [getCurrentOption];
         }
       }
-      
-      // Update URL with current filters
-      const params = new URLSearchParams();
-      if (newFilters.category) params.set('category', newFilters.category[0]);
-      if (newFilters.subcategory) params.set('subcategory', newFilters.subcategory?.[0]);
-      setSearchParams(params);
-      
-      // Save to session storage
-      sessionStorage.setItem("filters", JSON.stringify(newFilters));
-      
-      return newFilters;
+
+      return next;
     });
   }
-  
-  // Fetch products when filters or sort changes
-  useEffect(() => {
-    const queryParams = new URLSearchParams();
-    
-    // Add category filter if exists
-    if (filters?.category?.length > 0) {
-      queryParams.append('category', filters.category[0]);
-    }
-    
-    // Add subcategory filter if exists
-    if (filters?.subcategory?.length > 0) {
-      queryParams.append('subcategory', filters.subcategory[0]);
-    }
-    
-    // Add sort if exists
-    if (sort) {
-      queryParams.append('sort', sort);
-    }
-    
-    // Fetch products with filters
-    dispatch(fetchAllFilteredProducts(queryParams.toString()));
-  }, [filters, sort, dispatch, setSearchParams]);
+
+  function handleClearAll() {
+    setFilters({});
+  }
 
   function handleGetProductDetails(getCurrentProductId) {
-    console.log(getCurrentProductId);
     dispatch(fetchProductDetails(getCurrentProductId));
   }
 
   function handleAddtoCart(getCurrentProductId, getTotalStock) {
-    console.log(cartItems);
     let getCartItems = cartItems.items || [];
 
     if (getCartItems.length) {
@@ -169,7 +143,6 @@ function ShoppingListing() {
             title: `Only ${getQuantity} quantity can be added for this item`,
             variant: "destructive",
           });
-
           return;
         }
       }
@@ -184,92 +157,93 @@ function ShoppingListing() {
     ).then((data) => {
       if (data?.payload?.success) {
         dispatch(fetchCartItems(user?.id));
-        toast({
-          title: "Product is added to cart",
-        });
+        toast({ title: "Product is added to cart" });
       }
     });
   }
 
   useEffect(() => {
-    setSort("price-lowtohigh");
-    const hasUrlFilters = Boolean(categorySearchParam) || Boolean(subcategorySearchParam);
-    if (hasUrlFilters) {
-      const stored = JSON.parse(sessionStorage.getItem("filters")) || {};
-      setFilters(stored);
-    } else {
-      setFilters({});
-    }
-  }, [categorySearchParam, subcategorySearchParam]);
-
-  useEffect(() => {
-    if (filters && Object.keys(filters).length > 0) {
-      const createQueryString = createSearchParamsHelper(filters);
-      setSearchParams(new URLSearchParams(createQueryString));
-    }
-  }, [filters]);
-
-  useEffect(() => {
-    if (filters !== null && sort !== null)
-      dispatch(
-        fetchAllFilteredProducts({ filterParams: filters, sortParams: sort })
-      );
-  }, [dispatch, sort, filters]);
-
-  useEffect(() => {
     if (productDetails !== null) setOpenDetailsDialog(true);
   }, [productDetails]);
 
-  console.log(productList, "productListproductListproductList");
+  // Determine active category label for display header
+  const activeCategoryLabel = filters?.category?.[0]
+    ? filterOptions.category.find((c) => c.id === filters.category[0])?.label
+    : null;
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6">
-      <ProductFilter filters={filters} handleFilter={handleFilter} />
-      <div className="bg-background w-full rounded-lg shadow-sm">
-        <div className="p-4 border-b flex items-center justify-between">
-          <h2 className="text-lg font-extrabold">All Products</h2>
-          <div className="flex items-center gap-3">
-            <span className="text-muted-foreground">
-              {productList?.length} Products
-            </span>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="flex items-center gap-1"
-                >
-                  <ArrowUpDownIcon className="h-4 w-4" />
-                  <span>Sort by</span>
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[200px]">
-                <DropdownMenuRadioGroup value={sort} onValueChange={handleSort}>
-                  {sortOptions.map((sortItem) => (
-                    <DropdownMenuRadioItem
-                      value={sortItem.id}
-                      key={sortItem.id}
-                    >
-                      {sortItem.label}
-                    </DropdownMenuRadioItem>
-                  ))}
-                </DropdownMenuRadioGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
+    <div className="grid grid-cols-1 md:grid-cols-[220px_1fr] gap-6 p-4 md:p-6">
+      {/* ── Filter Sidebar ── */}
+      <ProductFilter
+        filters={filters}
+        handleFilter={handleFilter}
+        onClearAll={handleClearAll}
+      />
+
+      {/* ── Product Grid ── */}
+      <div className="bg-background w-full rounded-xl border border-border shadow-sm overflow-hidden">
+        {/* Header bar */}
+        <div className="p-4 border-b border-border flex items-center justify-between">
+          <div>
+            <h2 className="text-lg font-extrabold leading-tight">
+              {activeCategoryLabel ?? "All Products"}
+            </h2>
+            <p className="text-xs text-muted-foreground mt-0.5">
+              {productList?.length ?? 0} product
+              {(productList?.length ?? 0) !== 1 ? "s" : ""} found
+            </p>
           </div>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                size="sm"
+                className="flex items-center gap-1.5"
+              >
+                <ArrowUpDownIcon className="h-4 w-4" />
+                <span>Sort by</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-[200px]">
+              <DropdownMenuRadioGroup value={sort} onValueChange={handleSort}>
+                {sortOptions.map((sortItem) => (
+                  <DropdownMenuRadioItem
+                    value={sortItem.id}
+                    key={sortItem.id}
+                  >
+                    {sortItem.label}
+                  </DropdownMenuRadioItem>
+                ))}
+              </DropdownMenuRadioGroup>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
+
+        {/* Products */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 p-4">
-          {productList && productList.length > 0
-            ? productList.map((productItem) => (
-                <ShoppingProductTile
-                  handleGetProductDetails={handleGetProductDetails}
-                  product={productItem}
-                  handleAddtoCart={handleAddtoCart}
-                />
-              ))
-            : null}
+          {productList && productList.length > 0 ? (
+            productList.map((productItem) => (
+              <ShoppingProductTile
+                key={productItem._id}
+                handleGetProductDetails={handleGetProductDetails}
+                product={productItem}
+                handleAddtoCart={handleAddtoCart}
+              />
+            ))
+          ) : (
+            <div className="col-span-full flex flex-col items-center justify-center py-20 text-center">
+              <p className="text-2xl mb-2">🔍</p>
+              <p className="text-base font-semibold text-muted-foreground">
+                No products found
+              </p>
+              <p className="text-sm text-muted-foreground/70 mt-1">
+                Try adjusting your filters or clearing them
+              </p>
+            </div>
+          )}
         </div>
       </div>
+
       <ProductDetailsDialog
         open={openDetailsDialog}
         setOpen={setOpenDetailsDialog}

@@ -101,7 +101,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const averageReview =
     reviews && reviews.length > 0
       ? reviews.reduce((sum, reviewItem) => sum + reviewItem.reviewValue, 0) /
-        reviews.length
+      reviews.length
       : 0;
 
   return (
@@ -125,15 +125,14 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
           </div>
           <div className="flex items-center justify-between">
             <p
-              className={`text-3xl font-bold text-primary ${
-                productDetails?.salePrice > 0 ? "line-through" : ""
-              }`}
+              className={`text-3xl font-bold text-primary ${productDetails?.salePrice > 0 ? "line-through" : ""
+                }`}
             >
-              ${productDetails?.price}
+              £{productDetails?.price}
             </p>
             {productDetails?.salePrice > 0 ? (
               <p className="text-2xl font-bold text-muted-foreground">
-                ${productDetails?.salePrice}
+                £{productDetails?.salePrice}
               </p>
             ) : null}
           </div>
