@@ -38,8 +38,27 @@ const addToCart = async (req, res) => {
     }
 
     await cart.save();
+
+    await cart.populate({
+      path: "items.productId",
+      select: "image title price salePrice",
+    });
+
+    const populateCartItems = cart.items.map((item) => ({
+      productId: item.productId ? item.productId._id : null,
+      image: item.productId ? item.productId.image : null,
+      title: item.productId ? item.productId.title : "Product not found",
+      price: item.productId ? item.productId.price : null,
+      salePrice: item.productId ? item.productId.salePrice : null,
+      quantity: item.quantity,
+    }));
+
     res.status(200).json({
       success: true,
+      // data: {
+      //   ...cart._doc,
+      //   items: populateCartItems,
+      // },
       data: cart,
     });
   } catch (error) {

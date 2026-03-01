@@ -36,12 +36,12 @@ const createOrder = async (req, res) => {
               name: item.title,
               sku: item.productId,
               price: item.price.toFixed(2),
-              currency: "USD",
+              currency: "GBP",
               quantity: item.quantity,
             })),
           },
           amount: {
-            currency: "USD",
+            currency: "GBP",
             total: totalAmount.toFixed(2),
           },
           description: "description",
@@ -51,11 +51,12 @@ const createOrder = async (req, res) => {
 
     paypal.payment.create(create_payment_json, async (error, paymentInfo) => {
       if (error) {
-        console.log(error);
+        console.log("PayPal error:", JSON.stringify(error.response?.details || error, null, 2));
 
         return res.status(500).json({
           success: false,
           message: "Error while creating paypal payment",
+          detail: error.response?.message || "Unknown PayPal error",
         });
       } else {
         const newlyCreatedOrder = new Order({

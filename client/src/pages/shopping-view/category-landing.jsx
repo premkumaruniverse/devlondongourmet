@@ -126,7 +126,7 @@ function CategoryLanding() {
         (state) => state.shopProducts
     );
     const { cartItems } = useSelector((state) => state.shopCart);
-    const { user } = useSelector((state) => state.auth);
+    const { user, isAuthenticated } = useSelector((state) => state.auth);
 
     const [sort, setSort] = useState("price-lowtohigh");
     const [openDetailsDialog, setOpenDetailsDialog] = useState(false);
@@ -150,6 +150,11 @@ function CategoryLanding() {
     }
 
     function handleAddtoCart(productId, totalStock) {
+        if (!isAuthenticated) {
+            toast({ title: "Please sign in to add items to your cart" });
+            navigate("/auth/login");
+            return;
+        }
         const items = cartItems.items || [];
         const existing = items.find((i) => i.productId === productId);
         if (existing && existing.quantity + 1 > totalStock) {

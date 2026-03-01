@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { API_URL } from "../../../config/api";
 
 const initialState = {
-  cartItems: [],
+  cartItems: {},
   isLoading: false,
 };
 
@@ -76,7 +76,7 @@ const shoppingCartSlice = createSlice({
       })
       .addCase(addToCart.rejected, (state) => {
         state.isLoading = false;
-        state.cartItems = [];
+        state.cartItems = {};
       })
       .addCase(fetchCartItems.pending, (state) => {
         state.isLoading = true;
@@ -87,7 +87,7 @@ const shoppingCartSlice = createSlice({
       })
       .addCase(fetchCartItems.rejected, (state) => {
         state.isLoading = false;
-        state.cartItems = [];
+        state.cartItems = {};
       })
       .addCase(updateCartQuantity.pending, (state) => {
         state.isLoading = true;
@@ -98,7 +98,7 @@ const shoppingCartSlice = createSlice({
       })
       .addCase(updateCartQuantity.rejected, (state) => {
         state.isLoading = false;
-        state.cartItems = [];
+        state.cartItems = {};
       })
       .addCase(deleteCartItem.pending, (state) => {
         state.isLoading = true;
@@ -109,7 +109,7 @@ const shoppingCartSlice = createSlice({
       })
       .addCase(deleteCartItem.rejected, (state) => {
         state.isLoading = false;
-        state.cartItems = [];
+        state.cartItems = {};
       });
   },
 });
