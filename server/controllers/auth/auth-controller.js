@@ -40,6 +40,7 @@ const registerUser = async (req, res) => {
 //login
 const loginUser = async (req, res) => {
   const { email, password } = req.body;
+  console.log("Login attempt for:", email);
 
   try {
     const checkUser = await User.findOne({ email });
@@ -70,7 +71,7 @@ const loginUser = async (req, res) => {
       { expiresIn: "60m" }
     );
 
-    res.cookie("token", token, { httpOnly: true, secure: false }).json({
+    res.cookie("token", token, { httpOnly: true, secure: false, sameSite: "lax" }).json({
       success: true,
       message: "Logged in successfully",
       user: {
