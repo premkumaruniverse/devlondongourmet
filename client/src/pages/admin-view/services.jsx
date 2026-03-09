@@ -25,6 +25,7 @@ const initialFormData = {
   title: "",
   description: "",
   pdfUrl: "",
+  category: "general",
 };
 
 function AdminServices() {
@@ -34,7 +35,7 @@ function AdminServices() {
   const [imageFile, setImageFile] = useState(null);
   const [uploadedImageUrl, setUploadedImageUrl] = useState("");
   const [imageLoadingState, setImageLoadingState] = useState(false);
-  
+
   const [pdfFile, setPdfFile] = useState(null);
   const [uploadedPdfUrl, setUploadedPdfUrl] = useState("");
   const [pdfLoadingState, setPdfLoadingState] = useState(false);
@@ -50,42 +51,42 @@ function AdminServices() {
 
     currentEditedId !== null
       ? dispatch(
-          editService({
-            id: currentEditedId,
-            formData,
-          })
-        ).then((data) => {
-          if (data?.payload?.success) {
-            dispatch(fetchAllServices());
-            setFormData(initialFormData);
-            setOpenCreateServicesDialog(false);
-            setCurrentEditedId(null);
-            setImageFile(null);
-            setPdfFile(null);
-            setUploadedImageUrl("");
-            setUploadedPdfUrl("");
-          }
+        editService({
+          id: currentEditedId,
+          formData,
         })
+      ).then((data) => {
+        if (data?.payload?.success) {
+          dispatch(fetchAllServices());
+          setFormData(initialFormData);
+          setOpenCreateServicesDialog(false);
+          setCurrentEditedId(null);
+          setImageFile(null);
+          setPdfFile(null);
+          setUploadedImageUrl("");
+          setUploadedPdfUrl("");
+        }
+      })
       : dispatch(
-          addNewService({
-            ...formData,
-            image: uploadedImageUrl,
-            pdfUrl: uploadedPdfUrl,
-          })
-        ).then((data) => {
-          if (data?.payload?.success) {
-            dispatch(fetchAllServices());
-            setOpenCreateServicesDialog(false);
-            setImageFile(null);
-            setPdfFile(null);
-            setUploadedImageUrl("");
-            setUploadedPdfUrl("");
-            setFormData(initialFormData);
-            toast({
-              title: "Service added successfully",
-            });
-          }
-        });
+        addNewService({
+          ...formData,
+          image: uploadedImageUrl,
+          pdfUrl: uploadedPdfUrl,
+        })
+      ).then((data) => {
+        if (data?.payload?.success) {
+          dispatch(fetchAllServices());
+          setOpenCreateServicesDialog(false);
+          setImageFile(null);
+          setPdfFile(null);
+          setUploadedImageUrl("");
+          setUploadedPdfUrl("");
+          setFormData(initialFormData);
+          toast({
+            title: "Service added successfully",
+          });
+        }
+      });
   }
 
   useEffect(() => {
@@ -134,14 +135,14 @@ function AdminServices() {
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
         {serviceList && serviceList.length > 0
           ? serviceList.map((serviceItem) => (
-              <AdminServiceTile
-                setFormData={setFormData}
-                setOpenCreateServicesDialog={setOpenCreateServicesDialog}
-                setCurrentEditedId={setCurrentEditedId}
-                service={serviceItem}
-                handleDelete={handleDelete}
-              />
-            ))
+            <AdminServiceTile
+              setFormData={setFormData}
+              setOpenCreateServicesDialog={setOpenCreateServicesDialog}
+              setCurrentEditedId={setCurrentEditedId}
+              service={serviceItem}
+              handleDelete={handleDelete}
+            />
+          ))
           : null}
       </div>
       <Sheet

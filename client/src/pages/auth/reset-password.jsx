@@ -7,7 +7,7 @@ import londonGourmetLogo from "@/assets/lg_logo.svg";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Eye, EyeOff, KeyRound, Loader2, CheckCircle2, AlertCircle } from "lucide-react";
+import { Eye, EyeOff, KeyRound, Loader2, CheckCircle2, AlertCircle, ArrowLeft as ArrowLeftIcon } from "lucide-react";
 
 function ResetPassword() {
     const [searchParams] = useSearchParams();
@@ -57,6 +57,15 @@ function ResetPassword() {
     return (
         <div className="mx-auto w-full max-w-md">
             <div className="relative rounded-2xl bg-card/60 backdrop-blur-xl border border-amber-500/20 dark:border-primary/30 shadow-[0_10px_40px_rgba(255,215,0,0.18)] p-8">
+                <button 
+                    className="absolute top-6 left-6 z-20 flex items-center gap-2 text-stone-400 dark:text-gray-500 hover:text-amber-600 dark:hover:text-amber-500 transition-all duration-300 group"
+                    onClick={() => navigate("/auth/login")}
+                >
+                    <div className="bg-white dark:bg-white/5 border border-stone-200 dark:border-white/10 px-3 py-1 rounded-full shadow-sm group-hover:shadow-md group-hover:scale-105 transition-all flex items-center gap-2">
+                        <ArrowLeftIcon className="h-3 w-3" />
+                        <span className="text-[10px] font-black uppercase tracking-widest">Back</span>
+                    </div>
+                </button>
                 {/* Decorative blobs */}
                 <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-amber-300/20 dark:bg-primary/20 blur-2xl" />
                 <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-amber-400/20 dark:bg-primary/20 blur-2xl" />

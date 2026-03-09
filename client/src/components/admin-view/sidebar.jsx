@@ -60,6 +60,12 @@ const adminSidebarMenuItems = [
     path: "/admin/orders",
     icon: <BadgeCheck />,
   },
+  {
+    id: "ayu-bite-mgmt",
+    label: "Ayu Bite Mgmt",
+    path: "/admin/ayu-bites",
+    icon: <ShoppingBasket />,
+  },
 ];
 
 function MenuItems({ setOpen }) {

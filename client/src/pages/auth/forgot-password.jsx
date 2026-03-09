@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { forgotPassword } from "@/store/auth-slice";
 import { useToast } from "@/components/ui/use-toast";
 import londonGourmetLogo from "@/assets/lg_logo.svg";
@@ -14,6 +14,7 @@ function ForgotPassword() {
     const [isLoading, setIsLoading] = useState(false);
     const [submitted, setSubmitted] = useState(false);
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const { toast } = useToast();
 
     async function onSubmit(e) {
@@ -40,6 +41,15 @@ function ForgotPassword() {
     return (
         <div className="mx-auto w-full max-w-md">
             <div className="relative rounded-2xl bg-card/60 backdrop-blur-xl border border-amber-500/20 dark:border-primary/30 shadow-[0_10px_40px_rgba(255,215,0,0.18)] p-8">
+                <button 
+                    className="absolute top-6 left-6 z-20 flex items-center gap-2 text-stone-400 dark:text-gray-500 hover:text-amber-600 dark:hover:text-amber-500 transition-all duration-300 group"
+                    onClick={() => navigate("/auth/login")}
+                >
+                    <div className="bg-white dark:bg-white/5 border border-stone-200 dark:border-white/10 px-3 py-1 rounded-full shadow-sm group-hover:shadow-md group-hover:scale-105 transition-all flex items-center gap-2">
+                        <ArrowLeft className="h-3 w-3" />
+                        <span className="text-[10px] font-black uppercase tracking-widest">Back</span>
+                    </div>
+                </button>
                 {/* Decorative blobs */}
                 <div className="absolute -top-6 -left-6 w-24 h-24 rounded-full bg-amber-300/20 dark:bg-primary/20 blur-2xl" />
                 <div className="absolute -bottom-6 -right-6 w-24 h-24 rounded-full bg-amber-400/20 dark:bg-primary/20 blur-2xl" />

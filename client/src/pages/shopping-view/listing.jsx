@@ -187,7 +187,7 @@ function ShoppingListing() {
       />
 
       {/* ── Product Grid ── */}
-      <div className="bg-background w-full rounded-xl border border-border shadow-sm overflow-hidden">
+      <div className="bg-white dark:bg-[#1a0505] w-full rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm overflow-hidden transition-colors duration-300">
         {/* Header bar */}
         <div className="p-4 border-b border-border flex items-center justify-between">
           <div>

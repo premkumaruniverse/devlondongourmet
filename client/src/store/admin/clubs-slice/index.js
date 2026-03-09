@@ -6,6 +6,7 @@ const initialState = {
   isLoading: false,
   clubList: [],
   chefsList: [],
+  schedules: [],
 };
 
 export const addNewClub = createAsyncThunk(
@@ -130,6 +131,17 @@ const AdminClubsSlice = createSlice({
       .addCase(fetchAllChefs.rejected, (state, action) => {
         state.isLoading = false;
         state.chefsList = [];
+      })
+      .addCase(fetchEventSchedules.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(fetchEventSchedules.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.schedules = action.payload.data;
+      })
+      .addCase(fetchEventSchedules.rejected, (state) => {
+        state.isLoading = false;
+        state.schedules = [];
       });
   },
 });

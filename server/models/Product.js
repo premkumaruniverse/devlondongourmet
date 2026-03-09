@@ -11,6 +11,26 @@ const ProductSchema = new mongoose.Schema(
     salePrice: Number,
     totalStock: Number,
     averageReview: Number,
+    isSubscriptionEligible: {
+      type: Boolean,
+      default: false,
+    },
+    subscriptionOptions: {
+      frequencies: [
+        {
+          type: String,
+          enum: ["weekly", "monthly", "bi-monthly", "quarterly", "one-time"],
+        },
+      ],
+      discounts: {
+        weekly: Number,
+        monthly: Number,
+        "bi-monthly": Number,
+        quarterly: Number,
+      },
+      shippingDays: [String],
+      cutoffDays: Number,
+    },
   },
   { timestamps: true }
 );

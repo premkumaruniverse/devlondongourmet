@@ -96,6 +96,43 @@ export const addProductFormElements = [
   },
 ];
 
+export const ayuBiteFormElements = [
+  {
+    label: "Product Title",
+    name: "title",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., Classic Ayu Lunch Box",
+  },
+  {
+    label: "Description",
+    name: "description",
+    componentType: "textarea",
+    placeholder: "Describe the meal contents and health benefits",
+  },
+  {
+    label: "Base Price (£)",
+    name: "price",
+    componentType: "input",
+    type: "number",
+    placeholder: "Price for a single box",
+  },
+  {
+    label: "Weekly Discount (%)",
+    name: "weeklyDiscount",
+    componentType: "input",
+    type: "number",
+    placeholder: "e.g., 10",
+  },
+  {
+    label: "Monthly Discount (%)",
+    name: "monthlyDiscount",
+    componentType: "input",
+    type: "number",
+    placeholder: "e.g., 20",
+  },
+];
+
 export const addServiceFormElements = [
   {
     label: "Title",
@@ -110,6 +147,15 @@ export const addServiceFormElements = [
     componentType: "textarea",
     placeholder: "Enter short description for list view",
   },
+  {
+    label: "Category",
+    name: "category",
+    componentType: "select",
+    options: [
+      { id: "general", label: "General" },
+      { id: "ayu-bite", label: "Ayu Bite" },
+    ],
+  },
 ];
 
 export const shoppingViewHeaderMenuItems = [
@@ -117,6 +163,11 @@ export const shoppingViewHeaderMenuItems = [
     id: "home",
     label: "Home",
     path: "/shop/home",
+  },
+  {
+    id: "about",
+    label: "About Us",
+    path: "/shop/about",
   },
   {
     id: "products",
@@ -172,12 +223,14 @@ export const categoryOptionsMap = {
   'achar': 'Achar',
   'rassa': 'Rassa',
   'cured-coated': 'Cured & Coated',
+  'ayu-bite': 'Ayu Bite',
 };
 
 export const subcategoryOptionsMap = {
   'rubs-spice-mix': ['Spice Mix', 'Kebab Rubs'],
   'rassa': ['Gravies', 'Chutneys'],
-  'cured-coated': ['Meats', 'Chicken', 'Sea Food']
+  'cured-coated': ['Meats', 'Chicken', 'Sea Food'],
+  'ayu-bite': ['Meal Plan', 'Snack Pack']
 };
 
 export const filterOptions = {
@@ -327,6 +380,44 @@ export const addClubFormElements = [
     name: "default_location_description",
     componentType: "textarea",
     placeholder: "e.g., Private residence - details provided after booking",
+  },
+];
+
+export const addEventScheduleFormElements = [
+  {
+    label: "Date",
+    name: "date",
+    componentType: "input",
+    type: "date",
+    placeholder: "Select event date",
+  },
+  {
+    label: "Start Time",
+    name: "start_time",
+    componentType: "input",
+    type: "time",
+    placeholder: "Enter start time",
+  },
+  {
+    label: "Duration",
+    name: "duration",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., 2-3 hours",
+  },
+  {
+    label: "Seat Limit",
+    name: "seat_limit",
+    componentType: "input",
+    type: "number",
+    placeholder: "Enter total seats available",
+  },
+  {
+    label: "Price per Guest",
+    name: "price_per_guest",
+    componentType: "input",
+    type: "number",
+    placeholder: "Enter price per guest",
   },
 ];
 

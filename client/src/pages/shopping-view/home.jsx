@@ -407,7 +407,7 @@ function HomePage() {
               <Button
                 variant="outline"
                 className="border-amber-600 text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950/30"
-                onClick={() => navigateTo('/about')}
+                onClick={() => navigateTo('/shop/about')}
               >
                 Read Our Story
               </Button>
@@ -465,8 +465,9 @@ function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-900 dark:bg-background text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-24 bg-[#0a0202] text-white overflow-hidden relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-amber-500/5 blur-[120px] rounded-full -z-0" />
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 dark:text-primary">
             Let&rsquo;s Create Something Delicious Together
           </h2>
@@ -477,7 +478,7 @@ function HomePage() {
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <Button
               size="lg"
-              className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-6 text-lg dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
+              className="bg-amber-600 hover:bg-amber-700 text-white px-10 py-7 text-lg dark:bg-amber-500 dark:text-[#1a0505] dark:hover:bg-amber-400 font-bold uppercase tracking-widest transition-all duration-300 rounded-none shadow-xl border-none"
               onClick={() => navigateTo('/contact')}
             >
               Contact Us
@@ -485,7 +486,7 @@ function HomePage() {
             <Button
               variant="outline"
               size="lg"
-              className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg dark:border-primary dark:text-primary dark:hover:bg-primary/10"
+              className="border-white text-white hover:bg-white/10 px-10 py-7 text-lg dark:border-amber-500/40 dark:text-amber-500 dark:hover:bg-amber-500/10 font-bold uppercase tracking-widest transition-all duration-300 rounded-none"
               onClick={() => navigateTo('/shop/diners-atlas#book')}
             >
               Book an Event

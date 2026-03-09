@@ -70,10 +70,13 @@ const fetchClubDetails = async (req, res) => {
       });
     }
     
-    // Get upcoming event schedules
+    // Get upcoming event schedules (from today onwards)
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
     const schedules = await EventSchedule.find({ 
       club_id: id, 
-      date: { $gte: new Date() },
+      date: { $gte: today },
       status: 'SCHEDULED'
     }).sort({ date: 1 });
     

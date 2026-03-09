@@ -18,6 +18,7 @@ import {
 } from "@/store/admin/products-slice";
 import { Fragment, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const initialFormData = {
   image: null,
@@ -43,6 +44,13 @@ function AdminProducts() {
   const { productList } = useSelector((state) => state.adminProducts);
   const dispatch = useDispatch();
   const { toast } = useToast();
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const filterCategory = queryParams.get("category");
+
+  const filteredProductList = filterCategory
+    ? productList.filter((item) => item.category === filterCategory)
+    : productList.filter((item) => item.category !== "ayu-bite");
 
   function onSubmit(event) {
     event.preventDefault();
@@ -131,8 +139,8 @@ function AdminProducts() {
         </Button>
       </div>
       <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-4">
-        {productList && productList.length > 0
-          ? productList.map((productItem) => (
+        {filteredProductList && filteredProductList.length > 0
+          ? filteredProductList.map((productItem) => (
             <AdminProductTile
               setFormData={setFormData}
               setOpenCreateProductsDialog={setOpenCreateProductsDialog}

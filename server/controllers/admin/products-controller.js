@@ -33,9 +33,11 @@ const addProduct = async (req, res) => {
       salePrice,
       totalStock,
       averageReview,
+      isSubscriptionEligible,
+      frequencies,
+      weeklyDiscount,
+      monthlyDiscount,
     } = req.body;
-
-    console.log(averageReview, "averageReview");
 
     const newlyCreatedProduct = new Product({
       image,
@@ -47,6 +49,14 @@ const addProduct = async (req, res) => {
       salePrice,
       totalStock,
       averageReview,
+      isSubscriptionEligible: isSubscriptionEligible === "true" || isSubscriptionEligible === true,
+      subscriptionOptions: {
+        frequencies: Array.isArray(frequencies) ? frequencies : (frequencies ? frequencies.split(",").map(f => f.trim()) : []),
+        discounts: {
+          weekly: weeklyDiscount || 0,
+          monthly: monthlyDiscount || 0,
+        },
+      },
     });
 
     await newlyCreatedProduct.save();
@@ -64,7 +74,6 @@ const addProduct = async (req, res) => {
 };
 
 //fetch all products
-
 const fetchAllProducts = async (req, res) => {
   try {
     const listOfProducts = await Product.find({});
@@ -95,6 +104,10 @@ const editProduct = async (req, res) => {
       salePrice,
       totalStock,
       averageReview,
+      isSubscriptionEligible,
+      frequencies,
+      weeklyDiscount,
+      monthlyDiscount,
     } = req.body;
 
     let findProduct = await Product.findById(id);
@@ -114,6 +127,14 @@ const editProduct = async (req, res) => {
     findProduct.totalStock = totalStock || findProduct.totalStock;
     findProduct.image = image || findProduct.image;
     findProduct.averageReview = averageReview || findProduct.averageReview;
+    findProduct.isSubscriptionEligible = isSubscriptionEligible === "true" || isSubscriptionEligible === true;
+    findProduct.subscriptionOptions = {
+      frequencies: Array.isArray(frequencies) ? frequencies : (frequencies ? frequencies.split(",").map(f => f.trim()) : []),
+      discounts: {
+        weekly: weeklyDiscount || 0,
+        monthly: monthlyDiscount || 0,
+      },
+    };
 
     await findProduct.save();
     res.status(200).json({

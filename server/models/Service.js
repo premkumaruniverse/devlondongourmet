@@ -7,6 +7,7 @@ const ServiceSchema = new mongoose.Schema(
     description: String, // Short description for the list view
     content: String,     // Extended content for the detail view (Deprecated)
     pdfUrl: String,      // URL to the uploaded PDF
+    category: String,
   },
   { timestamps: true }
 );
