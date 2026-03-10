@@ -110,7 +110,7 @@ function ShoppingClubs() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[200px_1fr] gap-6 p-4 md:p-6 dark:bg-background min-h-screen">
       <ClubFilter filters={filters} handleFilter={handleFilter} />
-      <div className="bg-background w-full rounded-lg shadow-sm dark:bg-background dark:border dark:border-border">
+      <div className="bg-white dark:bg-[#1a0505] w-full rounded-2xl border border-gray-100 dark:border-white/5 shadow-sm overflow-hidden transition-colors duration-300">
         <div className="p-4 border-b flex items-center justify-between dark:border-border">
           <h2 className="text-lg font-extrabold dark:text-primary">Gourmet Clubs</h2>
           <div className="flex items-center gap-3">

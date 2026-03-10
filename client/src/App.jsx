@@ -1,7 +1,9 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import AuthLayout from "./components/auth/layout";
 import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
+import ForgotPassword from "./pages/auth/forgot-password";
+import ResetPassword from "./pages/auth/reset-password";
 import AdminLayout from "./components/admin-view/layout";
 import AdminDashboard from "./pages/admin-view/dashboard";
 import AdminProducts from "./pages/admin-view/products";
@@ -12,6 +14,7 @@ import AdminChefs from "./pages/admin-view/chefs";
 import AdminClubs from "./pages/admin-view/clubs";
 import AdminServices from "./pages/admin-view/services";
 import AdminQuotes from "./pages/admin-view/quotes";
+import AdminAyuBites from "./pages/admin-view/ayu-bites";
 import ShoppingLayout from "./components/shopping-view/layout";
 import NotFound from "./pages/not-found";
 import ShoppingHome from "./pages/shopping-view/home";
@@ -38,6 +41,10 @@ import MeetOurTeam from "./pages/shopping-view/meet-our-team";
 import ChefDetail from "./pages/shopping-view/chef-detail";
 import { ThemeProvider } from "./contexts/theme-context";
 import ServiceDetail from "./pages/shopping-view/service-detail";
+import CategoryLanding from "./pages/shopping-view/category-landing";
+import SubscriptionCheckout from "./pages/shopping-view/subscription-checkout";
+import ShoppingAbout from "./pages/shopping-view/about";
+
 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
@@ -76,6 +83,8 @@ function App() {
           >
             <Route path="login" element={<AuthLogin />} />
             <Route path="register" element={<AuthRegister />} />
+            <Route path="forgot-password" element={<ForgotPassword />} />
+            <Route path="reset-password" element={<ResetPassword />} />
           </Route>
           <Route
             path="/admin"
@@ -93,8 +102,9 @@ function App() {
             <Route path="chefs" element={<AdminChefs />} />
             <Route path="clubs" element={<AdminClubs />} />
             <Route path="services" element={<AdminServices />} />
-          <Route path="quotes" element={<AdminQuotes />} />
-        </Route>
+            <Route path="quotes" element={<AdminQuotes />} />
+            <Route path="ayu-bites" element={<AdminAyuBites />} />
+          </Route>
           <Route
             path="/shop"
             element={
@@ -104,15 +114,19 @@ function App() {
             }
           >
             <Route path="home" element={<ShoppingHome />} />
+            <Route path="about" element={<ShoppingAbout />} />
+
             <Route path="listing" element={<ShoppingListing />} />
             <Route path="checkout" element={<ShoppingCheckout />} />
+            <Route path="subscription-checkout" element={<SubscriptionCheckout />} />
             <Route path="account" element={<ShoppingAccount />} />
             <Route path="paypal-return" element={<PaypalReturnPage />} />
             <Route path="payment-success" element={<PaymentSuccessPage />} />
             <Route path="search" element={<SearchProducts />} />
             <Route path="diners-atlas" element={<DinersAtlas />} />
             <Route path="services/:id" element={<ServiceDetail />} />
-          <Route path="gourmet-club" element={<ShoppingClubs />} />
+            <Route path="category/:categoryId" element={<CategoryLanding />} />
+            <Route path="gourmet-club" element={<ShoppingClubs />} />
             <Route path="gourmet-club/:id" element={<ClubDetailsPage />} />
             <Route path="ayu-bite" element={<AyuBite />} />
             <Route path="recipes" element={<Recipes />} />
@@ -122,6 +136,7 @@ function App() {
             <Route path="chefs/:id" element={<ChefDetail />} />
           </Route>
           <Route path="/unauth-page" element={<UnauthPage />} />
+          <Route path="/about" element={<Navigate to="/shop/about" />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>

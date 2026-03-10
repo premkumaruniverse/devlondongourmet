@@ -31,7 +31,7 @@ const handleImageUpload = async (req, res) => {
 
 const addService = async (req, res) => {
   try {
-    const { image, title, description, content, pdfUrl } = req.body;
+    const { image, title, description, content, pdfUrl, category } = req.body;
 
     const newService = new Service({
       image,
@@ -39,6 +39,7 @@ const addService = async (req, res) => {
       description,
       content,
       pdfUrl,
+      category,
     });
 
     await newService.save();
@@ -74,7 +75,7 @@ const fetchAllServices = async (req, res) => {
 const editService = async (req, res) => {
   try {
     const { id } = req.params;
-    const { image, title, description, content, pdfUrl } = req.body;
+    const { image, title, description, content, pdfUrl, category } = req.body;
 
     let findService = await Service.findById(id);
     if (!findService)
@@ -88,6 +89,7 @@ const editService = async (req, res) => {
     findService.content = content || findService.content;
     findService.image = image || findService.image;
     findService.pdfUrl = pdfUrl || findService.pdfUrl;
+    findService.category = category || findService.category;
 
     await findService.save();
     res.status(200).json({

@@ -19,8 +19,8 @@ function ClubFilter({ filters, handleFilter }) {
               key={option.id}
               className={`flex items-center space-x-2 cursor-pointer p-2 rounded-md transition-colors ${
                 filters?.experience_type?.includes(option.id)
-                  ? "bg-primary text-primary-foreground"
-                  : "hover:bg-gray-100 dark:hover:bg-gray-800 dark:text-gray-300"
+                  ? "bg-amber-500 text-[#1a0505]"
+                  : "hover:bg-gray-100 dark:hover:bg-white/5 dark:text-gray-400 dark:hover:text-white"
               }`}
               onClick={() => handleFilter("experience_type", option.id)}
             >
@@ -28,7 +28,7 @@ function ClubFilter({ filters, handleFilter }) {
                 type="checkbox"
                 checked={filters?.experience_type?.includes(option.id) || false}
                 onChange={() => handleFilter("experience_type", option.id)}
-                className="rounded dark:bg-gray-800 dark:border-gray-600"
+                className="rounded border-gray-300 dark:bg-white/5 dark:border-white/10 accent-amber-500"
               />
               <label className="text-sm font-medium cursor-pointer">
                 {option.label}
@@ -43,7 +43,7 @@ function ClubFilter({ filters, handleFilter }) {
         <div className="space-y-2">
           <Badge
             variant="outline"
-            className="cursor-pointer hover:bg-yellow-100 dark:text-gray-300 dark:hover:bg-gray-800"
+            className="cursor-pointer hover:bg-amber-500/10 dark:text-gray-400 dark:hover:text-amber-500 dark:border-white/10 dark:hover:border-amber-500/40"
           >
             Members Only
           </Badge>

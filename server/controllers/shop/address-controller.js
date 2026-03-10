@@ -3,11 +3,19 @@ const Address = require("../../models/Address");
 const addAddress = async (req, res) => {
   try {
     const { userId, address, city, pincode, phone, notes } = req.body;
+    console.log(req.body, "received body");
 
-    if (!userId || !address || !city || !pincode || !phone || !notes) {
+    if (!userId || !address || !city || !pincode || !phone) {
+      const missingFields = [];
+      if (!userId) missingFields.push("userId");
+      if (!address) missingFields.push("address");
+      if (!city) missingFields.push("city");
+      if (!pincode) missingFields.push("pincode");
+      if (!phone) missingFields.push("phone");
+
       return res.status(400).json({
         success: false,
-        message: "Invalid data provided!",
+        message: `Invalid data provided! Missing: ${missingFields.join(", ")}`,
       });
     }
 

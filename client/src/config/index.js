@@ -96,6 +96,43 @@ export const addProductFormElements = [
   },
 ];
 
+export const ayuBiteFormElements = [
+  {
+    label: "Product Title",
+    name: "title",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., Classic Ayu Lunch Box",
+  },
+  {
+    label: "Description",
+    name: "description",
+    componentType: "textarea",
+    placeholder: "Describe the meal contents and health benefits",
+  },
+  {
+    label: "Base Price (£)",
+    name: "price",
+    componentType: "input",
+    type: "number",
+    placeholder: "Price for a single box",
+  },
+  {
+    label: "Weekly Discount (%)",
+    name: "weeklyDiscount",
+    componentType: "input",
+    type: "number",
+    placeholder: "e.g., 10",
+  },
+  {
+    label: "Monthly Discount (%)",
+    name: "monthlyDiscount",
+    componentType: "input",
+    type: "number",
+    placeholder: "e.g., 20",
+  },
+];
+
 export const addServiceFormElements = [
   {
     label: "Title",
@@ -110,6 +147,15 @@ export const addServiceFormElements = [
     componentType: "textarea",
     placeholder: "Enter short description for list view",
   },
+  {
+    label: "Category",
+    name: "category",
+    componentType: "select",
+    options: [
+      { id: "general", label: "General" },
+      { id: "ayu-bite", label: "Ayu Bite" },
+    ],
+  },
 ];
 
 export const shoppingViewHeaderMenuItems = [
@@ -119,14 +165,19 @@ export const shoppingViewHeaderMenuItems = [
     path: "/shop/home",
   },
   {
+    id: "about",
+    label: "About Us",
+    path: "/shop/about",
+  },
+  {
     id: "products",
     label: "Products",
     path: "/shop/listing",
     submenu: [
-      { id: "rubs_spices", label: "Rubs & Spice Mix", path: "/shop/listing?category=rubs_spices" },
-      { id: "achar", label: "Achar", path: "/shop/listing?category=achar" },
-      { id: "cured_coated", label: "Cured & Coated", path: "/shop/listing?category=cured_coated" },
-      { id: "rassa", label: "Rassa", path: "/shop/listing?category=rassa" }
+      { id: "rubs-spice-mix", label: "Rubs & Spice Mix", path: "/shop/category/rubs-spice-mix" },
+      { id: "achar", label: "Achar", path: "/shop/category/achar" },
+      { id: "cured-coated", label: "Cured & Coated", path: "/shop/category/cured-coated" },
+      { id: "rassa", label: "Rassa", path: "/shop/category/rassa" }
     ]
   },
   {
@@ -151,7 +202,7 @@ export const shoppingViewHeaderMenuItems = [
   },
   {
     id: "meet_our_team",
-    label: "Meet Our Team",
+    label: "Our Team",
     path: "/shop/meet-our-team",
   },
   {
@@ -172,39 +223,41 @@ export const categoryOptionsMap = {
   'achar': 'Achar',
   'rassa': 'Rassa',
   'cured-coated': 'Cured & Coated',
+  'ayu-bite': 'Ayu Bite',
 };
 
 export const subcategoryOptionsMap = {
   'rubs-spice-mix': ['Spice Mix', 'Kebab Rubs'],
   'rassa': ['Gravies', 'Chutneys'],
-  'cured-coated': ['Meats', 'Chicken', 'Sea Food']
+  'cured-coated': ['Meats', 'Chicken', 'Sea Food'],
+  'ayu-bite': ['Meal Plan', 'Snack Pack']
 };
 
 export const filterOptions = {
   category: [
-    { 
-      id: "rubs-spice-mix", 
+    {
+      id: "rubs-spice-mix",
       label: "Rubs & Spice Mix",
       subcategories: [
         { id: "spice-mix", label: "Spice Mix" },
         { id: "kebab-rubs", label: "Kebab Rubs" }
       ]
     },
-    { 
-      id: "achar", 
+    {
+      id: "achar",
       label: "Achar",
       subcategories: []
     },
-    { 
-      id: "rassa", 
+    {
+      id: "rassa",
       label: "Rassa",
       subcategories: [
         { id: "gravies", label: "Gravies" },
         { id: "chutneys", label: "Chutneys" }
       ]
     },
-    { 
-      id: "cured-coated", 
+    {
+      id: "cured-coated",
       label: "Cured & Coated",
       subcategories: [
         { id: "meats", label: "Meats" },
@@ -327,6 +380,44 @@ export const addClubFormElements = [
     name: "default_location_description",
     componentType: "textarea",
     placeholder: "e.g., Private residence - details provided after booking",
+  },
+];
+
+export const addEventScheduleFormElements = [
+  {
+    label: "Date",
+    name: "date",
+    componentType: "input",
+    type: "date",
+    placeholder: "Select event date",
+  },
+  {
+    label: "Start Time",
+    name: "start_time",
+    componentType: "input",
+    type: "time",
+    placeholder: "Enter start time",
+  },
+  {
+    label: "Duration",
+    name: "duration",
+    componentType: "input",
+    type: "text",
+    placeholder: "e.g., 2-3 hours",
+  },
+  {
+    label: "Seat Limit",
+    name: "seat_limit",
+    componentType: "input",
+    type: "number",
+    placeholder: "Enter total seats available",
+  },
+  {
+    label: "Price per Guest",
+    name: "price_per_guest",
+    componentType: "input",
+    type: "number",
+    placeholder: "Enter price per guest",
   },
 ];
 

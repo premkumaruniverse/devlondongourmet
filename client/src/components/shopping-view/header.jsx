@@ -1,5 +1,5 @@
 
-import { HousePlug, LogOut, Menu, ShoppingCart, UserCog, User } from "lucide-react";
+import { LogOut, Menu, Search, ShoppingCart, UserCog, User } from "lucide-react";
 import {
   Link,
   useLocation,
@@ -42,14 +42,27 @@ function MenuItems() {
     <div className="flex flex-wrap md:flex-nowrap md:flex-row flex-col md:items-center gap-4 md:gap-6">
       {shoppingViewHeaderMenuItems.map((menuItem) => (
         <div key={menuItem.id} className="whitespace-nowrap group relative">
-          <button
-            onClick={() => handleNavigate(menuItem)}
-            className="relative text-sm font-medium text-gray-700 dark:text-primary hover:text-gray-900 dark:hover:text-primary/80 transition-all duration-300 tracking-wide text-left z-10"
-          >
-            <span className="relative z-10">{menuItem.label}</span>
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 dark:from-primary dark:to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
-          </button>
-          <span className="absolute inset-0 bg-gradient-to-r from-amber-50 to-white dark:from-primary/10 dark:to-primary/5 rounded-lg shadow-sm group-hover:shadow-md transition-all duration-300 transform group-hover:scale-105 -z-10 opacity-0 group-hover:opacity-100"></span>
+          {menuItem.isIcon ? (
+            // Icon-only button for Search — saves navbar space
+            <button
+              onClick={() => handleNavigate(menuItem)}
+              className="relative flex items-center justify-center w-8 h-8 rounded-full text-gray-700 dark:text-primary hover:text-gray-900 dark:hover:text-primary/80 hover:bg-amber-50 dark:hover:bg-primary/10 transition-all duration-200 z-10"
+              aria-label={menuItem.label}
+            >
+              <Search className="w-4 h-4" />
+            </button>
+          ) : (
+            <button
+              onClick={() => handleNavigate(menuItem)}
+              className="relative text-sm font-medium text-gray-700 dark:text-primary hover:text-gray-900 dark:hover:text-primary/80 transition-all duration-300 tracking-wide text-left z-10"
+            >
+              <span className="relative z-10">{menuItem.label}</span>
+              <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-amber-400 to-amber-600 dark:from-primary dark:to-primary transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+            </button>
+          )}
+          {!menuItem.isIcon && (
+            <span className="absolute inset-0 bg-gradient-to-r from-amber-50 to-white dark:from-primary/10 dark:to-primary/5 rounded-lg shadow-sm group-hover:shadow-md transition-all duration-300 transform group-hover:scale-105 -z-10 opacity-0 group-hover:opacity-100"></span>
+          )}
         </div>
       ))}
     </div>
@@ -76,22 +89,31 @@ function HeaderRightContent() {
   console.log(cartItems, "sangam");
 
   if (!isAuthenticated) {
-    // Show login/register buttons for unauthenticated users
+    // Single Account button with dropdown for Sign In / Sign Up
     return (
       <div className="flex lg:items-center lg:flex-row flex-col gap-4">
-        <Button
-          onClick={() => navigate("/auth/login")}
-          variant="outline"
-          size="sm"
-        >
-          Sign In
-        </Button>
-        <Button
-          onClick={() => navigate("/auth/register")}
-          size="sm"
-        >
-          Sign Up
-        </Button>
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button
+              size="sm"
+              className="bg-amber-600 hover:bg-amber-700 text-white dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90 flex items-center gap-2 px-4"
+            >
+              <User className="w-4 h-4" />
+              Account
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent side="bottom" align="end" className="w-44">
+            <DropdownMenuItem onClick={() => navigate("/auth/login")}>
+              <User className="mr-2 h-4 w-4" />
+              Sign In
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem onClick={() => navigate("/auth/register")}>
+              <UserCog className="mr-2 h-4 w-4" />
+              Sign Up
+            </DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
         <ThemeToggle />
       </div>
     );
@@ -173,9 +195,9 @@ function ShoppingHeader() {
             <SheetContent side="left" className="w-80">
               <div className="flex flex-col space-y-6 p-6">
                 <Link to="/shop/home" className="flex items-center">
-                  <img 
-                    src={londonGourmetLogo} 
-                    alt="London Gourmet" 
+                  <img
+                    src={londonGourmetLogo}
+                    alt="London Gourmet"
                     className="h-28 w-auto object-contain"
                   />
                   <div className="flex flex-col justify-center -ml-4">
@@ -197,9 +219,9 @@ function ShoppingHeader() {
           {/* Desktop Logo - Centered */}
           <div className="flex justify-start mr-12">
             <Link to="/shop/home" className="flex items-center">
-              <img 
-                src={londonGourmetLogo} 
-                alt="London Gourmet" 
+              <img
+                src={londonGourmetLogo}
+                alt="London Gourmet"
                 className="h-36 w-auto object-contain"
               />
               <div className="flex flex-col justify-center -ml-4">

@@ -249,9 +249,8 @@ function HomePage() {
               {featureImageList.map((slide, index) => (
                 <div
                   key={index}
-                  className={`absolute inset-0 transition-opacity duration-1000 ${
-                    index === currentSlide ? 'opacity-100' : 'opacity-0'
-                  }`}
+                  className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+                    }`}
                 >
                   <img
                     src={slide.image}
@@ -291,21 +290,21 @@ function HomePage() {
               Discover our carefully curated selection of premium culinary offerings
             </p>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 perspective-1000">
             {productCategories.map((category, index) => (
-              <Card 
+              <Card
                 key={category.id}
                 className="group overflow-hidden transition-all duration-300 hover:shadow-2xl cursor-pointer transform-gpu hover-tilt-strong hover-glow-3d"
                 style={cardTransforms[index]?.container}
                 onMouseMove={(e) => handleCardMove(index, e)}
                 onMouseLeave={() => handleCardLeave(index)}
-                onClick={() => navigateTo(`/shop/listing?category=${category.id}`)}
+                onClick={() => navigateTo(`/shop/category/${category.id}`)}
               >
                 <CardContent className="p-0 z-pop" style={cardTransforms[index]?.content}>
                   <div className="relative h-60 overflow-hidden">
-                    <img 
-                      src={category.image} 
+                    <img
+                      src={category.image}
                       alt={category.name}
                       className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                       style={cardTransforms[index]?.img}
@@ -348,8 +347,8 @@ function HomePage() {
 
           <div className="grid md:grid-cols-3 gap-8 perspective-1000">
             {experienceBrands.map((brand, index) => (
-              <Card 
-                key={brand.id} 
+              <Card
+                key={brand.id}
                 className="p-8 text-center hover:shadow-2xl transition-shadow transform-gpu hover-tilt-strong hover-glow-3d dark:bg-card dark:border-border"
                 style={brandTransforms[index]?.container}
                 onMouseMove={(e) => handleBrandMove(index, e)}
@@ -361,8 +360,8 @@ function HomePage() {
                 </div>
                 <h3 className="text-xl font-semibold mb-3 dark:text-primary" style={brandTransforms[index]?.content}>{brand.name}</h3>
                 <p className="text-gray-600 mb-6 dark:text-muted-foreground" style={brandTransforms[index]?.content}>{brand.description}</p>
-                <Button 
-                  variant="outline" 
+                <Button
+                  variant="outline"
                   className="border-amber-600 text-amber-600 hover:bg-amber-50 transform hover:scale-105 dark:hover:bg-amber-950/30"
                   onClick={() => navigateTo(brand.link)}
                 >
@@ -383,11 +382,11 @@ function HomePage() {
                 About London Gourmet
               </h2>
               <p className="text-gray-700 mb-8 text-lg dark:text-foreground">
-                London Gourmet is a premium culinary brand dedicated to creating unforgettable food experiences. 
-                From handcrafted gourmet products to bespoke dining events, we blend traditional techniques 
+                London Gourmet is a premium culinary brand dedicated to creating unforgettable food experiences.
+                From handcrafted gourmet products to bespoke dining events, we blend traditional techniques
                 with modern gastronomy.
               </p>
-              
+
               <div className="grid grid-cols-2 gap-6 mb-8">
                 <div className="flex items-start">
                   <ChefHat className="w-6 h-6 text-amber-600 mr-3 mt-1 flex-shrink-0" />
@@ -404,19 +403,19 @@ function HomePage() {
                   </div>
                 </div>
               </div>
-              
-              <Button 
-                variant="outline" 
+
+              <Button
+                variant="outline"
                 className="border-amber-600 text-amber-600 hover:bg-amber-50 dark:hover:bg-amber-950/30"
-                onClick={() => navigateTo('/about')}
+                onClick={() => navigateTo('/shop/about')}
               >
                 Read Our Story
               </Button>
             </div>
-            
+
             <div className="md:w-1/2 h-96 md:h-[500px] rounded-lg overflow-hidden shadow-xl transform-gpu hover-tilt-strong hover-glow-3d perspective-1000">
-              <img 
-                src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+              <img
+                src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80"
                 alt="Chef preparing food"
                 className="w-full h-full object-cover"
               />
@@ -436,11 +435,11 @@ function HomePage() {
               Don&rsquo;t just take our word for it - hear from our satisfied customers
             </p>
           </div>
-          
+
           <div className="grid md:grid-cols-3 gap-8 perspective-1000">
             {testimonials.map((testimonial, index) => (
-              <Card 
-                key={testimonial.id} 
+              <Card
+                key={testimonial.id}
                 className="p-8 text-center hover:shadow-2xl transition-shadow h-full flex flex-col transform-gpu hover-tilt-strong hover-glow-3d dark:bg-card dark:border-border"
                 style={testimonialTransforms[index]?.container}
                 onMouseMove={(e) => handleTestimonialMove(index, e)}
@@ -466,27 +465,28 @@ function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gray-900 dark:bg-background text-white">
-        <div className="container mx-auto px-4 text-center">
+      <section className="py-24 bg-[#0a0202] text-white overflow-hidden relative">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-amber-500/5 blur-[120px] rounded-full -z-0" />
+        <div className="container mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6 dark:text-primary">
             Let&rsquo;s Create Something Delicious Together
           </h2>
           <p className="text-gray-300 max-w-2xl mx-auto mb-8 dark:text-muted-foreground">
-            Whether you&rsquo;re looking for premium ingredients, catering for your next event, 
+            Whether you&rsquo;re looking for premium ingredients, catering for your next event,
             or an exclusive dining experience, we've got you covered.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button 
-              size="lg" 
-              className="bg-amber-600 hover:bg-amber-700 text-white px-8 py-6 text-lg dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
+            <Button
+              size="lg"
+              className="bg-amber-600 hover:bg-amber-700 text-white px-10 py-7 text-lg dark:bg-amber-500 dark:text-[#1a0505] dark:hover:bg-amber-400 font-bold uppercase tracking-widest transition-all duration-300 rounded-none shadow-xl border-none"
               onClick={() => navigateTo('/contact')}
             >
               Contact Us
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
-              className="border-white text-white hover:bg-white/10 px-8 py-6 text-lg dark:border-primary dark:text-primary dark:hover:bg-primary/10"
+            <Button
+              variant="outline"
+              size="lg"
+              className="border-white text-white hover:bg-white/10 px-10 py-7 text-lg dark:border-amber-500/40 dark:text-amber-500 dark:hover:bg-amber-500/10 font-bold uppercase tracking-widest transition-all duration-300 rounded-none"
               onClick={() => navigateTo('/shop/diners-atlas#book')}
             >
               Book an Event

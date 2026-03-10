@@ -13,7 +13,7 @@ function ShoppingCheckout() {
   const { user } = useSelector((state) => state.auth);
   const { approvalURL } = useSelector((state) => state.shopOrder);
   const [currentSelectedAddress, setCurrentSelectedAddress] = useState(null);
-  const [isPaymentStart, setIsPaymemntStart] = useState(false);
+  const [isPaymentStart, setIsPaymentStart] = useState(false);
   const dispatch = useDispatch();
   const { toast } = useToast();
 
@@ -33,12 +33,11 @@ function ShoppingCheckout() {
       : 0;
 
   function handleInitiatePaypalPayment() {
-    if (cartItems.length === 0) {
+    if (cartItems && cartItems.items && cartItems.items.length === 0) {
       toast({
         title: "Your cart is empty. Please add items to proceed",
         variant: "destructive",
       });
-
       return;
     }
     if (currentSelectedAddress === null) {
@@ -84,9 +83,14 @@ function ShoppingCheckout() {
     dispatch(createNewOrder(orderData)).then((data) => {
       console.log(data, "sangam");
       if (data?.payload?.success) {
-        setIsPaymemntStart(true);
+        setIsPaymentStart(true);
       } else {
-        setIsPaymemntStart(false);
+        setIsPaymentStart(false);
+        toast({
+          title: "Payment initiation failed!",
+          description: data?.payload?.message || "Internal Server Error",
+          variant: "destructive",
+        });
       }
     });
   }
@@ -97,9 +101,6 @@ function ShoppingCheckout() {
 
   return (
     <div className="flex flex-col">
-      <div className="relative h-[300px] w-full overflow-hidden">
-        <img src={img} className="h-full w-full object-cover object-center" />
-      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mt-5 p-5">
         <Address
           selectedId={currentSelectedAddress}
@@ -114,7 +115,7 @@ function ShoppingCheckout() {
           <div className="mt-8 space-y-4">
             <div className="flex justify-between">
               <span className="font-bold">Total</span>
-              <span className="font-bold">${totalCartAmount}</span>
+              <span className="font-bold">£{totalCartAmount}</span>
             </div>
           </div>
           <div className="mt-4 w-full">

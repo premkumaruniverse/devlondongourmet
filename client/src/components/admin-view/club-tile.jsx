@@ -9,6 +9,7 @@ function AdminClubTile({
   setOpenCreateProductsDialog,
   setCurrentEditedId,
   handleDelete,
+  onManageSchedules,
 }) {
   const experienceTypeLabels = {
     SUPPER_CLUB: "Supper Club",
@@ -72,44 +73,57 @@ function AdminClubTile({
           </div>
         </div>
       </CardContent>
-      <CardFooter className="flex gap-2 p-4">
+      <CardFooter className="flex flex-col gap-2 p-4 pt-0">
         <Button
           variant="outline"
           size="sm"
-          className="flex-1"
+          className="w-full flex items-center gap-2 border-amber-500/30 text-amber-500 hover:bg-amber-500/10"
           onClick={() => {
-            setFormData({
-              title: club?.title,
-              description: club?.description,
-              experience_type: club?.experience_type,
-              theme: club?.theme,
-              images: club?.images,
-              host_id: club?.host_id?._id,
-              is_members_only: club?.is_members_only?.toString(),
-              menu_details: club?.menu_details,
-              dietary_notes: club?.dietary_notes,
-              cancellation_policy: club?.cancellation_policy,
-              status: club?.status,
-              default_duration: club?.default_duration || "",
-              default_group_size: club?.default_group_size || "",
-              default_location_description: club?.default_location_description || "",
-            });
-            setCurrentEditedId(club?._id);
-            setOpenCreateProductsDialog(true);
+            console.log("SCHEDULE Button Clicked");
+            if (onManageSchedules) onManageSchedules(club);
           }}
         >
-          <EditIcon className="h-4 w-4 mr-1" />
-          Edit
+          Manage Schedules
         </Button>
-        <Button
-          variant="destructive"
-          size="sm"
-          className="flex-1"
-          onClick={() => handleDelete(club?._id)}
-        >
-          <TrashIcon className="h-4 w-4 mr-1" />
-          Delete
-        </Button>
+        <div className="flex gap-2 w-full">
+          <Button
+            variant="outline"
+            size="sm"
+            className="flex-1"
+            onClick={() => {
+              setFormData({
+                title: club?.title,
+                description: club?.description,
+                experience_type: club?.experience_type,
+                theme: club?.theme,
+                images: club?.images,
+                host_id: club?.host_id?._id,
+                is_members_only: club?.is_members_only?.toString(),
+                menu_details: club?.menu_details,
+                dietary_notes: club?.dietary_notes,
+                cancellation_policy: club?.cancellation_policy,
+                status: club?.status,
+                default_duration: club?.default_duration || "",
+                default_group_size: club?.default_group_size || "",
+                default_location_description: club?.default_location_description || "",
+              });
+              setCurrentEditedId(club?._id);
+              setOpenCreateProductsDialog(true);
+            }}
+          >
+            <EditIcon className="h-4 w-4 mr-1" />
+            Edit
+          </Button>
+          <Button
+            variant="destructive"
+            size="sm"
+            className="flex-1"
+            onClick={() => handleDelete(club?._id)}
+          >
+            <TrashIcon className="h-4 w-4 mr-1" />
+            Delete
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   );

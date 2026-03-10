@@ -23,6 +23,9 @@ const shopChefsRouter = require("./routes/shop/chefs-routes");
 const shopClubsRouter = require("./routes/shop/clubs-routes");
 const shopServicesRouter = require("./routes/shop/service-routes");
 const shopQuotesRouter = require("./routes/shop/quote-routes");
+const shopSubscriptionRouter = require("./routes/shop/subscription-routes");
+
+const adminSubscriptionRouter = require("./routes/admin/subscription-routes");
 
 const commonFeatureRouter = require("./routes/common/feature-routes");
 
@@ -43,6 +46,7 @@ app.use(
       "http://localhost:5173",
       "http://localhost:5174",
       "http://localhost:5175",
+      "http://127.0.0.1:5173",
       process.env.CLIENT_URL
     ].filter(Boolean),
     methods: ["GET", "POST", "DELETE", "PUT"],
@@ -80,6 +84,9 @@ app.use("/api/shop/chefs", shopChefsRouter);
 app.use("/api/shop/clubs", shopClubsRouter);
 app.use("/api/shop/services", shopServicesRouter);
 app.use("/api/shop/quotes", shopQuotesRouter);
+app.use("/api/shop/subscription", shopSubscriptionRouter);
+
+app.use("/api/admin/subscription", adminSubscriptionRouter);
 
 app.use("/api/common/feature", commonFeatureRouter);
 
@@ -88,4 +95,9 @@ app.get("/", (req, res) => {
   res.json({ message: "London Gourmet API is running!" });
 });
 
+const { startBillingScheduler } = require("./services/billing-scheduler");
+
 app.listen(PORT, () => console.log(`Server is now running on port ${PORT}`));
+
+// Start subscription billing engine
+startBillingScheduler();

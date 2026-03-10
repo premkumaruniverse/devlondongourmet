@@ -12,14 +12,16 @@ import { Label } from "../ui/label";
 import StarRatingComponent from "../common/star-rating";
 import { useEffect, useState } from "react";
 import { addReview, getReviews } from "@/store/shop/review-slice";
+import { useNavigate } from "react-router-dom";
 
 function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const [reviewMsg, setReviewMsg] = useState("");
   const [rating, setRating] = useState(0);
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
   const { cartItems } = useSelector((state) => state.shopCart);
   const { reviews } = useSelector((state) => state.shopReview);
+  const navigate = useNavigate();
 
   const { toast } = useToast();
 
@@ -30,6 +32,11 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   }
 
   function handleAddToCart(getCurrentProductId, getTotalStock) {
+    if (!isAuthenticated) {
+      toast({ title: "Please sign in to add items to your cart" });
+      navigate("/auth/login");
+      return;
+    }
     let getCartItems = cartItems.items || [];
 
     if (getCartItems.length) {
@@ -101,7 +108,7 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const averageReview =
     reviews && reviews.length > 0
       ? reviews.reduce((sum, reviewItem) => sum + reviewItem.reviewValue, 0) /
-        reviews.length
+      reviews.length
       : 0;
 
   return (
@@ -125,15 +132,14 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
           </div>
           <div className="flex items-center justify-between">
             <p
-              className={`text-3xl font-bold text-primary ${
-                productDetails?.salePrice > 0 ? "line-through" : ""
-              }`}
+              className={`text-3xl font-bold text-primary ${productDetails?.salePrice > 0 ? "line-through" : ""
+                }`}
             >
-              ${productDetails?.price}
+              £{productDetails?.price}
             </p>
             {productDetails?.salePrice > 0 ? (
               <p className="text-2xl font-bold text-muted-foreground">
-                ${productDetails?.salePrice}
+                £{productDetails?.salePrice}
               </p>
             ) : null}
           </div>
