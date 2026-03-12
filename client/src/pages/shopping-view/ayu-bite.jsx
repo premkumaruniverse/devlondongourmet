@@ -21,7 +21,10 @@ const AyuBite = () => {
     const [endDate, setEndDate] = useState('');
 
     useEffect(() => {
-        dispatch(fetchAllFilteredProducts({ filterParams: { category: ['ayu-bite'] }, sortParams: 'price-lowtohigh' }));
+        dispatch(fetchAllFilteredProducts({ 
+            filterParams: { includeAll: 'true' }, 
+            sortParams: 'price-lowtohigh' 
+        }));
     }, [dispatch]);
 
     useEffect(() => {
@@ -112,7 +115,7 @@ const AyuBite = () => {
                             <span className="text-[10px] font-bold text-amber-500 tabular-nums">{productList?.length || 0} AVAILABLE</span>
                         </div>
 
-                        <div className="space-y-3">
+                        <div className="space-y-3 max-h-[700px] overflow-y-auto pr-2 custom-scrollbar">
                             {productList && productList.map((product) => (
                                 <div
                                     key={product._id}

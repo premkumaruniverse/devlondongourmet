@@ -39,7 +39,7 @@ function MenuItems() {
   }
 
   return (
-    <div className="flex flex-wrap md:flex-nowrap md:flex-row flex-col md:items-center gap-4 md:gap-6">
+    <div className="flex flex-col lg:flex-row lg:items-center gap-2 xl:gap-4">
       {shoppingViewHeaderMenuItems.map((menuItem) => (
         <div key={menuItem.id} className="whitespace-nowrap group relative">
           {menuItem.isIcon ? (
@@ -86,7 +86,6 @@ function HeaderRightContent() {
     }
   }, [dispatch, isAuthenticated, user?.id]);
 
-  console.log(cartItems, "sangam");
 
   if (!isAuthenticated) {
     // Single Account button with dropdown for Sign In / Sign Up
@@ -178,67 +177,69 @@ function ShoppingHeader() {
 
   return (
     <header className="sticky top-0 z-50 w-full bg-white/90 dark:bg-background/95 backdrop-blur-md border-b border-gray-100 dark:border-border transition-colors duration-300">
-      <div className="container mx-auto px-4">
+      <div className="w-full px-4 lg:px-6">
         <div className="flex h-16 items-center justify-between">
-          {/* Mobile menu */}
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="md:hidden"
-              >
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-80">
-              <div className="flex flex-col space-y-6 p-6">
-                <Link to="/shop/home" className="flex items-center">
-                  <img
-                    src={londonGourmetLogo}
-                    alt="London Gourmet"
-                    className="h-28 w-auto object-contain"
-                  />
-                  <div className="flex flex-col justify-center -ml-4">
-                    <span className="font-playfair text-lg font-bold text-amber-600 dark:text-amber-500 leading-none">
-                      London Gourmet
-                    </span>
+          <div className="flex-1 flex items-center justify-start gap-4">
+            {/* Mobile menu */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden"
+                >
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-80">
+                <div className="flex flex-col space-y-6 p-6">
+                  <Link to="/shop/home" className="flex items-center">
+                    <img
+                      src={londonGourmetLogo}
+                      alt="London Gourmet"
+                      className="h-28 w-auto object-contain"
+                    />
+                    <div className="flex flex-row justify-center ml-2">
+                      <span className="font-playfair text-lg font-bold text-amber-600 dark:text-amber-500 leading-none whitespace-nowrap">
+                        London Gourmet
+                      </span>
+                    </div>
+                  </Link>
+                  <nav className="flex flex-col space-y-4">
+                    <MenuItems />
+                  </nav>
+                  <div className="pt-4 border-t">
+                    <HeaderRightContent />
                   </div>
-                </Link>
-                <nav className="flex flex-col space-y-4">
-                  <MenuItems />
-                </nav>
-                <div className="pt-4 border-t">
-                  <HeaderRightContent />
                 </div>
-              </div>
-            </SheetContent>
-          </Sheet>
+              </SheetContent>
+            </Sheet>
 
-          {/* Desktop Logo - Centered */}
-          <div className="flex justify-start mr-12">
-            <Link to="/shop/home" className="flex items-center">
-              <img
-                src={londonGourmetLogo}
-                alt="London Gourmet"
-                className="h-36 w-auto object-contain"
-              />
-              <div className="flex flex-col justify-center -ml-4">
-                <span className="font-playfair text-xl font-bold text-amber-600 dark:text-amber-500 leading-none">
-                  London Gourmet
-                </span>
-              </div>
-            </Link>
+            {/* Desktop Logo */}
+            <div className="hidden md:flex">
+              <Link to="/shop/home" className="flex items-center">
+                <img
+                  src={londonGourmetLogo}
+                  alt="London Gourmet"
+                  className="h-32 w-auto object-contain"
+                />
+                <div className="flex flex-row justify-center ml-2">
+                  <span className="font-playfair text-xl font-bold text-amber-600 dark:text-amber-500 leading-none whitespace-nowrap">
+                    London Gourmet
+                  </span>
+                </div>
+              </Link>
+            </div>
           </div>
 
-          {/* Desktop Navigation - Centered */}
-          <nav className="hidden md:flex flex-1 justify-center">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex justify-center flex-shrink-0">
             <MenuItems />
           </nav>
 
           {/* Right side actions */}
-          <div className="flex items-center space-x-4 flex-1 justify-end pl-8">
+          <div className="flex-1 flex items-center justify-end space-x-4">
             <HeaderRightContent />
           </div>
         </div>

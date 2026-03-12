@@ -2,6 +2,7 @@ import { Card, CardContent, CardFooter } from "../ui/card";
 import { Button } from "../ui/button";
 import { categoryOptionsMap } from "@/config";
 import { Badge } from "../ui/badge";
+import { ArrowRight } from "lucide-react";
 
 function ShoppingProductTile({
   product,
@@ -72,7 +73,7 @@ function ShoppingProductTile({
             onClick={() => handleAddtoCart(product?._id, product?.totalStock)}
             className="w-full h-14 bg-[#1a0505] dark:bg-amber-500/10 hover:bg-black dark:hover:bg-amber-500 text-white dark:text-amber-500 dark:hover:text-[#1a0505] transition-all duration-500 font-black uppercase tracking-[4px] text-[10px] rounded-xl shadow-xl shadow-black/10 group/btn"
           >
-            ACQUIRE BITE <ArrowRight className="ml-2 w-4 h-4 opacity-0 group-hover/btn:opacity-100 group-hover/btn:translate-x-2 transition-all" />
+            ADD TO CART
           </Button>
         )}
       </CardFooter>

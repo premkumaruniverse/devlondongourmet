@@ -2,12 +2,19 @@ const Product = require("../../models/Product");
 
 const getFilteredProducts = async (req, res) => {
   try {
-    const { category = [], subcategory = [], sortBy = "price-lowtohigh" } = req.query;
+    const { category = [], subcategory = [], sortBy = "price-lowtohigh", isSubscriptionEligible, includeAll } = req.query;
 
     let filters = {};
 
     if (category.length) {
       filters.category = { $in: category.split(",") };
+    } else if (isSubscriptionEligible === undefined && includeAll !== 'true') {
+      // Exclude ayu-bite from general listing by default if no category/subscription filter is specified and includeAll is not set
+      filters.category = { $ne: "ayu-bite" };
+    }
+
+    if (isSubscriptionEligible !== undefined) {
+      filters.isSubscriptionEligible = isSubscriptionEligible === 'true';
     }
 
     if (subcategory.length) {
@@ -47,7 +54,7 @@ const getFilteredProducts = async (req, res) => {
       data: products,
     });
   } catch (e) {
-    console.log(error);
+    console.log(e);
     res.status(500).json({
       success: false,
       message: "Some error occured",
@@ -71,7 +78,7 @@ const getProductDetails = async (req, res) => {
       data: product,
     });
   } catch (e) {
-    console.log(error);
+    console.log(e);
     res.status(500).json({
       success: false,
       message: "Some error occured",

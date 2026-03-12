@@ -52,7 +52,7 @@ const SubscriptionCheckout = () => {
         setIsProcessing(true);
 
         const subscriptionData = {
-            productId: "66d86b7e6c3e3e3e3e3e3e3e", // Standard Ayu Bite Product ID
+            productId: planData.productId || "66d86b7e6c3e3e3e3e3e3e3e", // Use passed ID or fallback
             frequency: planData.frequency || "weekly",
             price: parseFloat(planData.price),
             shippingAddress: selectedAddress,
